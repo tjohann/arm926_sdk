@@ -7,7 +7,7 @@ all:
 .PHONY: clean
 clean:
 	rm -f *~ .*~
-	rm -f old_stuff/*~
-	rm -f old_stuff/.*~
+	rm -f for_playing/*~
+	rm -f for_playing/.*~
 
 distclean: clean
