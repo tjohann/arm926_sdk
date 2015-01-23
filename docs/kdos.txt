@@ -1,0 +1,31 @@
+# ----------------------------------------------------------------------------------
+#
+# simple collection of useful kdos
+# 
+# ----------------------------------------------------------------------------------
+#
+# MOUNTPOINTS 
+# - kernel -> /mnt/aria_kernel
+# - rootfs -> /mnt/aria_rootfs
+# - home   -> /mnt/aria_home
+#
+# PARTITION scheme (min 16G):
+# Note: cylinder alignment
+#
+# - fat16        kernel  32MB                  bootloader, kernel image and some more files 
+# - ext4         rootfs  >6G                   rootfs
+# - ext4         home    >6G                   home
+# - swap         swap    >256MB (2*RAM size)   swap 
+#
+# FSTAB entrys for MOUNTPOINTS
+# LABEL=kernel  /mnt/aria_kernel  vfat  defaults,user,noauto   0 0
+# LABEL=rootfs  /mnt/aria_rootfs  ext4  defaults,user,noauto   0 0
+# LABEL=HOME    /mnt/aria_home    auto  noauto,user,rw         0 0
+#
+# ----------------------------------------------------------------------------------
+#
+# set partion name
+#
+# tune2fs -L YOUR_NAME_FOR_THE_PARTITION /dev/your_partition_to_change
+#
+# ----------------------------------------------------------------------------------

@@ -1,0 +1,134 @@
+# ----------------------------------------------------------------------------------
+#
+# simple howto for building a custom kernel
+# 
+# ----------------------------------------------------------------------------------
+#
+# DEVICES
+# - ariaetta -> http://www.acmesystems.it/arietta
+# - aria     -> http://www.acmesystems.it/aria
+#
+# KERNEL version
+# - linux-3.18.3 (PREEMPT ... waiting for RT-PREEMPT)
+# - linux-3.14.23 (latest RT-PREEMPT)
+# - linux-3.14.17 (xenomai)
+#
+# DOWNLOADS
+# - http://www.acmesystems.it/
+# - https://www.kernel.org/pub/linux/kernel/v3.x/
+# - https://www.kernel.org/pub/linux/kernel/projects/rt/3.14/older/
+#
+# MOUNTPOINTS
+# - kernel -> /mnt/aria_kernel
+# - rootfs -> /mnt/aria_rootfs
+# - home   -> /mnt/aria_home 
+#
+# FSTAB entrys for MOUNTPOINTS
+# LABEL=KERNEL /mnt/aria_kernel  vfat  defaults,user,noauto   0 0
+# LABEL=ROOTFS /mnt/aria_rootfs  ext4  defaults,user,noauto   0 0
+# LABEL=HOME   /mnt/aria_home    ext4  defaults,user,noauto   0 0
+#
+# ----------------------------------------------------------------------------------
+#
+
+# ------------------------------------ PATCH start ---------------------------------
+
+# 
+# patch kernel for rt-preempt 
+#
+DIR: $ARMEL_HOME/kernel/linux-3.14.23
+KDO: zcat ../patch-3.14.23-rt20.patch.gz | patch -p1
+
+# ---
+
+#
+# patch ipipe 
+#
+DIR
+KDO:
+
+#
+# patch xenomai
+#
+DIR
+KDO:
+
+# ------------------------------------ PATCH end -----------------------------------
+
+
+# ------------------------------------ CONFIG start --------------------------------
+
+#
+# configure kernel 
+#
+DIR: $ARMEL_HOME/kernel/linux-3.18.3
+KDO: cp $ARMEL_HOME/configs/kernel_config_3.18.3 .config
+KDO: make ARCH=arm menuconfig
+
+# ------------------------------------ CONFIG end ----------------------------------
+
+
+# ------------------------------------ BUILD start ---------------------------------
+
+#
+#  build dtb 
+#
+DIR: $ARMEL_HOME/kernel/linux-3.18.3
+KDO: cp $ARMEL_HOME/configs/acme-arietta.dts arch/arm/boot/dts/acme-arietta.dts
+KDO: make ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- acme-arietta.dtb
+
+#
+# build kernel/modules 
+#
+DIR: $ARMEL_HOME/kernel/linux-3.18.3
+KDO: make -j8 ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- zImage modules
+
+#
+# install modules
+#
+DIR: $ARMEL_HOME/kernel/linux-3.18.3
+KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_3.18.3 modules_install
+
+# ------------------------------------ BUILD end -----------------------------------
+
+
+# ------------------------------------ COPY to SD start ----------------------------
+
+#
+# copy dtb 
+#
+DIR: $ARMEL_HOME/kernel/linux-3.18.3
+KDO: cp arch/arm/boot/dts/acme-arietta.dtb /mnt/aria_kernel/
+KDO: cp arch/arm/boot/dts/acme-arietta.dts /mnt/aria_kernel/
+
+#
+# copy kernel + kernel config 
+#
+DIR: $ARMEL_HOME/kernel/linux-3.18.3
+KDO: cp arch/arm/boot/zImage /mnt/aria_kernel/
+KDO: cp .config /mnt/aria_kernel/
+
+#
+# copy modules 
+#
+DIR: $ARMEL_HOME/kernel/linux-3.18.3
+KDO: sudo rsync -avc ../modules_3.18.3/lib/modules/. /mnt/aria_rootfs/lib/modules/.
+
+#
+# copy cleaned source to sd card 
+#
+DIR: $ARMEL_HOME
+KDO: sudo rsync -av --delete linux-3.18.3 /mnt/aria_rootfs/usr/src/.
+
+# ------------------------------------ COPY to SD end ------------------------------
+
+
+#
+# Finish -> after arietta login 
+#
+DIR: ~
+KDO: depmod -a
+
+
+
+

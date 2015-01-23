@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# /etc/rc.d/rc.local:  Local system initialization script.
+#
+# Put any local startup commands in here.  Also, if you have
+# anything that needs to be run at shutdown time you can
+# make an /etc/rc.d/rc.local_shutdown script and put those
+# commands in there.
+
+# start thttpd 
+if [ -x /etc/rc.d/rc.thttpd ]; then
+  /bin/sh /etc/rc.d/rc.thttpd restart
+fi
+
+# do it only if needed 
+if [ -x /etc/rc.d/rc.optimized_boot ]; then
+  . /etc/rc.d/rc.optimized_boot
+fi
+
+# check for actual date
+/usr/sbin/ntpdate pool.ntp.org
+

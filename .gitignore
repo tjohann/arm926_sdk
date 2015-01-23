@@ -1,0 +1,7 @@
+# ignore toolchain and other bin stuff -> distributed over sourceforge
+v[1-9]
+arm926_sdk_v[1-9].tgz
+*.tgz
+linux-3.*
+modules_3.*
+toolchain

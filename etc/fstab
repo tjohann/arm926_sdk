@@ -1,0 +1,21 @@
+#
+# Sample /etc/fstab 
+# 
+# This must be modified prior to use.
+# 
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+proc            /proc           proc    defaults        0       0
+tmpfs           /dev/shm        tmpfs   defaults        0       0
+
+# arietta 
+/dev/mmcblk0p1  /boot           vfat    noatime          0       1
+/dev/mmcblk0p2  /               ext4    noatime          0       1
+/dev/mmcblk0p4  /home		ext4	noatime		 0	 0
+
+# swap
+/dev/mmcblk0p3  none            swap    sw               0       0
+
+# my home network share for slackware-current
+echnaton:/mnt/shared          /mnt/echnaton_nfs  nfs defaults,noauto,user,sync,nfsvers=3  0       0
+
+
