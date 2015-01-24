@@ -2,6 +2,9 @@
 v[1-9]
 arm926_sdk_v[1-9].tgz
 *.tgz
+*.gz
+*.bz2
+*.xz
 linux-3.*
 modules_3.*
 toolchain

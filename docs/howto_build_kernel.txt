@@ -5,12 +5,12 @@
 # ----------------------------------------------------------------------------------
 #
 # DEVICES
-# - ariaetta -> http://www.acmesystems.it/arietta
-# - aria     -> http://www.acmesystems.it/aria
+# - arietta -> http://www.acmesystems.it/arietta
+# - aria    -> http://www.acmesystems.it/aria
 #
 # KERNEL version
 # - linux-3.18.3 (PREEMPT ... waiting for RT-PREEMPT)
-# - linux-3.14.23 (latest RT-PREEMPT)
+# - linux-3.14.29 (latest RT-PREEMPT)
 # - linux-3.14.17 (xenomai)
 #
 # DOWNLOADS
@@ -19,14 +19,14 @@
 # - https://www.kernel.org/pub/linux/kernel/projects/rt/3.14/older/
 #
 # MOUNTPOINTS
-# - kernel -> /mnt/aria_kernel
-# - rootfs -> /mnt/aria_rootfs
-# - home   -> /mnt/aria_home 
+# - kernel -> /mnt/arietta_kernel     
+# - rootfs -> /mnt/arietta_rootfs
+# - home   -> /mnt/arietta_home 
 #
 # FSTAB entrys for MOUNTPOINTS
-# LABEL=KERNEL /mnt/aria_kernel  vfat  defaults,user,noauto   0 0
-# LABEL=ROOTFS /mnt/aria_rootfs  ext4  defaults,user,noauto   0 0
-# LABEL=HOME   /mnt/aria_home    ext4  defaults,user,noauto   0 0
+# LABEL=KERNEL_ARIE    /mnt/arietta_kernel  vfat  defaults,user,noauto   0 0
+# LABEL=ROOTFS_ARIETTA /mnt/arietta_rootfs  ext4  defaults,user,noauto   0 0
+# LABEL=HOME_ARIETTA   /mnt/arietta_home    ext4  defaults,user,noauto   0 0
 #
 # ----------------------------------------------------------------------------------
 #
@@ -98,27 +98,27 @@ KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_3.18.3 modules_install
 # copy dtb 
 #
 DIR: $ARMEL_HOME/kernel/linux-3.18.3
-KDO: cp arch/arm/boot/dts/acme-arietta.dtb /mnt/aria_kernel/
-KDO: cp arch/arm/boot/dts/acme-arietta.dts /mnt/aria_kernel/
+KDO: cp arch/arm/boot/dts/acme-arietta.dtb /mnt/arietta_kernel/
+KDO: cp arch/arm/boot/dts/acme-arietta.dts /mnt/arietta_kernel/
 
 #
 # copy kernel + kernel config 
 #
 DIR: $ARMEL_HOME/kernel/linux-3.18.3
-KDO: cp arch/arm/boot/zImage /mnt/aria_kernel/
-KDO: cp .config /mnt/aria_kernel/
+KDO: cp arch/arm/boot/zImage /mnt/arietta_kernel/
+KDO: cp .config /mnt/arietta_kernel/
 
 #
 # copy modules 
 #
 DIR: $ARMEL_HOME/kernel/linux-3.18.3
-KDO: sudo rsync -avc ../modules_3.18.3/lib/modules/. /mnt/aria_rootfs/lib/modules/.
+KDO: sudo rsync -avc ../modules_3.18.3/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
 
 #
 # copy cleaned source to sd card 
 #
 DIR: $ARMEL_HOME
-KDO: sudo rsync -av --delete linux-3.18.3 /mnt/aria_rootfs/usr/src/.
+KDO: sudo rsync -av --delete linux-3.18.3 /mnt/arietta_rootfs/usr/src/.
 
 # ------------------------------------ COPY to SD end ------------------------------
 

@@ -5,9 +5,9 @@
 # ----------------------------------------------------------------------------------
 #
 # MOUNTPOINTS 
-# - kernel -> /mnt/aria_kernel
-# - rootfs -> /mnt/aria_rootfs
-# - home   -> /mnt/aria_home
+# - kernel -> /mnt/arietta_kernel
+# - rootfs -> /mnt/arietta_rootfs
+# - home   -> /mnt/arietta_home
 #
 # PARTITION scheme (min 16G):
 # Note: cylinder alignment
@@ -18,9 +18,9 @@
 # - swap         swap    >256MB (2*RAM size)   swap 
 #
 # FSTAB entrys for MOUNTPOINTS
-# LABEL=kernel  /mnt/aria_kernel  vfat  defaults,user,noauto   0 0
-# LABEL=rootfs  /mnt/aria_rootfs  ext4  defaults,user,noauto   0 0
-# LABEL=HOME    /mnt/aria_home    auto  noauto,user,rw         0 0
+# LABEL=KERNEL_ARIE     /mnt/arietta_kernel  vfat  defaults,user,noauto   0 0
+# LABEL=ROOTFS_ARIETTA  /mnt/arietta_rootfs  ext4  defaults,user,noauto   0 0
+# LABEL=HOME_ARIETTA    /mnt/arietta_home    auto  noauto,user,rw         0 0
 #
 # ----------------------------------------------------------------------------------
 #
