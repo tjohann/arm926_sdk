@@ -9,7 +9,7 @@
 # - aria    -> http://www.acmesystems.it/aria
 #
 # KERNEL version
-# - linux-3.18.3 (PREEMPT ... waiting for RT-PREEMPT)
+# - linux-3.19 (PREEMPT ... waiting for RT-PREEMPT)
 # - linux-3.14.29 (latest RT-PREEMPT)
 # - linux-3.14.17 (xenomai)
 #
@@ -61,7 +61,7 @@ KDO:
 #
 # configure kernel 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19-rc7
+DIR: $ARMEL_HOME/kernel/linux-3.19
 KDO: cp $ARMEL_HOME/configs/kernel_config_3.19.x .config
 KDO: make ARCH=arm menuconfig
 
@@ -73,21 +73,21 @@ KDO: make ARCH=arm menuconfig
 #
 #  build dtb 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19-rc7
+DIR: $ARMEL_HOME/kernel/linux-3.19
 KDO: cp $ARMEL_HOME/configs/acme-arietta.dts arch/arm/boot/dts/acme-arietta.dts
 KDO: make ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- acme-arietta.dtb
 
 #
 # build kernel/modules 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19-rc7
+DIR: $ARMEL_HOME/kernel/linux-3.19
 KDO: make -j8 ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- zImage modules
 
 #
 # install modules
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19-rc7
-KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_3.19-rc7 modules_install
+DIR: $ARMEL_HOME/kernel/linux-3.19
+KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_3.19 modules_install
 
 # ------------------------------------ BUILD end -----------------------------------
 
@@ -97,28 +97,28 @@ KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_3.19-rc7 modules_install
 #
 # copy dtb 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19-rc7
+DIR: $ARMEL_HOME/kernel/linux-3.19
 KDO: cp arch/arm/boot/dts/acme-arietta.dtb /mnt/arietta_kernel/
 KDO: cp arch/arm/boot/dts/acme-arietta.dts /mnt/arietta_kernel/
 
 #
 # copy kernel + kernel config 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19-rc7
+DIR: $ARMEL_HOME/kernel/linux-3.19
 KDO: cp arch/arm/boot/zImage /mnt/arietta_kernel/
 KDO: cp .config /mnt/arietta_kernel/
 
 #
 # copy modules 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19-rc7
-KDO: sudo rsync -avc ../modules_3.19-rc7/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
+DIR: $ARMEL_HOME/kernel/linux-3.19
+KDO: sudo rsync -avc ../modules_3.19/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
 
 #
 # copy cleaned source to sd card 
 #
 DIR: $ARMEL_HOME
-KDO: sudo rsync -av --delete linux-3.19-rc7 /mnt/arietta_rootfs/usr/src/.
+KDO: sudo rsync -av --delete linux-3.19 /mnt/arietta_rootfs/usr/src/.
 
 # ------------------------------------ COPY to SD end ------------------------------
 
