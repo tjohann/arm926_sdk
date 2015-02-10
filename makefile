@@ -1,6 +1,6 @@
 # only for cleaning
 
-MODULES = configs docs etc images kernel 
+MODULES = configs docs etc images kernel src
 
 all:: 
 	@echo Cheers

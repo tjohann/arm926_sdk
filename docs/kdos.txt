@@ -13,8 +13,8 @@
 # Note: cylinder alignment
 #
 # - fat16        kernel  32MB                  bootloader, kernel image and some more files 
-# - ext4         rootfs  >6G                   rootfs
-# - ext4         home    >6G                   home
+# - ext4         rootfs  >8G                   rootfs
+# - ext4         home    >1G                   home
 # - swap         swap    >256MB (2*RAM size)   swap 
 #
 # FSTAB entrys for MOUNTPOINTS

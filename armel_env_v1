@@ -15,15 +15,9 @@ export ARMEL_HOME=$HOME/arm926_sdk
 export PATH=${ARMEL_HOME}/${ARMEL_VER}/bin:${ARMEL_HOME}/bin:$PATH
 
 # set mount points for the sdcard
-export ARMEL_MEDIA_KERNEL=/mnt/aria_kernel
-export ARMEL_MEDIA_ROOTFS=/mnt/aria_rootfs
-export ARMEL_MEDIA_HOME=/mnt/aria_rootfs
-
-# set some useful network aliase for the different systems
-alias ssh_arietta="ssh arietta"
-alias ssh_aria="ssh aria" 
-alias ssh_cubietruck="ssh cubietruck"
-alias ssh_server="ssh echnaton"
+export ARMEL_MEDIA_KERNEL=/mnt/arietta_kernel
+export ARMEL_MEDIA_ROOTFS=/mnt/arietta_rootfs
+export ARMEL_MEDIA_HOME=/mnt/arietta_home
 
 echo "Setup env for host \"${MY_HOST_ARCH}\" with root dir \"${ARMEL_HOME}\" and version \"${ARMEL_VER}\""
 
