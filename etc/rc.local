@@ -12,11 +12,21 @@ if [ -x /etc/rc.d/rc.thttpd ]; then
   /bin/sh /etc/rc.d/rc.thttpd restart
 fi
 
-# do it only if needed 
+# mount my server nfs shares
+if [ -x /etc/rc.d/rc.mount_mynfs ]; then
+  /bin/sh /etc/rc.d/rc.mount_mynfs start
+fi
+
+# execute only if needed -> reduce boot time 
 if [ -x /etc/rc.d/rc.optimized_boot ]; then
   . /etc/rc.d/rc.optimized_boot
 fi
 
 # check for actual date
 /usr/sbin/ntpdate pool.ntp.org
+
+# setup my can connection to temp and other modules
+/sbin/ip link set can0 type can bitrate 125000 triple-sampling on
+/sbin/ifconfig can0 up
+
 

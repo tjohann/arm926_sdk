@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# /etc/rc.d/rc.mount_mynfs
+#
+
+mount_mynfs_start()
+{
+    echo "mount nfs share from echnaton or server"
+    
+    # mount my server shares
+    if [ -x /opt/arm926_sdk/scripts/mount_server_nfs.sh ]; then
+        exec /opt/arm926_sdk/scripts/mount_server_nfs.sh &
+    fi
+}
+
+
+mount_mynfs_stop()
+{
+    echo "mount_mynfs_stop"
+
+    FILE_TYPE_ECHNATON=$(df -P -T /mnt/echnaton_nfs | tail -n +2 | awk '{print $2}')
+
+    if [ $FILE_TYPE_ECHNATON = "nfs" ]; then
+	echo "unmount echnaton_nfs"
+	umount /mnt/echnaton_nfs
+    fi
+}
+
+#
+# main loop
+#
+case "$1" in
+'start')
+  mount_mynfs_start
+  ;;
+'stop')
+  mount_mynfs_stop
+  ;;
+'restart')
+  mount_mynfs_stop
+  mount_mynfs_start 
+  ;;
+*)
+  echo "usage $0 start|stop|restart"
+esac
+
