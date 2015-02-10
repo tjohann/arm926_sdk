@@ -10,14 +10,14 @@
 
 
 # check mcp config
-caramel@aria_slackware:/proc/net/can$ dmesg | fgrep -i mcp
+root@arietta:/proc/net/can$ dmesg | fgrep -i mcp
 [    6.500000] mcp251x spi32766.0: CANCTRL 0x87
 [358025.640625] mcp251x spi32766.0: CNF: 0x03 0xf5 0x01
 [358055.289062] mcp251x spi32766.0 can0: bus-off
 
 
 # check can config
-caramel@aria_slackware:/proc/net/can$ dmesg | fgrep -i can
+root@arietta:/proc/net/can$ dmesg | fgrep -i can
 [    6.039062] CAN device driver interface
 [    6.500000] mcp251x spi32766.0: CANCTRL 0x87
 [357282.929687] can: controller area network core (rev 20120528 abi 9)
@@ -27,7 +27,7 @@ caramel@aria_slackware:/proc/net/can$ dmesg | fgrep -i can
 
 
 # check sysfs entry
-caramel@aria_slackware:/proc/net/can$ lf /sys/class/net/
+root@arietta:/proc/net/can$ lf /sys/class/net/
 insgesamt 0
 drwxr-xr-x  2 root root 0 Jan 26 12:49 .
 drwxr-xr-x 33 root root 0 Jan 22 10:10 ..
@@ -63,14 +63,13 @@ mount -t debugfs none /sys/kernel/debug
 
 
 # gpio config 
-caramel@aria_slackware:/proc/net/can$ cat /sys/kernel/debug/gpio
+root@arietta:/proc/net/can$ cat /sys/kernel/debug/gpio
 cat: /sys/kernel/debug/gpio: Keine Berechtigung
-caramel@aria_slackware:/proc/net/can$ sudo cat /sys/kernel/debug/gpio
+root@arietta:/proc/net/can$ sudo cat /sys/kernel/debug/gpio
 GPIOs 0-31, platform/fffff400.gpio, fffff400.gpio:
 [spi32766.1] GPIOfffff400.gpio7: [gpio] set
 [spi32766.0] GPIOfffff400.gpio14: [gpio] set
 [w1] GPIOfffff400.gpio21: [gpio] set
-[caramel_led] GPIOfffff400.gpio22: [gpio] set
 
 GPIOs 32-50, platform/fffff600.gpio, fffff600.gpio:
 [aria_led] GPIOfffff600.gpio8: [gpio] set
@@ -81,7 +80,7 @@ GPIOs 96-117, platform/fffffa00.gpio, fffffa00.gpio:
 
 
 # detailed infos about can device
-caramel@aria_slackware:/proc/net/can$ ip -details link show can0
+root@arietta:/proc/net/can$ ip -details link show can0
 4: can0: <NO-CARRIER,NOARP,UP,ECHO> mtu 16 qdisc pfifo_fast state DOWN mode DEFAULT qlen 10
     link/can  promiscuity 0 
     can <TRIPLE-SAMPLING> state BUS-OFF restart-ms 0 
