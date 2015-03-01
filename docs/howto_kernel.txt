@@ -9,8 +9,8 @@
 # - aria    -> http://www.acmesystems.it/aria
 #
 # KERNEL version
-# - linux-3.19 (PREEMPT ... waiting for RT-PREEMPT)
-# - linux-3.14.29 (latest RT-PREEMPT)
+# - linux-3.19 
+# - linux-3.18.7 (latest RT-PREEMPT)
 # - linux-3.14.17 (xenomai)
 #
 # DOWNLOADS
@@ -36,8 +36,9 @@
 # 
 # patch kernel for rt-preempt 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.14.23
-KDO: zcat ../patch-3.14.23-rt20.patch.gz | patch -p1
+DIR: $ARMEL_HOME/kernel/linux-stable
+KDO: git checkout -b stable v3.18.7
+KDO: zcat ../patch-3.18.7-rt2.patch.gz | patch -p1
 
 # ---
 
@@ -61,7 +62,8 @@ KDO:
 #
 # configure kernel 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19
+DIR: $ARMEL_HOME/kernel/linux-stable
+KDO: git checkout -b stable v3.19
 KDO: cp $ARMEL_HOME/configs/kernel_config_3.19.x .config
 KDO: make ARCH=arm menuconfig
 
@@ -73,20 +75,20 @@ KDO: make ARCH=arm menuconfig
 #
 #  build dtb 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19
+DIR: $ARMEL_HOME/kernel/linux-stable
 KDO: cp $ARMEL_HOME/configs/acme-arietta.dts arch/arm/boot/dts/acme-arietta.dts
 KDO: make ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- acme-arietta.dtb
 
 #
 # build kernel/modules 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19
-KDO: make -j8 ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- zImage modules
+DIR: $ARMEL_HOME/kernel/linux-stable
+KDO: make -j8 ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- uImage modules
 
 #
 # install modules
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19
+DIR: $ARMEL_HOME/kernel/linux-stable
 KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_3.19 modules_install
 
 # ------------------------------------ BUILD end -----------------------------------
@@ -97,28 +99,29 @@ KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_3.19 modules_install
 #
 # copy dtb 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19
+DIR: $ARMEL_HOME/kernel/linux-stable
 KDO: cp arch/arm/boot/dts/acme-arietta.dtb /mnt/arietta_kernel/
 KDO: cp arch/arm/boot/dts/acme-arietta.dts /mnt/arietta_kernel/
 
 #
 # copy kernel + kernel config 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19
-KDO: cp arch/arm/boot/zImage /mnt/arietta_kernel/
+DIR: $ARMEL_HOME/kernel/linux-stable
+KDO: cp arch/arm/boot/uImage /mnt/arietta_kernel/
 KDO: cp .config /mnt/arietta_kernel/
 
 #
 # copy modules 
 #
-DIR: $ARMEL_HOME/kernel/linux-3.19
+# Note: maybe your need to remove the old one
+DIR: $ARMEL_HOME/kernel/linux-stable
 KDO: sudo rsync -avc ../modules_3.19/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
 
 #
 # copy cleaned source to sd card 
 #
 DIR: $ARMEL_HOME
-KDO: sudo rsync -av --delete linux-3.19 /mnt/arietta_rootfs/usr/src/.
+KDO: sudo rsync -av --delete linux-stable /mnt/arietta_rootfs/usr/src/.
 
 # ------------------------------------ COPY to SD end ------------------------------
 

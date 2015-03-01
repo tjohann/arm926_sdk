@@ -1,6 +1,6 @@
 # only for cleaning :-)
 
-MODULES = $(shell ls -d */ | cut -f1 -d'/')
+MODULES = at91bootstrap
 
 .PHONY: all
 all: 
