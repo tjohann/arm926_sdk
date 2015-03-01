@@ -31,6 +31,12 @@
 # ----------------------------------------------------------------------------------
 #
 
+#
+# clone kernel
+#
+DIR: $ARMEL_HOME/kernel/
+KDO: git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+
 # ------------------------------------ PATCH start ---------------------------------
 
 # 
