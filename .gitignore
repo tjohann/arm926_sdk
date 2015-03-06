@@ -6,6 +6,7 @@ arm926_sdk_v[1-9].tgz
 *.gz
 *.bz2
 *.xz
+linux-3.19
 modules_3.19
 toolchain
 linux-stable
