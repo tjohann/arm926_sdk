@@ -97,3 +97,9 @@ iface can0 inet manual
 	pre-up /ip link set $IFACE type can bitrate 125000 triple-sampling on
 	up /sbin/ifconfig $IFACE up
 	down /sbin/ifconfig $IFACE down
+
+# cansend & candump
+cansend can0 5A1#11.22.33.44.55.66.77.88
+
+candump can0
+  can0  5A1  [8] 11 22 33 44 55 66 77 88
