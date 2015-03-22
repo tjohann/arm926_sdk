@@ -9,7 +9,7 @@
 # - aria    -> http://www.acmesystems.it/aria
 #
 # KERNEL version
-# - linux-3.19.1 
+# - linux-3.19.2
 # - linux-3.18.9 (latest RT-PREEMPT)
 # - linux-3.14.17 (xenomai)
 #
@@ -79,7 +79,7 @@ KDO:
 # configure kernel 
 #
 DIR: $ARMEL_HOME/kernel/linux-stable (or linux-...)
-KDO: git checkout -b stable v3.19.1
+KDO: git checkout -b stable v3.19.2
 KDO: cp $ARMEL_HOME/configs/kernel_config_3.19.x_arietta .config
 KDO(aria): cp $ARMEL_HOME/configs/kernel_config_3.18.x_aria .config
 KDO: make ARCH=arm menuconfig
@@ -108,7 +108,7 @@ KDO: make -j10 ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- uImage modules
 # install modules
 #
 DIR: $ARMEL_HOME/kernel/linux-stable (or linux-...)
-KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_3.19.1 modules_install
+KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_3.19.2 modules_install
 KDO(aria): make ARCH=arm INSTALL_MOD_PATH=../modules_3.18.9 modules_install
 
 # ------------------------------------ BUILD end -----------------------------------
@@ -139,14 +139,14 @@ KDO(aria): cp .config /mnt/aria_kernel/
 #
 # Note: maybe your need to remove the old one
 DIR: $ARMEL_HOME/kernel/linux-stable (or linux-...)
-KDO: sudo rsync -avc ../modules_3.19.1/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
+KDO: sudo rsync -avc ../modules_3.19.2/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
 KDO(aria): sudo rsync -avc ../modules_3.18.9/lib/modules/. /mnt/aria_rootfs/lib/modules/.
 
 #
 # copy cleaned source to sd card 
 #
 DIR: $ARMEL_HOME
-KDO: sudo rsync -av --delete linux-3.19.1 /mnt/arietta_rootfs/usr/src/.
+KDO: sudo rsync -av --delete linux-3.19.2 /mnt/arietta_rootfs/usr/src/.
 KDO(aria): sudo rsync -av --delete linux-3.18.9 /mnt/aria_rootfs/usr/src/.
 
 

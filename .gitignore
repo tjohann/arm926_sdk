@@ -8,6 +8,8 @@ arm926_sdk_v[1-9].tgz
 *.xz
 linux-3.19.1
 modules_3.19.1
+linux-3.19.2
+modules_3.19.2
 linux-3.18.9
 modules_3.18.9
 toolchain
