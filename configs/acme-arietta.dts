@@ -90,7 +90,7 @@
 				};
 
 				at25@3 {
-				       compatible = "atmel,a t25", "st,m95256";
+				       compatible = "atmel,at25", "st,m95256";
 				       reg = <3>;
 				       spi-max-frequency = <5000000>;
 
