@@ -10,7 +10,7 @@
 #
 # KERNEL version
 # - linux-3.19.3
-# - linux-3.18.9 (latest RT-PREEMPT)
+# - linux-3.18.11 (latest RT-PREEMPT)
 # - linux-3.14.17 (xenomai)
 #
 # DOWNLOADS
@@ -53,8 +53,8 @@ KDO: git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable
 # patch kernel for rt-preempt 
 #
 DIR: $ARMEL_HOME/kernel/linux-stable
-KDO: git checkout -b stable v3.18.9
-KDO: zcat ../patch-3.18.9-rt45.patch.gz | patch -p1
+KDO: git checkout -b stable v3.18.11
+KDO: zcat ../patch-3.18.11-rt6.patch.gz | patch -p1
 
 # ---
 
