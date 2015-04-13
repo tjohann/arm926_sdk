@@ -1,6 +1,6 @@
 # only for cleaning :-)
 
-MODULES = at91bootstrap
+MODULES = $(shell ls -d */ | cut -f1 -d'/' | grep -v rpusbdisp)
 MODULES_TO_UPDATE = $(shell ls -d */ | cut -f1 -d'/')
 
 .PHONY: all
