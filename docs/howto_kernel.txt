@@ -41,6 +41,11 @@
 # LABEL=HOME_ARIE      /mnt/arietta_home    ext4  defaults,user,noauto   0 0
 # ----------------------------------------------------------------------------------
 #
+# Note: in $ARMEL_HOME/externel you can clone some useful repos,
+#       one of them is the linus kernel tree. So you can use that dir or
+#       you download the tar file to $ARMEL_HOME/kernel.
+#       Pls check the $DIR values below to be in the correct dir!
+#
 
 #
 # clone kernel
@@ -79,7 +84,7 @@ KDO:
 #
 # configure kernel 
 #
-DIR: $ARMEL_HOME/kernel/linux-stable (or linux-...)
+DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: git checkout -b stable v3.19.4
 KDO: cp $ARMEL_HOME/configs/kernel_config_4.0.x_arietta .config
 KDO(aria): cp $ARMEL_HOME/configs/kernel_config_3.18.x_aria .config
@@ -93,7 +98,7 @@ KDO: make ARCH=arm menuconfig
 #
 #  build dtb 
 #
-DIR: $ARMEL_HOME/kernel/linux-stable (or linux-...)
+DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: cp $ARMEL_HOME/configs/acme-arietta.dts arch/arm/boot/dts/acme-arietta.dts
 KDO(aria): cp $ARMEL_HOME/configs/acme-aria.dts arch/arm/boot/dts/acme-aria.dts
 KDO: make ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- acme-arietta.dtb
@@ -102,13 +107,13 @@ KDO(aria): make ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- acme-aria.dtb
 #
 # build kernel/modules 
 #
-DIR: $ARMEL_HOME/kernel/linux-stable (or linux-...)
+DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: make -j10 ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- uImage modules
 
 #
 # install modules
 #
-DIR: $ARMEL_HOME/kernel/linux-stable (or linux-...)
+DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_4.0.0 modules_install
 KDO(aria): make ARCH=arm INSTALL_MOD_PATH=../modules_3.18.9 modules_install
 
@@ -120,7 +125,7 @@ KDO(aria): make ARCH=arm INSTALL_MOD_PATH=../modules_3.18.9 modules_install
 #
 # copy dtb 
 #
-DIR: $ARMEL_HOME/kernel/linux-stable (or linux-...)
+DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: cp arch/arm/boot/dts/acme-arietta.dtb /mnt/arietta_kernel/
 KDO: cp arch/arm/boot/dts/acme-arietta.dts /mnt/arietta_kernel/
 KDO(aria): cp arch/arm/boot/dts/acme-aria.dts /mnt/aria_kernel/
@@ -129,7 +134,7 @@ KDO(aria): cp arch/arm/boot/dts/acme-aria.dtb /mnt/aria_kernel/
 #
 # copy kernel + kernel config 
 #
-DIR: $ARMEL_HOME/kernel/linux-stable (or linux-...)
+DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: cp arch/arm/boot/uImage /mnt/arietta_kernel/
 KDO: cp .config /mnt/arietta_kernel/
 KDO(aria): cp arch/arm/boot/uImage /mnt/aria_kernel/
@@ -139,14 +144,15 @@ KDO(aria): cp .config /mnt/aria_kernel/
 # copy modules 
 #
 # Note: maybe your need to remove the old one
-DIR: $ARMEL_HOME/kernel/linux-stable (or linux-...)
+DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: sudo rsync -avc ../modules_4.0.0/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
 KDO(aria): sudo rsync -avc ../modules_3.18.9/lib/modules/. /mnt/aria_rootfs/lib/modules/.
 
 #
 # copy cleaned source to sd card 
 #
-DIR: $ARMEL_HOME
+# Note: 
+DIR: depends ...
 KDO: sudo rsync -av --delete linux-4.0 /mnt/arietta_rootfs/usr/src/.
 KDO(aria): sudo rsync -av --delete linux-3.18.9 /mnt/aria_rootfs/usr/src/.
 

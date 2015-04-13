@@ -1,6 +1,16 @@
-# ignore toolchain and other bin stuff -> distributed over sourceforge
+# ignore toolchain and other bin stuff -> distributed via sourceforge
 at91bootstrap
 rpusbdisp
+linux
+ipipe
+xenomai-3
+rt-tests
+at91bootstrap.git
+rpusbdisp.git
+linux.git
+ipipe.git
+xenomai-3.git
+rt-tests.git
 *.tgz
 *.gz
 *.bz2
