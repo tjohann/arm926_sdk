@@ -1,6 +1,6 @@
 # only for cleaning :-)
 
-MODULES = $(shell ls -d */ | cut -f1 -d'/' | grep -v rpusbdisp)
+MODULES = $(shell ls -d */ | cut -f1 -d'/' | grep -v rpusbdisp | grep -v xenomai-3)
 MODULES_TO_UPDATE = $(shell ls -d */ | cut -f1 -d'/')
 
 .PHONY: all

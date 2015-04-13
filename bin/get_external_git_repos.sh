@@ -35,7 +35,7 @@ VER='0.01'
 # if env is sourced 
 MISSING_ENV='false'
 
-# REPO to install for installation
+# REPOs
 # at91bootstrap -> git://github.com/tanzilli/at91bootstrap.git
 # linus -> git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 # rpusbdisp -> http://github.com/robopeak/rpusbdisp.git

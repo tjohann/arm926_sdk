@@ -1,0 +1,12 @@
+# README
+
+
+Possible content cloned via script get_external_repos.sh:
+
+# REPOs
+# at91bootstrap -> git://github.com/tanzilli/at91bootstrap.git
+# linus -> git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+# rpusbdisp -> http://github.com/robopeak/rpusbdisp.git
+# rt-tests -> http://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git
+# ipipe -> git://git.xenomai.org/ipipe.git/
+# xenomai -> git://git.xenomai.org/xenomai-3.git/

@@ -20,11 +20,25 @@ clean::
 
 distclean: clean
 
-# 
+#
+# clone some useful repos (see ./external/README)
+#
 get_external_repos:: 
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
-	@echo "|               Clone usefull external repos               |"
+	@echo "|               Clone useful external repos                |"
 	@echo "|                                                          |"
 	@echo "+----------------------------------------------------------+"
 	($(ARMEL_HOME)/bin/get_external_git_repos.sh -p "http")
+
+#
+# download latest supported kernel version as tarball and install it to
+# ./kernel/linux-$ARMEL_KERNEL_VER
+#
+get_latest_kernel:: 
+	@echo "+----------------------------------------------------------+"
+	@echo "|                                                          |"
+	@echo "|        Download latest supported kernel version          |"
+	@echo "|                                                          |"
+	@echo "+----------------------------------------------------------+"
+	($(ARMEL_HOME)/bin/get_latest_linux_kernel.sh)
