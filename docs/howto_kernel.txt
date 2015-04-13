@@ -147,7 +147,7 @@ KDO(aria): sudo rsync -avc ../modules_3.18.9/lib/modules/. /mnt/aria_rootfs/lib/
 # copy cleaned source to sd card 
 #
 DIR: $ARMEL_HOME
-KDO: sudo rsync -av --delete linux-4.0.0 /mnt/arietta_rootfs/usr/src/.
+KDO: sudo rsync -av --delete linux-4.0 /mnt/arietta_rootfs/usr/src/.
 KDO(aria): sudo rsync -av --delete linux-3.18.9 /mnt/aria_rootfs/usr/src/.
 
 
