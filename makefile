@@ -10,6 +10,8 @@ all::
 	@echo "+----------------------------------------------------------+"
 	@echo "| Example:                                                 |"
 	@echo "| make get_external_repos -> get external repos like linux |"
+	@echo "| make get_toolchain      -> install toolchain             |"
+	@echo "| make get_latest_kernel  -> download latest kernel version|"
 	@echo "| make clean              -> clean all dir/subdirs         |"
 	@echo "| make distclean          -> complete cleanup              |"
 	@echo "+----------------------------------------------------------+"	
@@ -19,6 +21,8 @@ clean::
 	for dir in $(MODULES); do (cd $$dir && $(MAKE) $@); done
 
 distclean: clean
+	rm -rf v?
+	rm -f v?*.tgz
 
 #
 # clone some useful repos (see ./external/README)
@@ -42,3 +46,15 @@ get_latest_kernel::
 	@echo "|                                                          |"
 	@echo "+----------------------------------------------------------+"
 	($(ARMEL_HOME)/bin/get_latest_linux_kernel.sh)
+
+#
+# download latest supported toolchain version as tarball and install it to
+# $ARMEL_HOME
+#
+get_latest_toolchain: distclean 
+	@echo "+----------------------------------------------------------+"
+	@echo "|                                                          |"
+	@echo "|        Download latest supported toolchain version       |"
+	@echo "|                                                          |"
+	@echo "+----------------------------------------------------------+"
+	($(ARMEL_HOME)/bin/get_toolchain.sh)

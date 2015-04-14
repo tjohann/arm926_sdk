@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 ################################################################################
 #
-# Title       :    get_latest_linux_kernel.sh    
+# Title       :    get_toolchain.sh    
 #
 # Author      :    Thorsten Johannvorderbrueggen
 #
 # Email       :    thorsten.johannvorderbrueggen@t-online.de
 #
-# Date/Beginn :    13.04.2015
+# Date/Beginn :    14.04.2015
 #
 # Version     :    V0.01
 #
@@ -19,8 +19,7 @@
 ################################################################################
 # Description
 #   
-#   A simple tool to get the latest kernel tarball and copy it to
-#   $ARMEL_HOME/kernel ...  
+#   A simple tool to get the toolchain and untar it to $ARMEL_HOME  ...  
 #
 # Some features
 #   - ... 
@@ -37,15 +36,15 @@ VER='0.01'
 MISSING_ENV='false'
 
 # latest kernel version
-KERNEL_VER='none'
-KERNEL_DOWNLOAD_STRING='none'
+TOOLCHAIN_VER='none'
+TOOLCHAIN_DOWNLOAD_STRING='none'
 
 # my usage method 
 my_usage() 
 {
     echo " "
     echo "+--------------------------------------------------------+"
-    echo "| Usage: ./get_latest_linux_kernel.sh                    |"
+    echo "| Usage: ./get_toolchain.sh                              |"
     echo "|        [-v] -> print version info                      |"
     echo "|        [-h] -> this help                               |"
     echo "|                                                        |"
@@ -82,8 +81,8 @@ print_version()
 }
 
 # ---- Some values for internal use ----
-_temp="/tmp/get_latest_linux_kernel.$$"
-_log="/tmp/get_latest_linux_kernel.log"
+_temp="/tmp/get_toolchain.$$"
+_log="/tmp/get_toolchain.log"
 
 
 # check the args 
@@ -127,34 +126,71 @@ fi
 # ***                      The functions for main_menu                       ***
 # ******************************************************************************
 
-# --- set latest supported kernel version
-set_latest_kernel_version()
+# --- set latest toolchain version
+set_toolchain_version()
 {
-    if [ "$ARMEL_KERNEL_VER" = '' ]; then 
+    if [ "$ARMEL_VER" = '' ]; then 
 	echo " "
 	echo "+--------------------------------------+"
 	echo "|                                      |"
-	echo "|  ERROR: ARMEL_KERNEL_VER is empty!   |"
+	echo "|  ERROR: ARMEL_VER is empty!          |"
 	echo "|                                      |"
 	echo "+--------------------------------------+"
 	echo " "
 
 	cleanup
     fi
-    
-    KERNEL_VER=$ARMEL_KERNEL_VER
 
-    echo "INFO: set kernel version to linux-$KERNEL_VER"
-}
-
-# --- create download string with kernel version
-create_download_string()
-{
-   if [ "$KERNEL_VER" = 'none' ]; then 
+    if [ "$MY_HOST_ARCH" = '' ]; then 
 	echo " "
 	echo "+--------------------------------------+"
 	echo "|                                      |"
-	echo "|  ERROR: KERNEL_VER is none!          |"
+	echo "|  ERROR: MY_HOST_ARCH is empty!          |"
+	echo "|                                      |"
+	echo "+--------------------------------------+"
+	echo " "
+
+	cleanup
+    fi
+
+    #
+    # There's only support armv7l (cubietruck) and x86_64 (EMT64 ...)
+    #
+    if [ "$MY_HOST_ARCH" = 'x86_64' ]; then
+       TOOLCHAIN_VER=${ARMEL_VER}_${MY_HOST_ARCH}
+    fi
+
+    if [ "$MY_HOST_ARCH" = 'armv7l' ]; then
+       TOOLCHAIN_VER=${ARMEL_VER}_${MY_HOST_ARCH}
+    fi
+       
+    if [ "$TOOLCHAIN_VER" = 'none' ]; then 
+	echo " "
+	echo "+--------------------------------------+"
+	echo "|                                      |"
+	echo "|  ERROR: TOOLCHAIN_VER==none          |"
+	echo "|                                      |"
+	echo "|  Check values of:                    |"
+	echo "|  -> $MY_HOST_ARCH                     "
+	echo "|  -> $ARMEL_VER                        "
+	echo "|                                      |"
+	echo "+--------------------------------------+"
+	echo " "
+
+	cleanup
+    fi
+  
+    echo "INFO: set toolchain version to $TOOLCHAIN_VER"
+}
+
+# --- create download string 
+create_download_string()
+{
+   if [ "$TOOLCHAIN_VER" = 'none' ]; then 
+	echo " "
+	echo "+--------------------------------------+"
+	echo "|                                      |"
+	echo "|  ERROR: TOOLCHAIN_VER is none!       |"
 	echo "|                                      |"
 	echo "+--------------------------------------+"
 	echo " "
@@ -162,20 +198,20 @@ create_download_string()
 	cleanup
     fi 
 
-   KERNEL_DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/v4.x/linux-${KERNEL_VER}.tar.xz"
+   TOOLCHAIN_DOWNLOAD_STRING="http://sourceforge.net/projects/arm926sdk/files/${TOOLCHAIN_VER}.tgz"
 
-   echo "INFO: set kernel download string to $KERNEL_DOWNLOAD_STRING"
+   echo "INFO: set kernel download string to $TOOLCHAIN_DOWNLOAD_STRING"
 }
 
 
-# --- download kernel tarball
-get_kernel_tarball()
+# --- download toolchain tarball
+get_toolchain_tarball()
 {
-    if [ "$KERNEL_DOWNLOAD_STRING" = 'none' ]; then 
+    if [ "$TOOLCHAIN_DOWNLOAD_STRING" = 'none' ]; then 
 	echo " "
 	echo "+--------------------------------------+"
 	echo "|                                      |"
-	echo "|  ERROR: KERNEL_DOWNLOAD_STRING is    |"
+	echo "|  ERROR: TOOLCHAIN_DOWNLOAD_STRING is |"
 	echo "|         none!                        |"
 	echo "|                                      |"
 	echo "+--------------------------------------+"
@@ -184,17 +220,17 @@ get_kernel_tarball()
 	cleanup
     fi 
 
-    wget $KERNEL_DOWNLOAD_STRING
+    wget $TOOLCHAIN_DOWNLOAD_STRING
 }
 
-# --- untar kernel source
-untar_kernel()
+# --- untar toolchain source
+untar_toolchain()
 {
-    if [ "$KERNEL_VER" = 'none' ]; then 
+    if [ "$TOOLCHAIN_VER" = 'none' ]; then 
 	echo " "
 	echo "+--------------------------------------+"
 	echo "|                                      |"
-	echo "|  ERROR: KERNEL_VER is none!          |"
+	echo "|  ERROR: TOOLCHAIN_VER is none!       |"
 	echo "|                                      |"
 	echo "+--------------------------------------+"
 	echo " "
@@ -202,14 +238,14 @@ untar_kernel()
 	cleanup
     fi
     
-    if [ -f linux-${KERNEL_VER}.tar.xz ]; then
-	tar xvf linux-${KERNEL_VER}.tar.xz 
+    if [ -f ${TOOLCHAIN_VER}.tgz ]; then
+	tar xzvf ${TOOLCHAIN_VER}.tgz 
     else
 	echo " "
 	echo "+--------------------------------------+"
 	echo "|                                      |"
-	echo "|  ERROR: linux-${KERNEL_VER}.tar.xz   |"
-	echo "|         does not exist!              |"
+	echo "|  ERROR: ${TOOLCHAIN_VER}.tgz does    |"
+	echo "|         not exist!                   |"
 	echo "|                                      |"
 	echo "+--------------------------------------+"
 	echo " "
@@ -225,16 +261,16 @@ untar_kernel()
 
 echo " "
 echo "+----------------------------------------+"
-echo "|    get/install latest kernel tarball   |"
+echo "|  get/install latest toolchain tarball  |"
 echo "+----------------------------------------+"
 echo " "
 
-cd $ARMEL_HOME/kernel
+cd $ARMEL_HOME
 
-set_latest_kernel_version
+set_toolchain_version
 create_download_string
-get_kernel_tarball
-untar_kernel
+get_toolchain_tarball
+untar_toolchain
 
 cleanup
 echo " "
