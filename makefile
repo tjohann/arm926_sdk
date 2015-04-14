@@ -48,10 +48,9 @@ get_latest_kernel::
 	($(ARMEL_HOME)/bin/get_latest_linux_kernel.sh)
 
 #
-# download latest supported toolchain version as tarball and install it to
-# $ARMEL_HOME
+# download toolchain version as tarball and install it to $ARMEL_HOME
 #
-get_latest_toolchain: distclean 
+get_toolchain: distclean 
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
 	@echo "|        Download latest supported toolchain version       |"
