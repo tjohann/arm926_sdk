@@ -101,20 +101,21 @@ KDO: make ARCH=arm menuconfig
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: cp $ARMEL_HOME/configs/acme-arietta.dts arch/arm/boot/dts/acme-arietta.dts
 KDO(aria): cp $ARMEL_HOME/configs/acme-aria.dts arch/arm/boot/dts/acme-aria.dts
-KDO: make ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- acme-arietta.dtb
-KDO(aria): make ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- acme-aria.dtb
+KDO: make ARCH=arm CROSS_COMPILE=arm-armel-linux-gnueabi- acme-arietta.dtb
+KDO(aria): make ARCH=arm CROSS_COMPILE=arm-armel-linux-gnueabi- acme-aria.dtb
 
 #
 # build kernel/modules 
 #
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
-KDO: make -j10 ARCH=arm CROSS_COMPILE=arm-arietta-linux-gnueabi- uImage modules
+KDO: make -j10 ARCH=arm CROSS_COMPILE=arm-armel-linux-gnueabi- uImage modules
 
 #
 # install modules
 #
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_4.0.0 modules_install
+KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_3.19.4 modules_install
 KDO(aria): make ARCH=arm INSTALL_MOD_PATH=../modules_3.18.9 modules_install
 
 # ------------------------------------ BUILD end -----------------------------------
@@ -146,6 +147,7 @@ KDO(aria): cp .config /mnt/aria_kernel/
 # Note: maybe your need to remove the old one
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: sudo rsync -avc ../modules_4.0.0/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
+KDO: sudo rsync -avc ../modules_3.19.4/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
 KDO(aria): sudo rsync -avc ../modules_3.18.9/lib/modules/. /mnt/aria_rootfs/lib/modules/.
 
 #
@@ -154,6 +156,7 @@ KDO(aria): sudo rsync -avc ../modules_3.18.9/lib/modules/. /mnt/aria_rootfs/lib/
 # Note: 
 DIR: depends ...
 KDO: sudo rsync -av --delete linux-4.0 /mnt/arietta_rootfs/usr/src/.
+KDO: sudo rsync -av --delete linux-3.19.4 /mnt/arietta_rootfs/usr/src/.
 KDO(aria): sudo rsync -av --delete linux-3.18.9 /mnt/aria_rootfs/usr/src/.
 
 
