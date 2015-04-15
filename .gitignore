@@ -4,6 +4,7 @@ v[1-9]
 *.gz
 *.bz2
 *.xz
+*.img
 linux-*
 modules_*
 toolchain
