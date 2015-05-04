@@ -7,11 +7,12 @@
 #
 # Email       :    thorsten.johannvorderbrueggen@t-online.de
 #
-# Date/Beginn :    12.04.2015
+# Date/Beginn :    04.05.2015
 #
-# Version     :    V0.01
+# Version     :    V0.02
 #
-# Milestones  :    V0.01 (apr 2015) -> first functional version
+# Milestones  :    V0.02 (may 2015) -> fix wrong case tag -> at91bootstrap missing
+#                  V0.01 (apr 2015) -> first functional version
 #
 # Requires    :    
 #                 
@@ -30,7 +31,7 @@
 ################################################################################
 
 # VERSION-NUMBER
-VER='0.01'
+VER='0.02'
 
 # if env is sourced 
 MISSING_ENV='false'
@@ -181,7 +182,7 @@ set_repo_names()
 get_repo_name()
 {
     case "$REPO" in
-	'jailhouse')
+	'at91bootstrap')
 	    REPO_NAME="${PROTOCOL}${at91bootstrap}"
 	    ;;
 	'linus')
