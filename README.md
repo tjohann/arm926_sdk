@@ -13,7 +13,7 @@ For using the content of this repo first source armel_env_v1. I add this to my .
     fi
 
 
-Useful make tags:
+Useful make tags
 -------------------
 
 	make get_toolchain -> download (and install) toochain from sourceforce (depending on your arch -> x86_64 or armv7l) based on the version sourced by armel_env_v[1...] 

@@ -16,10 +16,13 @@
 		serial6 = &uart1;
 	};
 	chosen {
-		bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait";
+		bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait loglevel=7";
 	};
 	memory {
+		// 256MB 
 		reg = <0x20000000 0x10000000>;
+		// 128MB 
+		//reg = <0x20000000 0x8000000>;
 	};
 	clocks {
 		#address-cells = <1>;
@@ -58,17 +61,31 @@
 					bus-width = <4>;
 				};
 			};
+
+			pwm0: pwm@f8034000 {
+				status = "disabled";
+				pinctrl-names = "default";
+				pinctrl-0 = <&pinctrl_pwm0 &pinctrl_pwm1>;
+			};
+
+			i2c0: i2c@f8010000 {
+				status = "disabled";
+			};
+
 			i2c1: i2c@f8014000 {
 				status ="okay";
 			};
+
 			usart0: serial@f801c000 {
 				pinctrl-0 = <&pinctrl_usart0>;
 				status ="okay";
 			};
+
 			usart1: serial@f8020000 {
 				pinctrl-0 = <&pinctrl_usart1 &pinctrl_usart1_rts &pinctrl_usart1_cts>;
 				status ="okay";
 			};
+
 			spi1: spi@f0004000 {
 				status = "okay";
 				cs-gpios = <&pioA 8 0>, <&pioA 0 0>, <&pioA 31 0>, <&pioA 30 0>;
@@ -110,11 +127,15 @@
 					pinctrl_adc0_ad1: adc0_ad1 {
 						atmel,pins = <AT91_PIOB 12 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
 					};
-					pinctrl_adc0_ad2: adc0_ad2 {
-						atmel,pins = <AT91_PIOB 13 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
+				};
+				pwm0 {
+					pinctrl_pwm0: pwm0-0 {
+					atmel,pins =
+						<AT91_PIOB 13 AT91_PERIPH_B AT91_PINCTRL_NONE>;
 					};
-					pinctrl_adc0_ad3: adc0_ad3 {
-						atmel,pins = <AT91_PIOB 14 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
+
+					pinctrl_pwm1: pwm0-1 {
+					atmel,pins = <AT91_PIOB 14 AT91_PERIPH_B AT91_PINCTRL_NONE>;
 					};
 				};
 			};
@@ -122,7 +143,7 @@
 			adc0: adc@f804c000 {
 				status = "okay";
 				pinctrl-names = "default";
-				pinctrl-0 = <&pinctrl_adc0_ad0 &pinctrl_adc0_ad1 &pinctrl_adc0_ad2 &pinctrl_adc0_ad3>;
+				pinctrl-0 = <&pinctrl_adc0_ad0 &pinctrl_adc0_ad1>;
 				atmel,adc-channels-used = <0xf>;
 				atmel,adc-num-channels = <4>;
 				compatible = "atmel,at91sam9x5-adc";
@@ -143,13 +164,16 @@
 			ssc0: ssc@f0010000 {
 				status = "okay";
 			};
+			
 			usb2: gadget@f803c000 {
 			        /* i use the usb port for wifi */ 
-				//status = "okay";
+				status = "disabled";
 			};
+			
 			dbgu: serial@fffff200 {
 				status = "okay";
 			};
+			
 			pinctrl@fffff400 {
 				w1_0 {
 					pinctrl_w1_0: w1_0-0 {
@@ -159,14 +183,17 @@
 				};
 
 			};
+			
 			rtc@fffffeb0 {
 				status = "okay";
 			};
 		};
+		
 		usb0: ohci@00600000 {
 			status = "okay";
 			num-ports = <3>;
 		};
+		
 		usb1: ehci@00700000 {
 			status = "okay";
 		};
