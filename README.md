@@ -4,12 +4,12 @@ ARM926_SDK
 This is my sdk for usage with slackware hosts on x86_64 or armv7l for arm926 target devices like aria g25 and arietta (see http://www.acmesystems.it/). For more info follow me on google+ and see http://arm926sdk.sourceforge.net/
 
 
-For using the content of this repo first source armel_env_v1. I add this to my .bashrc to automate it.
+For using the content of this repo first source armel_env_v2. I add this to my .bashrc to automate it.
 
 
     # setup the arm926 environment
-    if [ -f ~/arm926_sdk/armel_env_v1 ]; then
-       . ~/arm926_sdk/armel_env_v1 
+    if [ -f ~/arm926_sdk/armel_env_v2 ]; then
+       . ~/arm926_sdk/armel_env_v2 
     fi
 
 
