@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # crosstool-NG 1.20.0 Configuration
-# Fri May  1 14:47:10 2015
+# Fri May  1 17:05:25 2015
 #
 CT_CONFIGURE_has_xz=y
 CT_CONFIGURE_has_cvs=y
@@ -216,11 +216,12 @@ CT_BUILD_SUFFIX=""
 #
 CT_KERNEL_SUPPORTS_SHARED_LIBS=y
 CT_KERNEL="linux"
-CT_KERNEL_VERSION="3.19.1"
+CT_KERNEL_VERSION="3.19.6"
 # CT_KERNEL_bare_metal is not set
 CT_KERNEL_linux=y
 CT_KERNEL_bare_metal_AVAILABLE=y
 CT_KERNEL_linux_AVAILABLE=y
+# CT_KERNEL_V_4_0 is not set
 CT_KERNEL_V_3_19=y
 # CT_KERNEL_V_3_18 is not set
 # CT_KERNEL_V_3_17 is not set
@@ -377,7 +378,7 @@ CT_LIBC_ADDONS_LIST=""
 # CT_LIBC_GLIBC_KERNEL_VERSION_NONE is not set
 CT_LIBC_GLIBC_KERNEL_VERSION_AS_HEADERS=y
 # CT_LIBC_GLIBC_KERNEL_VERSION_CHOSEN is not set
-CT_LIBC_GLIBC_MIN_KERNEL="3.19.1"
+CT_LIBC_GLIBC_MIN_KERNEL="3.19.6"
 
 #
 # glibc other options
