@@ -9,8 +9,8 @@
 # - aria    -> http://www.acmesystems.it/aria
 #
 # KERNEL version
-# - linux-4.0.3
-# - linux-3.18.11 (latest RT-PREEMPT)
+# - linux-4.0.4
+# - linux-4.0.4 (latest RT-PREEMPT)
 # - linux-3.14.17 (xenomai)
 #
 # DOWNLOADS
@@ -59,8 +59,8 @@ KDO: git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable
 # patch kernel for rt-preempt 
 #
 DIR: $ARMEL_HOME/kernel/linux-stable
-KDO: git checkout -b stable v3.18.11
-KDO: zcat ../patch-3.18.11-rt6.patch.gz | patch -p1
+KDO: git checkout -b stable v4.0.4
+KDO: zcat ../patch-4.0.4-rt1.patch.gz | patch -p1
 
 # ---
 
@@ -85,7 +85,7 @@ KDO:
 # configure kernel 
 #
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
-KDO: git checkout -b stable v4.0.3
+KDO: git checkout -b stable v4.0.4
 KDO: cp $ARMEL_HOME/configs/kernel_config_4.0.x_arietta .config
 KDO(aria): cp $ARMEL_HOME/configs/kernel_config_3.18.x_aria .config
 KDO: make ARCH=arm menuconfig
@@ -114,8 +114,8 @@ KDO: make -j10 ARCH=arm CROSS_COMPILE=arm-armel-linux-gnueabi- uImage modules
 # install modules
 #
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
-KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_4.0.3 modules_install
-KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_3.19.4 modules_install
+KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_4.0.4 modules_install
+KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_4.0.4_rt modules_install
 KDO(aria): make ARCH=arm INSTALL_MOD_PATH=../modules_3.18.9 modules_install
 
 # ------------------------------------ BUILD end -----------------------------------
@@ -146,8 +146,8 @@ KDO(aria): cp .config /mnt/aria_kernel/
 #
 # Note: maybe your need to remove the old one
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
-KDO: sudo rsync -avc ../modules_4.0.3/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
-KDO: sudo rsync -avc ../modules_3.19.4/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
+KDO: sudo rsync -avc ../modules_4.0.4/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
+KDO: sudo rsync -avc ../modules_4.0.4_rt/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
 KDO(aria): sudo rsync -avc ../modules_3.18.9/lib/modules/. /mnt/aria_rootfs/lib/modules/.
 
 #
@@ -155,8 +155,8 @@ KDO(aria): sudo rsync -avc ../modules_3.18.9/lib/modules/. /mnt/aria_rootfs/lib/
 #
 # Note: dont forget to make ARCH=arm clean
 DIR: depends ...
-KDO: sudo rsync -av --delete linux-4.0.3 /mnt/arietta_rootfs/usr/src/.
-KDO: sudo rsync -av --delete linux-3.19.4 /mnt/arietta_rootfs/usr/src/.
+KDO: sudo rsync -av --delete linux-4.0.4 /mnt/arietta_rootfs/usr/src/.
+KDO: sudo rsync -av --delete linux-4.0.4_rt /mnt/arietta_rootfs/usr/src/.
 KDO(aria): sudo rsync -av --delete linux-3.18.9 /mnt/aria_rootfs/usr/src/.
 
 
@@ -168,24 +168,24 @@ KDO(aria): sudo rsync -av --delete linux-3.18.9 /mnt/aria_rootfs/usr/src/.
 #
 DIR: /usr/src
 KDO: depmod -a
-KDO: ln -s linux-4.0.3 linux
+KDO: ln -s linux-4.0.4 linux
 MAYBE: remove your old kernel tree (also installed modules -> /lib/module/your_old_kernel)
 
 #
 # Prepare linux tree to build your modules against the new kernel
 #
-DIR: /usr/src/linux-4.0.3
+DIR: /usr/src/linux-4.0.4
 KDO: make clean
 KDO: make scripts
 
 #
 # Prepare modules to link 
 #
-DIR: /lib/modules/4.0.3
+DIR: /lib/modules/4.0.4
 KDO: rm build
 KDO: rm source
-KDO: ln -s /usr/src/linux-4.0.3 source
-KDO: ln -s /usr/src/linux-4.0.3 build
+KDO: ln -s /usr/src/linux-4.0.4 source
+KDO: ln -s /usr/src/linux-4.0.4 build
 
 
 
