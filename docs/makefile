@@ -4,6 +4,9 @@ all::
 	@echo Cheers
 
 clean::
-	rm -f *~ .*~
+	rm -f *~ 
+	rm -f invalid/*~
+	rm -f pdf/*
+	rm -f html/*
 
 distclean: clean

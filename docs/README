@@ -1,0 +1,7 @@
+# README ...
+
+Naming convention
+
+howto_*    -> "real" howto
+prog_*     -> some programming hints/notes
+doc_*      -> "real" documentation (make docs will create html)

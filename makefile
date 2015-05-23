@@ -1,6 +1,9 @@
-# 
+#
+# my simple makefile as somthing like a user interface
+#
 
 MODULES = configs docs etc images kernel src pics bin external common
+DOCS = docs
 
 all:: 
 	@echo "+----------------------------------------------------------+"
@@ -9,9 +12,12 @@ all::
 	@echo "|                                                          |"
 	@echo "+----------------------------------------------------------+"
 	@echo "| Example:                                                 |"
-	@echo "| make get_external_repos -> get external repos like linux |"
+	@echo "| make get_external_repos -> get external repos like linux,|"
+	@echo "|                            xenomai or uboot ...          |"
 	@echo "| make get_toolchain      -> install toolchain             |"
 	@echo "| make get_latest_kernel  -> download latest kernel version|"
+	@echo "| make docs               -> create html and/or pdf docs   |"
+	@echo "|                            see docs/html and docs/pdf    |"
 	@echo "| make clean              -> clean all dir/subdirs         |"
 	@echo "| make distclean          -> complete cleanup              |"
 	@echo "+----------------------------------------------------------+"	
@@ -57,3 +63,15 @@ get_toolchain: distclean
 	@echo "|                                                          |"
 	@echo "+----------------------------------------------------------+"
 	($(ARMEL_HOME)/bin/get_toolchain.sh)
+
+#
+# create html and/or pdf docs under $ARMEL_HOME/docs/html and/or $ARMEL_HOME/docs/pdf
+#
+docs: 
+	@echo "+----------------------------------------------------------+"
+	@echo "|                                                          |"
+	@echo "|        Create html and/or pdf docs -> see ./docs/...     |"
+	@echo "|                                                          |"
+	@echo "+----------------------------------------------------------+"
+	for dir in $(DOCS); do (cd $$dir && $(MAKE) $@); done
+

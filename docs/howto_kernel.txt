@@ -6,7 +6,6 @@
 #
 # DEVICES
 # - arietta -> http://www.acmesystems.it/arietta
-# - aria    -> http://www.acmesystems.it/aria
 #
 # KERNEL version
 # - linux-4.0.4
@@ -17,23 +16,15 @@
 # - http://www.acmesystems.it/
 # - https://www.kernel.org/pub/linux/kernel/v3.x/
 # - https://www.kernel.org/pub/linux/kernel/v4.x/
-# - https://www.kernel.org/pub/linux/kernel/projects/rt/3.14/older/
+# - https://www.kernel.org/pub/linux/kernel/projects/rt/4.0/
 #
 # MOUNTPOINTS
 # arietta:
 # - kernel -> /mnt/arietta_kernel     
 # - rootfs -> /mnt/arietta_rootfs
 # - home   -> /mnt/arietta_home
-# aria:
-# - kernel -> /mnt/aria_kernel     
-# - rootfs -> /mnt/aria_rootfs
-# - home   -> /mnt/aria_home 
 #
 # FSTAB entrys for MOUNTPOINTS
-# aria:
-# LABEL=KERNEL_ARIA    /mnt/aria_kernel  vfat  defaults,user,noauto   0 0
-# LABEL=ROOTFS_ARIA    /mnt/aria_rootfs  ext4  defaults,user,noauto   0 0
-# LABEL=HOME_ARIA      /mnt/aria_home    ext4  defaults,user,noauto   0 0
 # arietta:
 # FSTAB entrys for MOUNTPOINTS
 # LABEL=KERNEL_ARIE    /mnt/arietta_kernel  vfat  defaults,user,noauto   0 0
@@ -87,7 +78,7 @@ KDO:
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: git checkout -b stable v4.0.4
 KDO: cp $ARMEL_HOME/configs/kernel_config_4.0.x_arietta .config
-KDO(aria): cp $ARMEL_HOME/configs/kernel_config_3.18.x_aria .config
+KDO(rt): cp $ARMEL_HOME/configs/kernel_config_4.0.x_arietta .config
 KDO: make ARCH=arm menuconfig
 
 # ------------------------------------ CONFIG end ----------------------------------
@@ -100,9 +91,7 @@ KDO: make ARCH=arm menuconfig
 #
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: cp $ARMEL_HOME/configs/acme-arietta.dts arch/arm/boot/dts/acme-arietta.dts
-KDO(aria): cp $ARMEL_HOME/configs/acme-aria.dts arch/arm/boot/dts/acme-aria.dts
 KDO: make ARCH=arm CROSS_COMPILE=arm-armel-linux-gnueabi- acme-arietta.dtb
-KDO(aria): make ARCH=arm CROSS_COMPILE=arm-armel-linux-gnueabi- acme-aria.dtb
 
 #
 # build kernel/modules 
@@ -115,8 +104,7 @@ KDO: make -j10 ARCH=arm CROSS_COMPILE=arm-armel-linux-gnueabi- uImage modules
 #
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_4.0.4 modules_install
-KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_4.0.4_rt modules_install
-KDO(aria): make ARCH=arm INSTALL_MOD_PATH=../modules_3.18.9 modules_install
+KDO(rt): make ARCH=arm INSTALL_MOD_PATH=../modules_4.0.4_rt modules_install
 
 # ------------------------------------ BUILD end -----------------------------------
 
@@ -129,8 +117,6 @@ KDO(aria): make ARCH=arm INSTALL_MOD_PATH=../modules_3.18.9 modules_install
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: cp arch/arm/boot/dts/acme-arietta.dtb /mnt/arietta_kernel/
 KDO: cp arch/arm/boot/dts/acme-arietta.dts /mnt/arietta_kernel/
-KDO(aria): cp arch/arm/boot/dts/acme-aria.dts /mnt/aria_kernel/
-KDO(aria): cp arch/arm/boot/dts/acme-aria.dtb /mnt/aria_kernel/
 
 #
 # copy kernel + kernel config 
@@ -138,8 +124,6 @@ KDO(aria): cp arch/arm/boot/dts/acme-aria.dtb /mnt/aria_kernel/
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: cp arch/arm/boot/uImage /mnt/arietta_kernel/
 KDO: cp .config /mnt/arietta_kernel/
-KDO(aria): cp arch/arm/boot/uImage /mnt/aria_kernel/
-KDO(aria): cp .config /mnt/aria_kernel/
 
 #
 # copy modules 
@@ -147,8 +131,7 @@ KDO(aria): cp .config /mnt/aria_kernel/
 # Note: maybe your need to remove the old one
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: sudo rsync -avc ../modules_4.0.4/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
-KDO: sudo rsync -avc ../modules_4.0.4_rt/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
-KDO(aria): sudo rsync -avc ../modules_3.18.9/lib/modules/. /mnt/aria_rootfs/lib/modules/.
+KDO(rt): sudo rsync -avc ../modules_4.0.4_rt/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
 
 #
 # copy cleaned source to sd card 
@@ -156,15 +139,14 @@ KDO(aria): sudo rsync -avc ../modules_3.18.9/lib/modules/. /mnt/aria_rootfs/lib/
 # Note: dont forget to make ARCH=arm clean
 DIR: depends ...
 KDO: sudo rsync -av --delete linux-4.0.4 /mnt/arietta_rootfs/usr/src/.
-KDO: sudo rsync -av --delete linux-4.0.4_rt /mnt/arietta_rootfs/usr/src/.
-KDO(aria): sudo rsync -av --delete linux-3.18.9 /mnt/aria_rootfs/usr/src/.
+KDO(rt): sudo rsync -av --delete linux-4.0.4_rt /mnt/arietta_rootfs/usr/src/.
 
 
 # ------------------------------------ COPY to SD end ------------------------------
 
 
 #
-# Finish -> after login 
+# Finish -> after login (non-rt)
 #
 DIR: /usr/src
 KDO: depmod -a
@@ -172,14 +154,14 @@ KDO: ln -s linux-4.0.4 linux
 MAYBE: remove your old kernel tree (also installed modules -> /lib/module/your_old_kernel)
 
 #
-# Prepare linux tree to build your modules against the new kernel
+# Prepare linux tree to build your modules against the new kernel (non-rt)
 #
-DIR: /usr/src/linux-4.0.4
+DIR: /usr/src/linux-4.0.4 
 KDO: make clean
 KDO: make scripts
 
 #
-# Prepare modules to link 
+# Prepare modules to link (non-rt)
 #
 DIR: /lib/modules/4.0.4
 KDO: rm build

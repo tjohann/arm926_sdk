@@ -61,7 +61,7 @@ root@arietta:/sys/bus/spi# udevadm info -a -p /sys/devices/ahb/ahb:apb/f0000000.
 
 
 # where to find + content
-root@ariette:/sys/devices/ahb/ahb:apb/f0000000.spi/spi_master/spi32766/spi32766.1$ lf              
+root@arietta:/sys/devices/ahb/ahb:apb/f0000000.spi/spi_master/spi32766/spi32766.1$ lf              
 total 0
 drwxr-xr-x 3 root root    0 Nov 11 14:59 .
 drwxr-xr-x 5 root root    0 Nov 11 14:59 ..

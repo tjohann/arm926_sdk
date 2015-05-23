@@ -1,0 +1,9 @@
+# TODO
+
+
+2015-05-23:
+-> get_latest_linux_kernel.sh ... download also latest rt-patch
+-> get_external_git_repos.sh ... add u-boot
+-> toolchain ... add sysroot deps lib libconfuse/libconfig
+-> remove aria parts ... i have no more access to such device
+-> add imx233 (https://www.olimex.com/Products/OLinuXino/iMX233/iMX233-OLinuXino-MINI/open-source-hardware)
