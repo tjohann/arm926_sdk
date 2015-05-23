@@ -7,11 +7,16 @@
 #
 # Email       :    thorsten.johannvorderbrueggen@t-online.de
 #
-# Date/Beginn :    04.05.2015
+# Date/Beginn :    23.05.2015
 #
-# Version     :    V0.02
+# Version     :    V0.03
 #
-# Milestones  :    V0.02 (may 2015) -> fix wrong case tag -> at91bootstrap missing
+# Milestones  :    V0.03 (may 2015) -> add u-boot, olimex docs and mydriver
+#                                   -> remove rpusbdisp (i have no more access
+#                                      to it)
+#                                   -> add common function cheers_users
+#                                   -> some cleanups and output improvement
+#                  V0.02 (may 2015) -> fix wrong case tag -> at91bootstrap missing
 #                  V0.01 (apr 2015) -> first functional version
 #
 # Requires    :    
@@ -23,15 +28,20 @@
 #   A simple tool to get externel git repos like ipipe, xenomai, at91boot, ...  
 #
 # Some features
-#   - ... 
+#   - clone repo with all 3 possible network protocols
 #
 # Notes
 #   - ...
 #
+# Improvement/missing feature
+#   - add a file with all possible repos instead of hardcoded values
+#   - clone repos not only to ${ARMEL_HOME}/external ... clone to the current
+#     working dir
+#
 ################################################################################
 
 # VERSION-NUMBER
-VER='0.02'
+VER='0.03'
 
 # if env is sourced 
 MISSING_ENV='false'
@@ -39,10 +49,12 @@ MISSING_ENV='false'
 # REPOs
 # at91bootstrap -> git://github.com/tanzilli/at91bootstrap.git
 # linus -> git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
-# rpusbdisp -> http://github.com/robopeak/rpusbdisp.git
 # rt-tests -> http://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git
 # ipipe -> git://git.xenomai.org/ipipe.git/
 # xenomai -> git://git.xenomai.org/xenomai-3.git/
+# olimex-docs -> http://github.com/OLIMEX/OLINUXINO.git
+# uboot -> git://git.denx.de/u-boot.git
+# mydriver -> https://github.com/tjohann/mydriver.git
 REPO='none'
 
 # PROTOCOL
@@ -61,11 +73,15 @@ my_usage()
     echo " "
     echo "+--------------------------------------------------------+"
     echo "| Usage: ./get_external_git_repos.sh                     |"
-    echo "|        [-r REPO] -> version of the sdk                 |"
+    echo "|        [-r REPO] -> name of the sdk                    |"
     echo "|        [-p PROTOCOL] -> git/http/https                 |"
     echo "|        [-v] -> print version info                      |"
     echo "|        [-h] -> this help                               |"
     echo "|                                                        |"
+    echo "| Example:                                               |"
+    echo "| get_external_git_repos.sh -r xenomai -p http           |"
+    echo "|                                                        |"
+    echo "| Valid repo names:                                      |"
     echo "| REPO: none or empty -> clone all repos below           |"
     echo "| REPO: at19bootstrap                                    |"
     echo "| REPO: linus -> linus kernel tree                       |"
@@ -73,7 +89,11 @@ my_usage()
     echo "| REPO: rt-tests -> rt-test tools                        |"
     echo "| REPO: xenomai -> xenomai microkernel                   |"
     echo "| REPO: ipipe -> int pipe                                |"
+    echo "| REPO: uboot -> denx u-boot                             |"
+    echo "| REPO: olimex-docs -> olimex github repo (for imx233)   |"
+    echo "| REPO: mydriver -> my test driver                       |"
     echo "|                                                        |"
+    echo "| Valid network protocols:                               |"
     echo "| PROTOCOL: none or empty -> use the simple git          |"
     echo "| PROTOCOL: git                                          |"
     echo "| PROTOCOL: http                                         |"
@@ -89,13 +109,39 @@ cleanup() {
    rm $_log 2>/dev/null
 }
 
+# cheers user
+cheers_user()
+{
+    echo "+--------------------------------------------------------+"
+    echo "|                                                        |"
+    echo "|                  Cheers $USER "
+    echo "|                                                        |"
+    echo "+--------------------------------------------------------+"
+}
+
+# cheers because of missing env
+cheers_missing_env()
+{
+    cleanup
+    clear
+    echo " "
+    echo "+--------------------------------------------------------+"
+    echo "|                                                        |"
+    echo "|  ERROR: missing env                                    |"
+    echo "|         have you sourced env-file?                     |"
+    echo "|                                                        |"
+    echo "|          Cheers $USER     "
+    echo "|                                                        |"
+    echo "+--------------------------------------------------------+"
+    echo " "
+    exit
+}
+
 # my exit method 
 my_exit() 
 {
     clear
-    echo "+-----------------------------------+"
-    echo "|          Cheers $USER            |"
-    echo "+-----------------------------------+"
+    cheers_user
     cleanup
     exit
 }
@@ -103,9 +149,11 @@ my_exit()
 # print version info
 print_version() 
 {
-    echo "+-----------------------------------+"
-    echo "| You are using version: ${VER}       |"
-    echo "+-----------------------------------+"
+    echo "+--------------------------------------------------------+"
+    echo "|                                                        |"
+    echo "|           You are using version: ${VER}                  |"
+    echo "|                                                        |"
+    echo "+--------------------------------------------------------+"
     cleanup
     exit
 }
@@ -129,33 +177,21 @@ done
 
 
 # ******************************************************************************
-# ***             Error handling for missing shell values                    ***
+# ***                 error handling for missing env                         ***
 # ******************************************************************************
 
 if [ "$ARMEL_HOME" = '' ]; then 
     MISSING_ENV='true'
 fi
 
-# show a usage screen and exit
+# check and maybe exit
 if [ "$MISSING_ENV" = 'true' ]; then 
-    cleanup
-    clear
-    echo " "
-    echo "+--------------------------------------+"
-    echo "|                                      |"
-    echo "|  ERROR: missing env                  |"
-    echo "|         have you sourced env-file?   |"
-    echo "|                                      |"
-    echo "|          Cheers $USER               |"
-    echo "|                                      |"
-    echo "+--------------------------------------+"
-    echo " "
-    exit
+    cheers_missing_env
 fi
 
 
 # ******************************************************************************
-# ***                      The functions for main_menu                       ***
+# ***                     the functions for main_menu                        ***
 # ******************************************************************************
 
 # --- set repo names
@@ -163,18 +199,22 @@ set_repo_names()
 {
     at91bootstrap="://github.com/tanzilli/at91bootstrap.git"
     linus="://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
-    rpusbdisp="://github.com/robopeak/rpusbdisp.git"
     rt_tests="://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git"
     ipipe="://git.xenomai.org/ipipe.git/"
     xenomai="://git.xenomai.org/xenomai-3.git/"
+    olimex_docs="://github.com/OLIMEX/OLINUXINO.git"
+    uboot="://git.denx.de/u-boot.git"
+    mydriver="://github.com/tjohann/mydriver.git"
     
     # array with all available repos
     repo_names_array[0]=${at91bootstrap}
     repo_names_array[1]=${linus}
-    repo_names_array[2]=${rpusbdisp}
-    repo_names_array[3]=${rt_tests}
-    repo_names_array[4]=${ipipe}
-    repo_names_array[5]=${xenomai}
+    repo_names_array[2]=${rt_tests}
+    repo_names_array[3]=${ipipe}
+    repo_names_array[4]=${xenomai}
+    repo_names_array[5]=${olimex_docs}
+    repo_names_array[6]=${uboot}
+    repo_names_array[7]=${mydriver}
 }
 
 
@@ -188,9 +228,6 @@ get_repo_name()
 	'linus')
 	    REPO_NAME="${PROTOCOL}${linus}"
 	    ;;
-	'rpusbdisp')
-	    REPO_NAME="${PROTOCOL}${rpusbdisp}"
-	    ;;
 	'rt-tests')
 	    REPO_NAME="${PROTOCOL}${rt_tests}"
 	    ;;
@@ -200,8 +237,17 @@ get_repo_name()
 	'xenomai')
 	    REPO_NAME="${PROTOCOL}${xenomai}"
 	    ;;
+	'olimex-docs')
+	    REPO_NAME="${PROTOCOL}${olimex_docs}"
+	    ;;
+	'uboot')
+	    REPO_NAME="${PROTOCOL}${uboot}"
+	    ;;
+	'mydriver')
+	    REPO_NAME="${PROTOCOL}${mydriver}"
+	    ;;
 	*)
-	    echo "ERROR -> ${REPO} is no valid argument"
+	    echo "ERROR -> ${REPO} is no valid repo ... pls check"
 	    my_usage
     esac
 }
@@ -228,7 +274,7 @@ check_protocol()
     fi
 
     if [ $PROTOCOL_VALID = 'false' ]; then
-	echo "ERROR -> ${PROTOCOL} is no valid argument"
+	echo "ERROR -> ${PROTOCOL} is no valid network protocol ... pls check"
 	my_usage
     fi
 }
@@ -258,9 +304,11 @@ clone_all_repos()
 # ****************************************************************************** 
 
 echo " "
-echo "+--------------------------------------+"
-echo "|       get external git repos         |"
-echo "+--------------------------------------+"
+echo "+--------------------------------------------------------+"
+echo "|                                                        |"
+echo "|                 get external git repos                 |"
+echo "|                                                        |"
+echo "+--------------------------------------------------------+"
 echo " "
 
 cd ${ARMEL_HOME}/external
@@ -285,9 +333,7 @@ fi
 
 cleanup
 echo " "
-echo "+--------------------------------------+"
-echo "|          Cheers $USER               |"
-echo "+--------------------------------------+"
+cheers_users
 echo " "
 
 

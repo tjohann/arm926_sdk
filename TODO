@@ -1,9 +1,98 @@
-# TODO
+#
+# my TODO with date and progress :-) 
+#
 
 
-2015-05-23:
--> get_latest_linux_kernel.sh ... download also latest rt-patch
--> get_external_git_repos.sh ... add u-boot
--> toolchain ... add sysroot deps lib libconfuse/libconfig
--> remove aria parts ... i have no more access to such device
--> add imx233 (https://www.olimex.com/Products/OLinuXino/iMX233/iMX233-OLinuXino-MINI/open-source-hardware)
+#
+# -------------- 2015-05-23 --------------------------------------------------------------------
+#
+
+## toolchain stuff 
+-> add sysroot deps lib libconfuse/libconfig                               [done -> 2015-05-23]
+-> build toolchain v3 for armv7l
+-> prepare build of toolchain v4 for armv7l on my cluster via distcc
+
+## sdk stuff
+-> remove aria parts ... i have no more access to such device              [done -> 2015-05-23]
+
+## coding stuff -> ${ARMEL_HOME}/src
+-> add ${ARMEL_HOME}/src/libnfc skeleton to handle nfc stuff ...
+   needed for my clock
+-> add ${ARMEL_HOME}/src/libirc for remote control handling
+   (see http://www.lirc.org/) ... needed for my clock
+-> add ${ARMEL_HOME}/src/libmax7219 as a possible display for my clock
+   (http://www.amazon.de/gp/product/B00Q6Z3Y6K?psc=1&redirect=true&ref_=oh_aui_detailpage_o00_s00)
+-> add ${ARMEL_HOME}/src/libdcf77 as a clock source
+-> add small i2c display (see hw stuff below) to libi2c
+-> add ${ARMEL_HOME}/src/libadc as input for small keyboard
+-> add ${ARMEL_HOME}/src/libpwm to control the brightness of the max7219 "display"
+
+## docu stuff
+-> fill "make docs" with content ... use asciidoc
+-> add docu about usage of the sdk and its tools
+-> add small howto_build_toolchain
+
+## script stuff
+-> create shell lib for common functions like cheers_user()
+-> get_latest_linux_kernel.sh ... download also latest rt-patch          
+-> get_external_git_repos.sh ... add u-boot, olimex docs and mydriver      [done -> 2015-05-23]
+-> get_external_git_repos.sh ... remove rpusbdisp                          [done -> 2015-05-23]
+-> get_external_git_repos.sh ... remove hardcoded repo names and create
+                                 function to handle it based on an config
+				 file
+## target stuff
+-> get linux-4.0.4-rt1 working                                             [done -> 2015-05-23]
+-> run rt-test (non-rt + rt-preempt) and write a small howto for it
+-> create package for arm926_sdk and a update script
+-> get xenomai based kernel working
+-> runt rt-test with xenomai (if its possible)
+
+## hw stuff
+-> build i2c gpio expander for my pollin display
+-> add rc5 bluetooth module
+   (http://www.amazon.de/gp/product/B00P28Z38E?psc=1&redirect=true&ref_=oh_aui_detailpage_o08_s00)
+-> docu pinning of the different hw components
+-> make schematic for baseboard and the addtions
+-> add really small i2c display
+   (http://www.amazon.de/Zoll-serielle-OLED-Display-Modul-Arduino/dp/B00NHKM1C0/ref=pd_sim_sbs_23_2?ie=UTF8&refRID=1AY225EM27DPTER9AR4E)
+-> add small keyboard for adc
+-> add max7219 "display"
+-> add output state to control brightness of max7219 "display"
+
+## the "rest" 
+-> add support for imx233
+   (https://www.olimex.com/Products/OLinuXino/iMX233/iMX233-OLinuXino-MINI/open-source-hardware)
+-> rework ${ARMEL_HOME}/external/makefile to make individual clones        [done -> 2015-05-23]
+   possible (needed on the target)
+
+
+
+#
+# -------------- TEMPLATE ----------------------------------------------------------------------
+#
+
+
+
+#
+# -------------- 2015-0x-xx --------------------------------------------------------------------
+#
+
+## toolchain stuff
+
+## sdk stuff
+
+## coding stuff -> ${ARMEL_HOME}/src
+
+## coding stuff -> ${ARMEL_HOME}/kernel
+
+## coding stuff -> ${ARMEL_HOME}/tools
+
+## docu stuff
+
+## target stuff
+
+## the "rest"
+
+
+
+#EOF

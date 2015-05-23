@@ -1,5 +1,6 @@
 # ignore toolchain and other bin stuff -> distributed over sourceforge
 v[1-9]
+host_v[1-9]
 *.tgz
 *.gz
 *.bz2

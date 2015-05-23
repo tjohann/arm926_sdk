@@ -15,7 +15,7 @@ export ARMEL_KERNEL_VER=4.0.4
 export ARMEL_HOME=/opt/arm926_sdk
 
 # extend PATH for my armel stuff
-export PATH=${ARMEL_HOME}/${ARMEL_VER}/bin:${ARMEL_HOME}/bin:$PATH
+export PATH=${ARMEL_HOME}/${ARMEL_VER}/bin:${ARMEL_HOME}/host_${ARMEL_VER}/usr/bin:${ARMEL_HOME}/bin:$PATH
 
 # set mount points for the sdcard -> arietta
 export ARIETTA_MEDIA_KERNEL=/mnt/arietta_kernel
