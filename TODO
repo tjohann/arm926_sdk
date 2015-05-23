@@ -10,10 +10,14 @@
 ## toolchain stuff 
 -> add sysroot deps lib libconfuse/libconfig                               [done -> 2015-05-23]
 -> build toolchain v3 for armv7l
+-> build toolchain v3 for x86_64                                           [done -> 2015-05-23]
 -> prepare build of toolchain v4 for armv7l on my cluster via distcc
+-> make "make get_image" target working (see also scripts)
 
 ## sdk stuff
 -> remove aria parts ... i have no more access to such device              [done -> 2015-05-23]
+-> rework ${ARMEL_HOME}/external/makefile to make individual clones        [done -> 2015-05-23]
+   possible (needed on the target)
 
 ## coding stuff -> ${ARMEL_HOME}/src
 -> add ${ARMEL_HOME}/src/libnfc skeleton to handle nfc stuff ...
@@ -40,12 +44,15 @@
 -> get_external_git_repos.sh ... remove hardcoded repo names and create
                                  function to handle it based on an config
 				 file
+-> add script to download the mini slackware image
+
 ## target stuff
 -> get linux-4.0.4-rt1 working                                             [done -> 2015-05-23]
 -> run rt-test (non-rt + rt-preempt) and write a small howto for it
 -> create package for arm926_sdk and a update script
 -> get xenomai based kernel working
 -> runt rt-test with xenomai (if its possible)
+-> create minimal slackware image with slackpkg support 
 
 ## hw stuff
 -> build i2c gpio expander for my pollin display
@@ -62,8 +69,6 @@
 ## the "rest" 
 -> add support for imx233
    (https://www.olimex.com/Products/OLinuXino/iMX233/iMX233-OLinuXino-MINI/open-source-hardware)
--> rework ${ARMEL_HOME}/external/makefile to make individual clones        [done -> 2015-05-23]
-   possible (needed on the target)
 
 
 
