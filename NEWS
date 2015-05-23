@@ -1,5 +1,11 @@
 # some news
 
+2015-05-23 -> update toolchain to v3 (for x86_64)
+	      add buildroot config to use sysroot
+	      add some default addtions to sysroot like libconfuse ...
+	      add kernel config for 4.0.4 with rt1
+	      remove aria and rpusbdispl parts -> i have no more access to those devices
+
 2015-05-04 -> update toolchain to reflect slackware current updates
 
 2015-04-13 -> add script to clone useful external repos
