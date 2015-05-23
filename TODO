@@ -52,7 +52,10 @@
 -> create package for arm926_sdk and a update script
 -> get xenomai based kernel working
 -> runt rt-test with xenomai (if its possible)
--> create minimal slackware image with slackpkg support 
+-> create minimal slackware image with slackpkg support
+-> check problem with bat + power
+-> check if button on the arietta works
+-> add script to halt after button is pressed 
 
 ## hw stuff
 -> build i2c gpio expander for my pollin display
