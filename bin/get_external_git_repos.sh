@@ -333,7 +333,7 @@ fi
 
 cleanup
 echo " "
-cheers_users
+cheers_user
 echo " "
 
 
