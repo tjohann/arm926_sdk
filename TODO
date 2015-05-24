@@ -7,7 +7,8 @@
 # -------------- 2015-05-24 --------------------------------------------------------------------
 #
 ## sdk stuff
--> add lizense info to all file
+-> add license info to all file
+-> add 00-INDEX as an info to all dir (where it makes sense)
 
 #
 # -------------- 2015-05-23 --------------------------------------------------------------------

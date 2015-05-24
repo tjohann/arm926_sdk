@@ -1,8 +1,8 @@
 #
-# my simple makefile as somthing like a user interface
+# my simple makefile as something like a user interface
 #
 
-MODULES = configs docs etc images kernel src pics bin common scripts
+MODULES = configs docs etc images kernel src pics bin common scripts schematics
 DOCS = docs
 
 all:: 

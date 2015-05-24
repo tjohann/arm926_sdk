@@ -1,0 +1,21 @@
+#
+# 00-INDEX
+#
+
+This is a brief list of all the files in ./arm926_sdk/schematics ... 
+
+
+00-INDEX
+        - this file
+
+main_board/
+	- schematic of the main board
+	
+makefile
+	- for cleanup and build pdf/html
+
+mcp2515_extension/
+	- schematic of the CAN modul
+
+pcf8574_extension
+	- schematic of the LCD connector modul

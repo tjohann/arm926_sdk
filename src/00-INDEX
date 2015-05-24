@@ -1,0 +1,31 @@
+#
+# 00-INDEX
+#
+
+This is a brief list of all the files in ./arm926_sdk/src ... 
+
+
+00-INDEX
+        - this file
+
+lib25lc256/
+	- some functions to access a EEPROM
+
+libi2c/
+	- some useful i2c functions
+
+liblcd1602/
+	- some function for the LCD1602
+
+liblm75/
+	- some spi functions to access a lm75
+
+libpcf8574/
+	- some functions to access ports via PCF8574
+
+libspi/
+	- some useful spi functions
+
+makefile
+	- for cleanup
+
