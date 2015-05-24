@@ -1,7 +1,28 @@
-# README ...
+# ----------------------------------------------------------------------------------
+#
+# Title      : README as a short description
+#
+# License:
+#
+# GPL                                                                        
+# (c) 2015, thorsten.johannvorderbrueggen@t-online.de                        
+#                                                                            
+# This manual is free software; you may redistribute it and/or modify it under
+# the terms of the GNU General Public License. Please refer to the license in
+# Appendix F, GNU General Public License.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+# ----------------------------------------------------------------------------------
+#
 
-Naming convention
+Naming convention:
 
 howto_*    -> "real" howto
 prog_*     -> some programming hints/notes
 doc_*      -> "real" documentation (make docs will create html)
+
+
+

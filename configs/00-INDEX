@@ -1,0 +1,42 @@
+#
+# 00-INDEX
+#
+
+This is a brief list of all the files in ./arm926_sdk/configs ... 
+
+
+00-INDEX
+        - this file
+
+acme-arietta.dts
+	- actual dts config for arietta with all supported hw like can or eth
+
+acme-arietta_defconfig
+	- acmesystems default dts ... see http://www.acmesystems.it/compile_linux_4_0
+
+acme-arietta_minimal.dts
+	- a minimal config as a result of the dts builder (http://dts.acmesystems.it/arietta/#)
+
+buildroot_config_v3
+	- buildroot .config 
+
+ct-ng_config_v1
+	- crosstool-ng .config
+
+ct-ng_config_v2
+	- crosstool-ng .config
+ct-ng_config_v3
+	- crosstool-ng .config
+
+kernel_config_3.19.x_arietta
+	- kernel .config for 3.19.x
+
+ kernel_config_4.0.x_arietta
+	- kernel .config for 4.0.x
+
+kernel_config_4.0.x_rt_arietta
+	- kernel .config for 4.0.x with rt-preempt support 
+
+makefile
+	- for cleanup 
+

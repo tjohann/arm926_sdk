@@ -1,0 +1,55 @@
+#
+# 00-INDEX
+#
+
+This is a brief list of all the files in ./arm926_sdk/Documentation ... 
+
+
+00-INDEX
+        - this file
+
+Arietta_Pinning.png
+	- actual pinout of my config (made with http://dts.acmesystems.it/arietta/)
+
+README
+	- a short description regarding naming convention
+	
+eeprom.txt
+	- simple summary for spi/eeprom related topics (incl udev stuff)
+
+howto_at91bootstrap.txt
+	-  simple howto for building at91 bootloader
+
+howto_build_toolchain.txt
+	- simple howto for building a custom toolchain (target: arietta or imx233)
+
+howto_can.txt
+	- simple summary for can related topics
+	
+howto_clock.txt
+	- simple summary for clock related topics 
+
+howto_dts.txt
+	- simple summary for dts/dtb related topics 
+
+howto_i2c.txt
+	- simple summary for i2c related topics
+
+howto_kernel.txt
+	- simple howto for building a custom kernel
+
+html/
+	- generated html docs
+
+invalid
+	- invalid or old unsupported stuff ... content will be clean up from time to time
+
+kdos.txt
+	- simple collection of useful kdos
+
+makefile
+	- for cleanup and build pdf/html
+
+pdf/
+	- generated pdf docs
+

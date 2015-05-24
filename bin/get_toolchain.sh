@@ -3,15 +3,33 @@
 #
 # Title       :    get_toolchain.sh    
 #
-# Author      :    Thorsten Johannvorderbrueggen
+# License:
 #
-# Email       :    thorsten.johannvorderbrueggen@t-online.de
+# GPL                                                                        
+# (c) 2015, thorsten.johannvorderbrueggen@t-online.de                        
+#                                                                            
+# This program is free software; you can redistribute it and/or modify       
+# it under the terms of the GNU General Public License as published by       
+# the Free Software Foundation; either version 2 of the License, or          
+# (at your option) any later version.                                        
+#                                                                            
+# This program is distributed in the hope that it will be useful,            
+# but WITHOUT ANY WARRANTY; without even the implied warranty of             
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the               
+# GNU General Public License for more details.                                
 #
-# Date/Beginn :    14.04.2015
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
-# Version     :    V0.01
+################################################################################
 #
-# Milestones  :    V0.01 (apr 2015) -> first functional version
+# Date/Beginn :    24.05.2015/14.04.2015
+#
+# Version     :    V0.02
+#
+# Milestones  :    V0.02 (may 2015) -> add license 
+#                  V0.01 (apr 2015) -> first functional version
 #
 # Requires    :    
 #                 
@@ -30,7 +48,7 @@
 ################################################################################
 
 # VERSION-NUMBER
-VER='0.01'
+VER='0.02'
 
 # if env is sourced 
 MISSING_ENV='false'
