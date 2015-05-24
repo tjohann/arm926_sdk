@@ -6,9 +6,22 @@
 #
 # -------------- 2015-05-24 --------------------------------------------------------------------
 #
-## sdk stuff
--> add license info to all file
--> add 00-INDEX as an info to all dir (where it makes sense)
+## sdk stuff 
+-> add license info to all file                                            [done -> 2015-05-24]
+-> add 00-INDEX as an info to all dir (where it makes sense)               [done -> 2015-05-24]
+-> add include dir with a common makefile include which defines
+   stuff like cross compiler ...
+
+## coding stuff -> ${ARMEL_HOME}/src
+-> add c & h skeletons to all dirs below src
+-> develop lib to access the lcd1602
+-> add skeleton for the lcd-daemon (see line below)
+-> develop a daemon which listen on tcp and uds to handle lcd1602 output
+-> add ${ARMEL_HOME}/src/libkeys skeleton for a simple adc based keyboard  [done -> 2015-05-24]
+
+## coding stuff -> ${ARMEL_HOME}/template
+-> add a small template dir with a tool which "uses" some parts of the libs
+   below ${ARMEL_HOME}/src
 
 #
 # -------------- 2015-05-23 --------------------------------------------------------------------
@@ -27,16 +40,18 @@
    possible (needed on the target)
 
 ## coding stuff -> ${ARMEL_HOME}/src
--> add ${ARMEL_HOME}/src/libnfc skeleton to handle nfc stuff ...
+-> add ${ARMEL_HOME}/src/libnfc skeleton to handle nfc stuff ...           [done -> 2015-05-24]
    needed for my clock
--> add ${ARMEL_HOME}/src/libirc for remote control handling
-   (see http://www.lirc.org/) ... needed for my clock
--> add ${ARMEL_HOME}/src/libmax7219 as a possible display for my clock
+-> add ${ARMEL_HOME}/src/libirc skeleton for remote control handling       [done -> 2015-05-24]
+   (see http://www.lirc.org/) ... needed for my clock                      [done -> 2015-05-24]
+-> add ${ARMEL_HOME}/src/libmax7219 skeleton  as a possible display for    [done -> 2015-05-24]
+   my clock
    (http://www.amazon.de/gp/product/B00Q6Z3Y6K?psc=1&redirect=true&ref_=oh_aui_detailpage_o00_s00)
--> add ${ARMEL_HOME}/src/libdcf77 as a clock source
+-> add ${ARMEL_HOME}/src/libdcf77 skeleton as a clock source               [done -> 2015-05-24]
 -> add small i2c display (see hw stuff below) to libi2c
--> add ${ARMEL_HOME}/src/libadc as input for small keyboard
--> add ${ARMEL_HOME}/src/libpwm to control the brightness of the max7219 "display"
+-> add ${ARMEL_HOME}/src/libadc skeleton as input for small keyboard       [done -> 2015-05-24]
+-> add ${ARMEL_HOME}/src/libpwm skeleton to control the brightness of the  [done -> 2015-05-24]
+   max7219 "display"
 
 ## docu stuff
 -> fill "make docs" with content ... use asciidoc

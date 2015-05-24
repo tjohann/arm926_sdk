@@ -11,8 +11,20 @@ This is a brief list of all the files in ./arm926_sdk/src ...
 lib25lc256/
 	- some functions to access a EEPROM
 
+libadc/
+	- simple lib for easy access of adc 
+
+libdcf77/
+	- simple lib to access dcf77 time 
+
 libi2c/
 	- some useful i2c functions
+
+libirc/
+	- some functions to handle remote control units
+	
+libkeys/
+	- simpe lib for easy access of an adc based keyboard
 
 liblcd1602/
 	- some function for the LCD1602
@@ -20,11 +32,21 @@ liblcd1602/
 liblm75/
 	- some spi functions to access a lm75
 
+
+libmax7219/
+	- simple lib to use the max7219 based led matrix
+	
+libnfc/
+	- simple lib to handle nfc 
+
 libpcf8574/
 	- some functions to access ports via PCF8574
 
 libspi/
 	- some useful spi functions
+
+libpwm/
+	- some useful functions to handle pwm parts
 
 makefile
 	- for cleanup

@@ -2,7 +2,11 @@
 # my simple makefile as something like a user interface
 #
 
-MODULES = configs docs etc images kernel src pics bin common scripts schematics
+MODULES = configs etc images pics common schematics
+MODULES += include include scripts 
+MODULES += docs
+MODULES += kernel src tools templates 
+
 DOCS = docs
 
 all:: 

@@ -2,6 +2,23 @@
 # some news ... see also TODO for hints
 #
 
+2015-05-24 -> ## sdk stuff
+	      add 00-INDEX as an info to all dir (where it makes sense)
+	      add license info to all file
+
+	      ## coding stuff -> ${ARMEL_HOME}/src
+	      add ${ARMEL_HOME}/src/libnfc skeleton to handle nfc stuff ...
+   	      needed for my clock
+	      add ${ARMEL_HOME}/src/libirc skeleton for remote control handling
+              (see http://www.lirc.org/) ... needed for my clock
+	      add ${ARMEL_HOME}/src/libmax7219 skeleton  as a possible display for my clock
+   	      (http://www.amazon.de/gp/product/B00Q6Z3Y6K?psc=1&redirect=true&ref_=oh_aui_detailpage_o00_s00)
+	      add ${ARMEL_HOME}/src/libdcf77 skeleton as a clock source
+	      add ${ARMEL_HOME}/src/libadc skeleton as input for small keyboard
+	      add ${ARMEL_HOME}/src/libpwm skeleton to control the brightness of the max7219 "display"
+	      add ${ARMEL_HOME}/src/libkeys skeleton for a simple adc based keyboard
+	      
+
 2015-05-23 -> ## toolchain stuff 
 	      update toolchain to v3 (for x86_64)
 	      add buildroot config to use sysroot
@@ -19,8 +36,10 @@
 	      rework ${ARMEL_HOME}/external/makefile to make individual clones
 	      possible (needed on the target)
 
+
 2015-05-04 -> ## target stuff
 	      update toolchain to reflect slackware current updates
+
 
 2015-04-13 -> ## script stuff
 	      add script to clone useful external repos
