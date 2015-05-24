@@ -2,7 +2,7 @@
 # my simple makefile as somthing like a user interface
 #
 
-MODULES = configs docs etc images kernel src pics bin external common
+MODULES = configs docs etc images kernel src pics bin common scripts
 DOCS = docs
 
 all:: 
