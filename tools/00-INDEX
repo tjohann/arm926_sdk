@@ -9,5 +9,5 @@ This is a brief list of all the files in ./arm926_sdk/tools ...
         - this file
 
 makefile
-	- for cleanup and build pdf/html
+	- for cleanup
 

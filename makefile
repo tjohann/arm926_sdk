@@ -3,9 +3,10 @@
 #
 
 MODULES = configs etc images pics common schematics
-MODULES += include include scripts 
-MODULES += docs
-MODULES += kernel src tools templates 
+MODULES += include lib lib_target
+MODULES += docs man
+MODULES += kernel src tools templates
+MODULES += scripts packages
 
 DOCS = docs
 

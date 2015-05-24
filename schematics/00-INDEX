@@ -12,7 +12,7 @@ main_board/
 	- schematic of the main board
 	
 makefile
-	- for cleanup and build pdf/html
+	- for cleanup
 
 mcp2515_extension/
 	- schematic of the CAN modul

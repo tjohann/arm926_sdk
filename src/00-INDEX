@@ -8,11 +8,17 @@ This is a brief list of all the files in ./arm926_sdk/src ...
 00-INDEX
         - this file
 
+lcdd/
+	- daemon to access a lcd1602 display
+	
 lib25lc256/
 	- some functions to access a EEPROM
 
 libadc/
-	- simple lib for easy access of adc 
+	- simple lib for easy access of adc
+
+libcan/
+	- simple lib for easy access of can
 
 libdcf77/
 	- simple lib to access dcf77 time 
@@ -35,6 +41,9 @@ liblm75/
 
 libmax7219/
 	- simple lib to use the max7219 based led matrix
+
+libnetwork/
+	- simple network abstraction layer
 	
 libnfc/
 	- simple lib to handle nfc 
@@ -42,11 +51,14 @@ libnfc/
 libpcf8574/
 	- some functions to access ports via PCF8574
 
-libspi/
-	- some useful spi functions
-
 libpwm/
 	- some useful functions to handle pwm parts
+
+libservice/
+	- some useful helper functions 
+
+libspi/
+	- some useful spi functions
 
 makefile
 	- for cleanup
