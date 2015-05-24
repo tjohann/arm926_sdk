@@ -13,7 +13,7 @@
    stuff like cross compiler ...
 
 ## coding stuff -> ${ARMEL_HOME}/src
--> add c & h skeletons to all dirs below src
+-> add c & h skeletons to all dirs below src                               [done -> 2015-05-24]
 -> develop lib to access the lcd1602
 -> add skeleton for the lcd-daemon (see line below)
 -> develop a daemon which listen on tcp and uds to handle lcd1602 output
@@ -21,7 +21,8 @@
 
 ## coding stuff -> ${ARMEL_HOME}/template
 -> add a small template dir with a tool which "uses" some parts of the libs
-   below ${ARMEL_HOME}/src
+   below ${ARMEL_HOME}/src 
+-> add a small lib template                                                [done -> 2015-05-24]
 
 #
 # -------------- 2015-05-23 --------------------------------------------------------------------

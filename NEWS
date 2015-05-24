@@ -19,7 +19,10 @@
 	      add ${ARMEL_HOME}/src/libadc skeleton as input for small keyboard
 	      add ${ARMEL_HOME}/src/libpwm skeleton to control the brightness of the max7219 "display"
 	      add ${ARMEL_HOME}/src/libkeys skeleton for a simple adc based keyboard
-	      
+	      add c & h skeletons to all dirs below src 
+
+	      ## coding stuff -> ${ARMEL_HOME}/template
+	      add a small lib template
 
 2015-05-23 -> ## toolchain stuff 
 	      update toolchain to v3 (for x86_64)

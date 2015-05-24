@@ -1,0 +1,1 @@
+libkeys.o: libkeys.c libkeys.h

@@ -1,0 +1,1 @@
+libmax7219.o: libmax7219.c libmax7219.h

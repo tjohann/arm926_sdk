@@ -1,0 +1,1 @@
+libpcf8574.o: libpcf8574.c libpcf8574.h

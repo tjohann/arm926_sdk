@@ -1,0 +1,1 @@
+libservice.o: libservice.c libservice.h

@@ -1,0 +1,1 @@
+lib25lc256.o: lib25lc256.c lib25lc256.h

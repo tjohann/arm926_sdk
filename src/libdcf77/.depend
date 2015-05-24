@@ -1,0 +1,1 @@
+libdcf77.o: libdcf77.c libdcf77.h

@@ -1,0 +1,1 @@
+libpwm.o: libpwm.c libpwm.h

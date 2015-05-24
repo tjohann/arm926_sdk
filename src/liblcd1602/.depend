@@ -1,0 +1,1 @@
+liblcd1602.o: liblcd1602.c liblcd1602.h

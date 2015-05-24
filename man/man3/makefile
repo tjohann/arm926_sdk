@@ -6,6 +6,7 @@ all:
 
 .PHONY: clean
 clean:
-	rm -f *~ 
+	rm -f *~
+	rm -f *.3
 
 distclean: clean

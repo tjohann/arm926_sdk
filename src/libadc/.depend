@@ -1,0 +1,1 @@
+libadc.o: libadc.c libadc.h
