@@ -1,5 +1,5 @@
 #
-# my TODO with date and progress :-) 
+# my TODO with date and progress
 #
 
 
@@ -9,7 +9,7 @@
 ## sdk stuff 
 -> add license info to all file                                            [done -> 2015-05-24]
 -> add 00-INDEX as an info to all dir (where it makes sense)               [done -> 2015-05-24]
--> add include dir with a common makefile include which defines
+-> add include dir with a common makefile include which defines            [done -> 2015-05-24]
    stuff like cross compiler ...
 
 ## coding stuff -> ${ARMEL_HOME}/src

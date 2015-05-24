@@ -5,7 +5,9 @@
 2015-05-24 -> ## sdk stuff
 	      add 00-INDEX as an info to all dir (where it makes sense)
 	      add license info to all file
-
+	      add include dir with a common makefile include which defines 
+   	      stuff like cross compiler ...
+   
 	      ## coding stuff -> ${ARMEL_HOME}/src
 	      add ${ARMEL_HOME}/src/libnfc skeleton to handle nfc stuff ...
    	      needed for my clock

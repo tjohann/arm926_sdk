@@ -1,0 +1,15 @@
+#
+# a list of hints regarding upgrade between different versions of this sdk
+#
+
+
+## v2 -> v3
+- compiler is renamed from arm-armel-linux-gnueabi-* to arm-none-linux-gnueabi-*
+- add common makefile include (./include/defines.mk) with labels like CC_TARGET for the target compiler ..
+- skeletons below src/tools/templates are added which use ./include/defines.mk
+
+ERRORS: targe build errors due to wrong compiler 
+
+
+## v1 -> v2
+- nothing
