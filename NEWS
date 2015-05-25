@@ -5,6 +5,7 @@
 
 2015-05-25 -> ## docu stuff
 	      add "make docs" skeleton
+	      add "make man" skeleton
 	      
 2015-05-24 -> ## sdk stuff
 	      add 00-INDEX as an info to all dir (where it makes sense)

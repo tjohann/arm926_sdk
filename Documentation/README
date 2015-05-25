@@ -22,7 +22,7 @@ Naming convention:
 
 howto_*    -> "real" howto
 prog_*     -> some programming hints/notes
-doc_*      -> "real" documentation (make docs will create html)
+doc_*      -> "real" documentation (make docs will create html and/or pdf)
 
 
 

@@ -13,6 +13,9 @@ Arietta_Pinning.png
 
 README
 	- a short description regarding naming convention
+
+doc_arm926sdk/
+	- a description of the sdk ... in latex
 	
 eeprom.txt
 	- simple summary for spi/eeprom related topics (incl udev stuff)
@@ -52,6 +55,9 @@ kdos.txt
 
 makefile
 	- for cleanup and build pdf/html
+
+man/
+	- man pages for the scripts below ${ARMEL_HOME}/bin
 
 pdf/
 	- generated pdf docs

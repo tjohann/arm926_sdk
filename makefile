@@ -23,6 +23,7 @@ all::
 	@echo "| make get_latest_kernel  -> download latest kernel version|"
 	@echo "| make docs               -> create html and/or pdf docs   |"
 	@echo "|                            see docs/html and docs/pdf    |"
+	@echo "| make man                -> install man pages to ./man/...|"
 	@echo "| make clean              -> clean all dir/subdirs         |"
 	@echo "| make distclean          -> complete cleanup              |"
 	@echo "+----------------------------------------------------------+"	
@@ -80,3 +81,13 @@ docs::
 	@echo "+----------------------------------------------------------+"
 	for dir in $(DOCS); do (cd $$dir && $(MAKE) $@); done
 
+#
+# copy man pages from ./Documentation/man to ./man/man[1,3]/
+#
+man::
+	@echo "+----------------------------------------------------------+"
+	@echo "|                                                          |"
+	@echo "|        Install man pages to ./man/man[1,3]/              |"
+	@echo "|                                                          |"
+	@echo "+----------------------------------------------------------+"
+	(cd Documentation && $(MAKE) $@) 
