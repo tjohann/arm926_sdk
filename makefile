@@ -4,11 +4,11 @@
 
 MODULES = configs etc images pics common schematics
 MODULES += include lib lib_target
-MODULES += docs man
+MODULES += Documentation man
 MODULES += kernel src tools templates
 MODULES += scripts packages
 
-DOCS = docs
+DOCS = Documentation
 
 all:: 
 	@echo "+----------------------------------------------------------+"
@@ -72,7 +72,7 @@ get_toolchain: distclean
 #
 # create html and/or pdf docs under $ARMEL_HOME/docs/html and/or $ARMEL_HOME/docs/pdf
 #
-docs: 
+docs:: 
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
 	@echo "|        Create html and/or pdf docs -> see ./docs/...     |"

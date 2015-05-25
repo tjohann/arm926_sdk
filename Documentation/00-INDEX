@@ -17,6 +17,9 @@ README
 eeprom.txt
 	- simple summary for spi/eeprom related topics (incl udev stuff)
 
+howto_arm926_sdk.txt
+	- short description of how i use this sdk
+
 howto_at91bootstrap.txt
 	-  simple howto for building at91 bootloader
 

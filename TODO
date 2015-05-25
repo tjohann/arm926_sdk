@@ -2,10 +2,15 @@
 # my TODO with date and progress
 #
 
+#
+# -------------- 2015-05-xx --------------------------------------------------------------------
+#
+
 
 #
 # -------------- 2015-05-24 --------------------------------------------------------------------
 #
+
 ## sdk stuff 
 -> add license info to all file                                            [done -> 2015-05-24]
 -> add 00-INDEX as an info to all dir (where it makes sense)               [done -> 2015-05-24]
@@ -55,7 +60,7 @@
    max7219 "display"
 
 ## docu stuff
--> fill "make docs" with content ... use asciidoc
+-> add "make docs" skeleton                                                [done -> 2015-05-25]        
 -> add docu about usage of the sdk and its tools
 -> add small howto_build_toolchain
 
