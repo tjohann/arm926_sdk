@@ -12,7 +12,7 @@ For using the content of this repo first source armel_env_v1. I add this to my .
        . ~/arm926_sdk/armel_env_v1 
     fi
 
-of
+or
 
     # setup the arm926 environment (latest work output -> current )
     if [ -f ~/arm926_sdk/armel_env_v2 ]; then
