@@ -23,7 +23,7 @@ of
 Useful make tags
 -------------------
 
-	make get_toolchain -> download (and install) toochain from sourceforce (depending on your arch -> x86_64 or armv7l) based on the version sourced by armel_env_v[1...] 
+	make get_toolchain -> download (and install) toochain from sourceforce (depending on your arch -> x86_64 or armv7hl) based on the version sourced by armel_env_v[1...] 
 	make get_external_repos -> clone some useful repos (see ./external/README)
 	make get_latest_kernel -> download latest supported kernel version as tarball and install it to ./kernel/linux-$ARMEL_KERNEL_VER
 	make clean -> clean all dirs and subdirs

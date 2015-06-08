@@ -193,7 +193,7 @@ set_toolchain_version()
 	TOOLCHAIN_HOST_VER=host_${TOOLCHAIN_VER}
     fi
 
-    if [ "$MY_HOST_ARCH" = 'armv7l' ]; then
+    if [ "$MY_HOST_ARCH" = 'armv7hl' ]; then
 	TOOLCHAIN_VER=${ARMEL_VER}_${MY_HOST_ARCH}
 	TOOLCHAIN_HOST_VER=host_${TOOLCHAIN_VER}
     fi

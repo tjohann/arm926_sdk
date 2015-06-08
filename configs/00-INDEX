@@ -17,19 +17,11 @@ acme-arietta_defconfig
 acme-arietta_minimal.dts
 	- a minimal config as a result of the dts builder (http://dts.acmesystems.it/arietta/#)
 
-buildroot_config_v3
+buildroot_config_v1
 	- buildroot .config 
 
 ct-ng_config_v1
 	- crosstool-ng .config
-
-ct-ng_config_v2
-	- crosstool-ng .config
-ct-ng_config_v3
-	- crosstool-ng .config
-
-kernel_config_3.19.x_arietta
-	- kernel .config for 3.19.x
 
  kernel_config_4.0.x_arietta
 	- kernel .config for 4.0.x

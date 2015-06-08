@@ -53,7 +53,7 @@ host: $(LIBNAME).host
 target:	$(LIBNAME).target 
 
 # 
-# build on host (x86_64 or armv7l)
+# build on host (x86_64 or armv7hl)
 #
 %.host: $(SRC) $(HEADER)
 	@echo "+-----------------------------------------------------+"

@@ -46,7 +46,7 @@ LDLIBS = -L${ARMEL_HOME}/lib
 
 
 # ---- target ----
-ifeq (,$(filter ${MY_HOST_ARCH},"x86_64" "armv7l"))
+ifeq (,$(filter ${MY_HOST_ARCH},"x86_64" "armv7hl"))
 	CC_TARGET = arm-none-linux-gnueabi-gcc
 	AR_TARGET = arm-none-linux-gnueabi-ar
 	LD_TARGET = arm-none-linux-gnueabi-ld
