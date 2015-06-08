@@ -24,11 +24,12 @@
 #
 ################################################################################
 #
-# Date/Beginn :    24.05.2015/13.04.2015
+# Date/Beginn :    08.06.2015/13.04.2015
 #
-# Version     :    V0.02
+# Version     :    V0.03
 #
-# Milestones  :    V0.02 (may 2015) -> add license 
+# Milestones  :    V0.03 (jun 2015) -> add rt kernel version download
+#                  V0.02 (may 2015) -> add license 
 #                  V0.01 (apr 2015) -> first functional version
 #
 # Requires    :    ...
@@ -50,14 +51,16 @@
 #
 
 # VERSION-NUMBER
-VER='0.02'
+VER='0.03'
 
 # if env is sourced 
 MISSING_ENV='false'
 
 # latest kernel version
 KERNEL_VER='none'
+RT_KERNEL_VER='none'
 KERNEL_DOWNLOAD_STRING='none'
+RT_KERNEL_DOWNLOAD_STRING='none'
 
 # my usage method 
 my_usage() 
@@ -157,33 +160,59 @@ set_latest_kernel_version()
 	echo "|                                      |"
 	echo "+--------------------------------------+"
 	echo " "
+	
+	cleanup
+    fi
+
+    if [ "$ARMEL_RT_KERNEL_VER" = '' ]; then 
+	echo " "
+	echo "+--------------------------------------+"
+	echo "|                                      |"
+	echo "|  ERROR: ARMEL_RT_KERNEL_VER is empty!|"
+	echo "|                                      |"
+	echo "+--------------------------------------+"
+	echo " "
 
 	cleanup
     fi
     
     KERNEL_VER=$ARMEL_KERNEL_VER
-
-    echo "INFO: set kernel version to linux-$KERNEL_VER"
+    RT_KERNEL_VER=$ARMEL_RT_KERNEL_VER
+    
+    echo "INFO: set kernel version to linux-$KERNEL_VER and  linux-$RT_KERNEL_VER "
 }
 
 # --- create download string with kernel version
 create_download_string()
 {
    if [ "$KERNEL_VER" = 'none' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: KERNEL_VER is none!          |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
+       echo " "
+       echo "+--------------------------------------+"
+       echo "|                                      |"
+       echo "|  ERROR: KERNEL_VER is none!          |"
+       echo "|                                      |"
+       echo "+--------------------------------------+"
+       echo " "
+       
 	cleanup
-    fi 
+   fi 
 
+   if [ "$RT_KERNEL_VER" = 'none' ]; then 
+       echo " "
+       echo "+--------------------------------------+"
+       echo "|                                      |"
+       echo "|  ERROR: RT_KERNEL_VER is none!       |"
+       echo "|                                      |"
+       echo "+--------------------------------------+"
+       echo " "
+       
+       cleanup
+   fi 
+   
    KERNEL_DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/v4.x/linux-${KERNEL_VER}.tar.xz"
+   RT_KERNEL_DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/v4.x/linux-${RT_KERNEL_VER}.tar.xz"
 
-   echo "INFO: set kernel download string to $KERNEL_DOWNLOAD_STRING"
+   echo "INFO: set kernel download string to $KERNEL_DOWNLOAD_STRING and $RT_KERNEL_DOWNLOAD_STRING"
 }
 
 
@@ -203,6 +232,20 @@ get_kernel_tarball()
 	cleanup
     fi 
 
+    if [ "$RT_KERNEL_DOWNLOAD_STRING" = 'none' ]; then 
+	echo " "
+	echo "+--------------------------------------+"
+	echo "|                                      |"
+	echo "|  ERROR: RT_KERNEL_DOWNLOAD_STRING is |"
+	echo "|         none!                        |"
+	echo "|                                      |"
+	echo "+--------------------------------------+"
+	echo " "
+
+	cleanup
+    fi 
+
+    wget $RT_KERNEL_DOWNLOAD_STRING
     wget $KERNEL_DOWNLOAD_STRING
 }
 
@@ -234,7 +277,35 @@ untar_kernel()
 	echo " "
 
 	cleanup
-    fi    
+    fi
+
+
+    if [ "$RT_KERNEL_VER" = 'none' ]; then 
+	echo " "
+	echo "+--------------------------------------+"
+	echo "|                                      |"
+	echo "|  ERROR: RT_KERNEL_VER is none!       |"
+	echo "|                                      |"
+	echo "+--------------------------------------+"
+	echo " "
+
+	cleanup
+    fi
+    
+    if [ -f linux-${RT_KERNEL_VER}.tar.xz ]; then
+	tar xvf linux-${RT_KERNEL_VER}.tar.xz 
+    else
+	echo " "
+	echo "+--------------------------------------+"
+	echo "|                                      |"
+	echo "|  ERROR: linux-${RT_KERNEL_VER}.tar.xz|"
+	echo "|         does not exist!              |"
+	echo "|                                      |"
+	echo "+--------------------------------------+"
+	echo " "
+
+	cleanup
+    fi      
 }
 
 
