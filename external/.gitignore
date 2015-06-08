@@ -8,6 +8,10 @@ rt-tests
 OLINUXINO
 mydriver
 u-boot
+can-utils
+libsocketcan
+libsocketcan.git
+can-utils.git
 u-boot.git
 mydriver.git
 OLINUXINO.git

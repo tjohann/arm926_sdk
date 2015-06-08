@@ -24,11 +24,12 @@
 #
 ################################################################################
 #
-# Date/Beginn :    24.05.2015/13.04.2015
+# Date/Beginn :    08.06.2015/13.04.2015
 #
-# Version     :    V0.04
+# Version     :    V0.05
 #
-# Milestones  :    V0.04 (may 2015) -> add license 
+# Milestones  :    V0.05 (jun 2015) -> add can-utils and libsocketcan
+#                  V0.04 (may 2015) -> add license 
 #                  V0.03 (may 2015) -> add u-boot, olimex docs and mydriver
 #                                   -> remove rpusbdisp (i have no more access
 #                                      to it)
@@ -60,7 +61,7 @@
 #
 
 # VERSION-NUMBER
-VER='0.04'
+VER='0.05'
 
 # if env is sourced 
 MISSING_ENV='false'
@@ -74,6 +75,8 @@ MISSING_ENV='false'
 # olimex-docs -> http://github.com/OLIMEX/OLINUXINO.git
 # uboot -> git://git.denx.de/u-boot.git
 # mydriver -> https://github.com/tjohann/mydriver.git
+# can-utils -> https://github.com/linux-can/can-utils.git
+# libsocketcan -> git://git.pengutronix.de/git/tools/libsocketcan.git
 REPO='none'
 
 # PROTOCOL
@@ -111,6 +114,8 @@ my_usage()
     echo "| REPO: uboot -> denx u-boot                             |"
     echo "| REPO: olimex-docs -> olimex github repo (for imx233)   |"
     echo "| REPO: mydriver -> my test driver                       |"
+    echo "| REPO: can-utils -> common can-utils                    |"
+    echo "| REPO: libsocketcan -> pengutronix libsocketcan         |"
     echo "|                                                        |"
     echo "| Valid network protocols:                               |"
     echo "| PROTOCOL: none or empty -> use the simple git          |"
@@ -224,6 +229,9 @@ set_repo_names()
     olimex_docs="://github.com/OLIMEX/OLINUXINO.git"
     uboot="://git.denx.de/u-boot.git"
     mydriver="://github.com/tjohann/mydriver.git"
+    can_utils="://github.com/linux-can/can-utils.git"
+    libsocketcan="://git.pengutronix.de/git/tools/libsocketcan.git"
+    
     
     # array with all available repos
     repo_names_array[0]=${at91bootstrap}
@@ -234,6 +242,8 @@ set_repo_names()
     repo_names_array[5]=${olimex_docs}
     repo_names_array[6]=${uboot}
     repo_names_array[7]=${mydriver}
+    repo_names_array[8]=${can_utils}
+    repo_names_array[9]=${libsocketcan}
 }
 
 
@@ -264,6 +274,12 @@ get_repo_name()
 	    ;;
 	'mydriver')
 	    REPO_NAME="${PROTOCOL}${mydriver}"
+	    ;;
+	'can-utils')
+	    REPO_NAME="${PROTOCOL}${can_utils}"
+	    ;;
+	'libsocketcan')
+	    REPO_NAME="${PROTOCOL}${libsocketcan}"
 	    ;;
 	*)
 	    echo "ERROR -> ${REPO} is no valid repo ... pls check"

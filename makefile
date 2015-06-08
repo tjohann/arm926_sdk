@@ -2,8 +2,9 @@
 # my simple makefile as something like a user interface
 #
 
-MODULES = configs etc images pics common schematics
+MODULES = configs etc images pics common schematics 
 MODULES += include lib lib_target
+MODULES += bin
 MODULES += Documentation man
 MODULES += kernel src tools templates
 MODULES += scripts packages
@@ -34,7 +35,9 @@ clean::
 
 distclean: clean
 	rm -rf v?
-	rm -f v?*.tgz
+	rm -f v?_*.tgz
+	rm -rf host_v?
+	rm -f host_v?_*.tgz
 
 #
 # clone some useful repos (see ./external/README)

@@ -11,5 +11,7 @@ Possible content cloned via script get_external_repos.sh:
 # olimex-docs -> http://github.com/OLIMEX/OLINUXINO.git
 # uboot -> git://git.denx.de/u-boot.git
 # mydriver -> https://github.com/tjohann/mydriver.git
+# can-utils -> https://github.com/linux-can/can-utils.git
+# libsocketcan -> git://git.pengutronix.de/git/tools/libsocketcan.git
 
 #EOF

@@ -50,3 +50,9 @@ get_uboot::
 
 get_mydriver::
 	($(ARMEL_HOME)/bin/get_external_git_repos.sh -r "mydriver" -p "http")
+
+get_can-utils::
+	($(ARMEL_HOME)/bin/get_external_git_repos.sh -r "can-utils" -p "http")
+
+get_libsocketcan::
+	($(ARMEL_HOME)/bin/get_external_git_repos.sh -r "libsocketcan" -p "git")

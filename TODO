@@ -2,6 +2,23 @@
 # my TODO with date and progress
 #
 
+
+#
+# -------------- 2015-06-08 --------------------------------------------------------------------
+#
+
+## sdk stuff
+-> add libsocketcan and can-utils to external                              [done -> 2015-06-08]
+-> re-organisate the toolchain naming rules                                [done -> 2015-06-08]
+-> update get_toolchain.sh to also use host_*                              [done -> 2015-06-08]
+
+## toolchain stuff
+-> build toolchain v1 for armv7hl
+-> build toolchain v1 for x86_64    
+-> prepare build of toolchain v2 for armv7hl on my cluster via distcc  
+-> check output of uname -m on my slackware armv7hl and adapt
+   get_toolchain.sh
+
 #
 # -------------- 2015-05-25 --------------------------------------------------------------------
 #
@@ -38,9 +55,9 @@
 
 ## toolchain stuff 
 -> add sysroot deps lib libconfuse/libconfig                               [done -> 2015-05-23]
--> build toolchain v3 for armv7l
+-> build toolchain v3 for armv7l                                           [removed due re-org]
 -> build toolchain v3 for x86_64                                           [done -> 2015-05-23]
--> prepare build of toolchain v4 for armv7l on my cluster via distcc
+-> prepare build of toolchain v4 for armv7hl on my cluster via distcc      [removed due re-org]
 -> make "make get_image" target working (see also scripts)
 
 ## sdk stuff
