@@ -9,7 +9,8 @@ export MY_HOST_ARCH=$(uname -m)
 export ARMEL_VER=v1
 
 # set supported kernel version
-export ARMEL_RT_KERNEL_VER=4.0.4
+export ARMEL_RT_KERNEL_VER=4.0.5
+export ARMEL_RT_VER=rt3
 export ARMEL_KERNEL_VER=4.0.5
 
 # set armel home
@@ -22,7 +23,7 @@ export PATH=${ARMEL_HOME}/${ARMEL_VER}/bin:${ARMEL_HOME}/host_${ARMEL_VER}/usr/b
 export MANPATH=${ARMEL_HOME}/man/:$MANPATH
 
 # extend CDPATH for my armel stuff
-export CDPATH=${ARMEL_HOME}/
+#export CDPATH=${ARMEL_HOME}/
 
 # set mount points for the sdcard -> arietta
 export ARIETTA_MEDIA_KERNEL=/mnt/arietta_kernel

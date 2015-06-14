@@ -4,6 +4,17 @@
 
 
 #
+# -------------- 2015-06-14 --------------------------------------------------------------------
+#
+
+## target stuff
+-> update kernel to 4.0.5 (PREEMPT and FULL_RT_PREEMPT)                    [done -> 2015-06-14] 
+
+## script stuff
+-> rework get_latest_linux_kernel.sh ... it's so ugly                      [done -> 2015-06-14] 
+
+
+#
 # -------------- 2015-06-08 --------------------------------------------------------------------
 #
 
@@ -14,7 +25,7 @@
 
 ## toolchain stuff
 -> build toolchain v1 for armv7hl
--> build toolchain v1 for x86_64    
+-> build toolchain v1 for x86_64                                           [done -> 2015-06-14] 
 -> prepare build of toolchain v2 for armv7hl on my cluster via distcc  
 -> check output of uname -m on my slackware armv7hl and adapt
    get_toolchain.sh
@@ -86,7 +97,7 @@
 
 ## script stuff
 -> create shell lib for common functions like cheers_user()
--> get_latest_linux_kernel.sh ... download also latest rt-patch          
+-> get_latest_linux_kernel.sh ... download also latest rt-patch            [done -> 2015-06-14]
 -> get_external_git_repos.sh ... add u-boot, olimex docs and mydriver      [done -> 2015-05-23]
 -> get_external_git_repos.sh ... remove rpusbdisp                          [done -> 2015-05-23]
 -> get_external_git_repos.sh ... remove hardcoded repo names and create

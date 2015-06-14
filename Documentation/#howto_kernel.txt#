@@ -91,7 +91,7 @@ KDO:
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
 KDO: git checkout -b stable v4.0.5
 KDO: cp $ARMEL_HOME/configs/kernel_config_4.0.x_arietta .config
-KDO(rt): cp $ARMEL_HOME/configs/kernel_config_4.0.x_arietta .config
+KDO(rt): cp $ARMEL_HOME/configs/kernel_config_4.0.x_rt_arietta .config
 KDO: make ARCH=arm menuconfig
 
 # ------------------------------------ CONFIG end ----------------------------------

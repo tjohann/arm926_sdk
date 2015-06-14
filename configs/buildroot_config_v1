@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Buildroot 2015.05-rc3-00001-g6fe42d0 Configuration
+# Buildroot 2015.08-git-00187-g0db1c13 Configuration
 #
 BR2_HAVE_DOT_CONFIG=y
 
@@ -8,6 +8,7 @@ BR2_HAVE_DOT_CONFIG=y
 # Target options
 #
 BR2_SOFT_FLOAT=y
+BR2_ARCH_HAS_MMU_OPTIONAL=y
 # BR2_arcle is not set
 # BR2_arceb is not set
 BR2_arm=y
@@ -283,6 +284,7 @@ BR2_ROOTFS_POST_IMAGE_SCRIPT=""
 #
 BR2_PACKAGE_BUSYBOX=y
 BR2_PACKAGE_BUSYBOX_CONFIG="package/busybox/busybox.config"
+BR2_PACKAGE_BUSYBOX_CONFIG_FRAGMENT_FILES=""
 # BR2_PACKAGE_BUSYBOX_SHOW_OTHERS is not set
 # BR2_PACKAGE_BUSYBOX_WATCHDOG is not set
 
@@ -450,6 +452,10 @@ BR2_PACKAGE_CMAKE_ARCH_SUPPORTS=y
 # BR2_PACKAGE_MTOOLS is not set
 # BR2_PACKAGE_NFS_UTILS is not set
 # BR2_PACKAGE_NTFS_3G is not set
+
+#
+# ntfs-3g needs a toolchain w/ wchar, threads, dynamic library
+#
 
 #
 # simicsfs needs a Linux kernel to be built
@@ -721,6 +727,7 @@ BR2_PACKAGE_QT5_JSCORE_AVAILABLE=y
 # BR2_PACKAGE_LUA is not set
 BR2_PACKAGE_LUAJIT_ARCH_SUPPORTS=y
 # BR2_PACKAGE_LUAJIT is not set
+# BR2_PACKAGE_MOARVM is not set
 BR2_PACKAGE_MONO_ARCH_SUPPORTS=y
 # BR2_PACKAGE_MONO is not set
 # BR2_PACKAGE_NODEJS is not set
@@ -989,6 +996,7 @@ BR2_PACKAGE_LIBXMLRPC=y
 #
 # Logging
 #
+# BR2_PACKAGE_GLOG is not set
 # BR2_PACKAGE_LIBLOG4C_LOCALTIME is not set
 # BR2_PACKAGE_LIBLOGGING is not set
 # BR2_PACKAGE_LOG4CPLUS is not set
@@ -1105,6 +1113,7 @@ BR2_PACKAGE_LIBTIRPC=y
 # BR2_PACKAGE_APR is not set
 # BR2_PACKAGE_APR_UTIL is not set
 # BR2_PACKAGE_ARMADILLO is not set
+# BR2_PACKAGE_ATF is not set
 # BR2_PACKAGE_BDWGC is not set
 BR2_PACKAGE_BOOST_ARCH_SUPPORTS=y
 # BR2_PACKAGE_BOOST is not set
@@ -1115,6 +1124,7 @@ BR2_PACKAGE_BOOST_ARCH_SUPPORTS=y
 # BR2_PACKAGE_ELFUTILS is not set
 # BR2_PACKAGE_FFTW is not set
 # BR2_PACKAGE_FLANN is not set
+# BR2_PACKAGE_GFLAGS is not set
 # BR2_PACKAGE_GLIBMM is not set
 # BR2_PACKAGE_GLM is not set
 # BR2_PACKAGE_GMP is not set
@@ -1535,6 +1545,7 @@ BR2_TARGET_ROOTFS_TAR_OPTIONS=""
 # BR2_PACKAGE_HOST_DOSFSTOOLS is not set
 # BR2_PACKAGE_HOST_E2FSPROGS is not set
 # BR2_PACKAGE_HOST_E2TOOLS is not set
+# BR2_PACKAGE_HOST_FAKETIME is not set
 # BR2_PACKAGE_HOST_GENEXT2FS is not set
 # BR2_PACKAGE_HOST_GENIMAGE is not set
 # BR2_PACKAGE_HOST_GENPART is not set
@@ -1558,6 +1569,11 @@ BR2_TARGET_ROOTFS_TAR_OPTIONS=""
 #
 # Legacy config options
 #
+
+#
+# Legacy options removed in 2015.08
+#
+# BR2_TARGET_UBOOT_NETWORK is not set
 
 #
 # Legacy options removed in 2015.05

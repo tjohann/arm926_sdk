@@ -24,11 +24,14 @@
 #
 ################################################################################
 #
-# Date/Beginn :    08.06.2015/13.04.2015
+# Date/Beginn :    14.06.2015/13.04.2015
 #
-# Version     :    V0.03
+# Version     :    V0.04
 #
-# Milestones  :    V0.03 (jun 2015) -> add rt kernel version download
+# Milestones  :    V0.04 (jun 2015) -> rework
+#                                   -> add preempt patch download
+#                                   -> some addtional comment
+#                  V0.03 (jun 2015) -> add rt kernel version download
 #                  V0.02 (may 2015) -> add license 
 #                  V0.01 (apr 2015) -> first functional version
 #
@@ -51,16 +54,15 @@
 #
 
 # VERSION-NUMBER
-VER='0.03'
+VER='0.04'
 
 # if env is sourced 
 MISSING_ENV='false'
 
-# latest kernel version
+# latest kernel/rt-preempt version
 KERNEL_VER='none'
 RT_KERNEL_VER='none'
-KERNEL_DOWNLOAD_STRING='none'
-RT_KERNEL_DOWNLOAD_STRING='none'
+DOWNLOAD_STRING='none'
 
 # my usage method 
 my_usage() 
@@ -71,6 +73,9 @@ my_usage()
     echo "|        [-v] -> print version info                      |"
     echo "|        [-h] -> this help                               |"
     echo "|                                                        |"
+    echo "| This small tool download based on the values of        |"
+    echo "| ARMEL_KERNEL_VER, ARMEL_RT_KERNEL_VER and ARMEL_RT_VER |"
+    echo "| the needed source files to build a custom kernel.      |"
     echo "+--------------------------------------------------------+"
     echo " "
     exit
@@ -127,18 +132,26 @@ if [ "$ARMEL_HOME" = '' ]; then
     MISSING_ENV='true'
 fi
 
+if [ "$ARMEL_KERNEL_VER" = '' ]; then 
+    MISSING_ENV='true'
+fi
+
+if [ "$ARMEL_RT_KERNEL_VER" = '' ]; then 
+    MISSING_ENV='true'
+fi
+
+if [ "$ARMEL_RT_VER" = '' ]; then 
+    MISSING_ENV='true'
+fi
+
 # show a usage screen and exit
 if [ "$MISSING_ENV" = 'true' ]; then 
     cleanup
     clear
     echo " "
     echo "+--------------------------------------+"
-    echo "|                                      |"
     echo "|  ERROR: missing env                  |"
     echo "|         have you sourced env-file?   |"
-    echo "|                                      |"
-    echo "|          Cheers $USER               |"
-    echo "|                                      |"
     echo "+--------------------------------------+"
     echo " "
     exit
@@ -149,164 +162,88 @@ fi
 # ***                      The functions for main_menu                       ***
 # ******************************************************************************
 
-# --- set latest supported kernel version
-set_latest_kernel_version()
+# --- get the kernel sources
+get_kernel_source()
 {
-    if [ "$ARMEL_KERNEL_VER" = '' ]; then 
+    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/v4.x/linux-${KERNEL_VER}.tar.xz"
+    echo "INFO: set kernel download string to $DOWNLOAD_STRING"
+    
+    if [ -f linux-${KERNEL_VER}.tar.xz ]; then
 	echo " "
 	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: ARMEL_KERNEL_VER is empty!   |"
-	echo "|                                      |"
+	echo "|  INFO: linux-${KERNEL_VER}.tar.xz    |"
+	echo "|        already exist, wont download  |"
+	echo "|        again                         |"
 	echo "+--------------------------------------+"
 	echo " "
 	
-	cleanup
-    fi
-
-    if [ "$ARMEL_RT_KERNEL_VER" = '' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: ARMEL_RT_KERNEL_VER is empty!|"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-    fi
-    
-    KERNEL_VER=$ARMEL_KERNEL_VER
-    RT_KERNEL_VER=$ARMEL_RT_KERNEL_VER
-    
-    echo "INFO: set kernel version to linux-$KERNEL_VER and  linux-$RT_KERNEL_VER "
-}
-
-# --- create download string with kernel version
-create_download_string()
-{
-   if [ "$KERNEL_VER" = 'none' ]; then 
-       echo " "
-       echo "+--------------------------------------+"
-       echo "|                                      |"
-       echo "|  ERROR: KERNEL_VER is none!          |"
-       echo "|                                      |"
-       echo "+--------------------------------------+"
-       echo " "
-       
-	cleanup
-   fi 
-
-   if [ "$RT_KERNEL_VER" = 'none' ]; then 
-       echo " "
-       echo "+--------------------------------------+"
-       echo "|                                      |"
-       echo "|  ERROR: RT_KERNEL_VER is none!       |"
-       echo "|                                      |"
-       echo "+--------------------------------------+"
-       echo " "
-       
-       cleanup
-   fi 
-   
-   KERNEL_DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/v4.x/linux-${KERNEL_VER}.tar.xz"
-   RT_KERNEL_DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/v4.x/linux-${RT_KERNEL_VER}.tar.xz"
-
-   echo "INFO: set kernel download string to $KERNEL_DOWNLOAD_STRING and $RT_KERNEL_DOWNLOAD_STRING"
-}
-
-
-# --- download kernel tarball
-get_kernel_tarball()
-{
-    if [ "$KERNEL_DOWNLOAD_STRING" = 'none' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: KERNEL_DOWNLOAD_STRING is    |"
-	echo "|         none!                        |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-    fi 
-
-    if [ "$RT_KERNEL_DOWNLOAD_STRING" = 'none' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: RT_KERNEL_DOWNLOAD_STRING is |"
-	echo "|         none!                        |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-    fi 
-
-    wget $RT_KERNEL_DOWNLOAD_STRING
-    wget $KERNEL_DOWNLOAD_STRING
-}
-
-# --- untar kernel source
-untar_kernel()
-{
-    if [ "$KERNEL_VER" = 'none' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: KERNEL_VER is none!          |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-    fi
-    
-    if [ -f linux-${KERNEL_VER}.tar.xz ]; then
 	tar xvf linux-${KERNEL_VER}.tar.xz 
     else
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: linux-${KERNEL_VER}.tar.xz   |"
-	echo "|         does not exist!              |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
+	wget $DOWNLOAD_STRING
+	
+	if [ $? -ne 0 ]; then
+	    echo " "
+	    echo "+--------------------------------------+"
+	    echo "|  ERROR: cant download!               |"
+	    echo "+--------------------------------------+"
+	    echo " "
 
-	cleanup
+	    cleanup
+	else
+	   tar xvf linux-${KERNEL_VER}.tar.xz  
+	fi
     fi
 
-
-    if [ "$RT_KERNEL_VER" = 'none' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: RT_KERNEL_VER is none!       |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-    fi
-    
-    if [ -f linux-${RT_KERNEL_VER}.tar.xz ]; then
-	tar xvf linux-${RT_KERNEL_VER}.tar.xz 
-    else
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: linux-${RT_KERNEL_VER}.tar.xz|"
-	echo "|         does not exist!              |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-    fi      
+    # reset value
+    DOWNLOAD_STRING='none'
 }
+
+# --- get the rt-preempt patch sources
+get_rt_patch_source()
+{
+    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/projects/rt/4.0/patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz"
+    echo "INFO: set rt-preempt patch download string to $DOWNLOAD_STRING"
+
+    if [ -f patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz ]; then
+	echo " "
+	echo "+--------------------------------------+"
+	echo "|  INFO: patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz   |"
+	echo "|        already exist, wont download  |"
+	echo "|        again                         |"
+	echo "+--------------------------------------+"
+	echo " "
+    else	
+	wget $DOWNLOAD_STRING
+	
+	if [ $? -ne 0 ]; then
+	    echo " "
+	    echo "+--------------------------------------+"
+	    echo "|  INFO: cant download using dir older |"
+	    echo "+--------------------------------------+"
+	    echo " "
+	    
+	    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/projects/rt/4.0/older/patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz"
+	    echo "INFO: set rt-preempt patch download string to $DOWNLOAD_STRING"
+
+	    wget $DOWNLOAD_STRING
+
+	    if [ $? -ne 0 ]; then
+		echo " "
+		echo "+--------------------------------------+"
+		echo "|  ERROR: cant download patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz |"
+		echo "+--------------------------------------+"
+		echo " "
+
+		cleanup
+	    fi
+	fi    
+    fi
+	
+    # reset value
+    DOWNLOAD_STRING='none'
+}
+
+
 
 
 # ******************************************************************************
@@ -315,16 +252,30 @@ untar_kernel()
 
 echo " "
 echo "+----------------------------------------+"
-echo "|    get/install latest kernel tarball   |"
+echo "|       get/install kernel source        |"
 echo "+----------------------------------------+"
 echo " "
 
 cd $ARMEL_HOME/kernel
 
-set_latest_kernel_version
-create_download_string
-get_kernel_tarball
-untar_kernel
+# PREEMPT handling
+KERNEL_VER=$ARMEL_KERNEL_VER
+get_kernel_source
+
+# download only one if rt-preempt patch supports same kernel version
+if [ "$ARMEL_KERNEL_VER" = "$ARMEL_RT_KERNEL_VER" ]; then
+    echo "INFO: set kernel version for PREEMPT and FULL_RT_PREEMPT are identical"
+else
+    # FULL_RT_PREEMPT handling
+    KERNEL_VER=$ARMEL_RT_KERNEL_VER
+    echo "INFO: set kernel version to linux-$KERNEL_VER and linux-$RT_KERNEL_VER "
+    get_kernel_source
+fi
+
+# rt-preempt patch handling
+# note: get_rt_patch_source also use KERNEL_VER 
+get_rt_patch_source
+
 
 cleanup
 echo " "

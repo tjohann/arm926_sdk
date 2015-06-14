@@ -2,12 +2,21 @@
 # some news ... see also TODO for hints
 #
 
-2015-06-88 -> !!! IMPORTANT !!!
+2015-06-14 -> ## toolchain stuff
+	      build toolchain v1 for x86_64
+
+	      ## target stuff
+	      update kernel to 4.0.5 (PREEMPT and FULL_RT_PREEMPT)
+
+	      ## script stuff
+	      get_latest_linux_kernel.sh ... download also latest rt-patch 
+
+2015-06-08 -> !!! IMPORTANT !!!
 	      Complete re-organisation of naming sheme for the toolchain!
 	      The version numbers start again with version 1 but also with support for
 	      armv7hl and host parts 
  
-2015-06-88 -> ## sdk stuff
+2015-06-08 -> ## sdk stuff
 	      add can-utils and libsocketcan to external
 	      add support for host_* parts of the toolchain
 
