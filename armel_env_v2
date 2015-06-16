@@ -10,7 +10,7 @@ export ARMEL_VER=v2
 
 # set supported kernel version
 export ARMEL_RT_KERNEL_VER=4.0.5
-export ARMEL_RT_VER=rt3
+export ARMEL_RT_VER=rt4
 export ARMEL_KERNEL_VER=4.0.5
 
 # set armel home
