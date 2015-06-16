@@ -4,6 +4,15 @@
 
 
 #
+# -------------- 2015-06-16 --------------------------------------------------------------------
+#
+## script stuff
+-> get_latest_linux_kernel.sh: if kernel/linux-x.x.x is present, then dont untar again
+
+## sdk stuff
+-> remove kernel/... with make distclean
+
+#
 # -------------- 2015-06-14 --------------------------------------------------------------------
 #
 
