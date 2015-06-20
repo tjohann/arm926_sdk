@@ -23,7 +23,7 @@ buildroot_config_v1
 ct-ng_config_v1
 	- crosstool-ng .config
 
- kernel_config_4.0.x_arietta
+kernel_config_4.0.x_arietta
 	- kernel .config for 4.0.x
 
 kernel_config_4.0.x_rt_arietta

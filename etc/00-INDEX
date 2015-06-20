@@ -14,9 +14,6 @@ armel_env_v1.sh
 armel_env_v2.sh
 	- env file for /etc/profile.d/
 
-armel_env_v3.sh
-	- env file for /etc/profile.d/
-
 bsd-games-login-fortune.sh
 	- add fortune and cowsay
 

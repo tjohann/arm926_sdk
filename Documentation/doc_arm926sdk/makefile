@@ -16,4 +16,4 @@ docs::
 	#latex doc_arm926_sdk 
 	#dvips -o arm926_sdkt.ps doc_arm926_sdk.dvi
 	#dvipdf doc_arm926_sdk.dvi arm926_sdk.pdf% Index
-\printindex
+#	\printindex
