@@ -11,11 +11,14 @@ This is a brief list of all the files in ./arm926_sdk/common ...
 README
 	- hints regarding bootmanager config
 
-boot_arietta.bin
-	- bootloader for uImage and 256M RAM
+get_external_git_repos.sh
+	- clone some useful repos
+	
+get_latest_linux_kernel.sh
+	- get latest kernel based on armel_env_vx
 
-boot_arietta_128.bin
-	- bootloader for uImage and 128M RAM
+get_toolchain.sh
+	- get latest toolchain
 
 makefile
 	- for cleanup 
