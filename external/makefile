@@ -12,7 +12,7 @@ all:
 .PHONY: clean
 clean:
 	rm -f *~ *.o .*~
-	for dir in $(MODULES); do (cd $$dir && $(MAKE) $@); done
+	for dir in $(MODULES); do (cd $$dir/ && $(MAKE) $@); done
 
 distclean: clean
 
@@ -56,3 +56,6 @@ get_can-utils::
 
 get_libsocketcan::
 	($(ARMEL_HOME)/bin/get_external_git_repos.sh -r "libsocketcan" -p "git")
+
+get_sllin::
+	($(ARMEL_HOME)/bin/get_external_git_repos.sh -r "sllin" -p "git")

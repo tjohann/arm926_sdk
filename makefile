@@ -48,7 +48,7 @@ get_external_repos::
 	@echo "|               Clone useful external repos                |"
 	@echo "|                                                          |"
 	@echo "+----------------------------------------------------------+"
-	($(ARMEL_HOME)/bin/get_external_git_repos.sh -p "http")
+	($(ARMEL_HOME)/bin/get_external_git_repos.sh -p "git")
 
 #
 # download latest supported kernel version as tarball and install it to

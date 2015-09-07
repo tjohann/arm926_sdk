@@ -10,6 +10,8 @@ mydriver
 u-boot
 can-utils
 libsocketcan
+linux-lin
+linux-lin.git
 libsocketcan.git
 can-utils.git
 u-boot.git

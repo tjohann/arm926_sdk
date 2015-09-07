@@ -24,11 +24,12 @@
 #
 ################################################################################
 #
-# Date/Beginn :    08.06.2015/13.04.2015
+# Date/Beginn :    07.09.2015/13.04.2015
 #
-# Version     :    V0.05
+# Version     :    V0.06
 #
-# Milestones  :    V0.05 (jun 2015) -> add can-utils and libsocketcan
+# Milestones  :    V0.06 (sep 2015) -> add slLIN 
+#                  V0.05 (jun 2015) -> add can-utils and libsocketcan
 #                  V0.04 (may 2015) -> add license 
 #                  V0.03 (may 2015) -> add u-boot, olimex docs and mydriver
 #                                   -> remove rpusbdisp (i have no more access
@@ -61,7 +62,7 @@
 #
 
 # VERSION-NUMBER
-VER='0.05'
+VER='0.06'
 
 # if env is sourced 
 MISSING_ENV='false'
@@ -77,6 +78,7 @@ MISSING_ENV='false'
 # mydriver -> https://github.com/tjohann/mydriver.git
 # can-utils -> https://github.com/linux-can/can-utils.git
 # libsocketcan -> git://git.pengutronix.de/git/tools/libsocketcan.git
+# sllin -> git://rtime.felk.cvut.cz/linux-lin.git
 REPO='none'
 
 # PROTOCOL
@@ -116,6 +118,7 @@ my_usage()
     echo "| REPO: mydriver -> my test driver                       |"
     echo "| REPO: can-utils -> common can-utils                    |"
     echo "| REPO: libsocketcan -> pengutronix libsocketcan         |"
+    echo "| REPO: sllin -> linux lin driver                        |"
     echo "|                                                        |"
     echo "| Valid network protocols:                               |"
     echo "| PROTOCOL: none or empty -> use the simple git          |"
@@ -231,6 +234,7 @@ set_repo_names()
     mydriver="://github.com/tjohann/mydriver.git"
     can_utils="://github.com/linux-can/can-utils.git"
     libsocketcan="://git.pengutronix.de/git/tools/libsocketcan.git"
+    sllin="://rtime.felk.cvut.cz/linux-lin.git"
     
     
     # array with all available repos
@@ -244,6 +248,7 @@ set_repo_names()
     repo_names_array[7]=${mydriver}
     repo_names_array[8]=${can_utils}
     repo_names_array[9]=${libsocketcan}
+    repo_names_array[10]=${sllin}
 }
 
 
@@ -280,6 +285,9 @@ get_repo_name()
 	    ;;
 	'libsocketcan')
 	    REPO_NAME="${PROTOCOL}${libsocketcan}"
+	    ;;
+	'sllin')
+	    REPO_NAME="${PROTOCOL}${sllin}"
 	    ;;
 	*)
 	    echo "ERROR -> ${REPO} is no valid repo ... pls check"
