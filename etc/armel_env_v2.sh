@@ -9,9 +9,9 @@ export MY_HOST_ARCH=$(uname -m)
 export ARMEL_VER=v2
 
 # set supported kernel version
-export ARMEL_RT_KERNEL_VER=4.0.5
-export ARMEL_RT_VER=rt4
-export ARMEL_KERNEL_VER=4.0.5
+export ARMEL_RT_KERNEL_VER=4.2
+export ARMEL_RT_VER=rt5
+export ARMEL_KERNEL_VER=4.1.5
 
 # set armel home
 export ARMEL_HOME=/opt/arm926_sdk

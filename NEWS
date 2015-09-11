@@ -2,11 +2,18 @@
 # some news ... see also TODO for hints
 #
 
+2015-09-10 -> ## toolchain stuff
+	      build toolchain v2 for x86_64 (void-linux)
+
+	      ## target stuff	    
+	      update kernel to 4.2.0 (PREEMPT)
+	      update kernel to 4.1.5-rt5 (FULL_RT-PREEMPT)
+
 2015-06-14 -> ## toolchain stuff
 	      build toolchain v1 for x86_64
 
 	      ## target stuff
-	      update kernel to 4.0.5 (PREEMPT and FULL_RT_PREEMPT)
+	      update kernel to 4.0.5 (PREEMPT and FULL_RT-PREEMPT)
 
 	      ## script stuff
 	      get_latest_linux_kernel.sh ... download also latest rt-patch 

@@ -4,6 +4,26 @@
 
 
 #
+# -------------- 2015-09-10 --------------------------------------------------------------------
+#
+
+## the "rest"
+-> migrate favorite host to void-linux
+-> migrate target to void-linux
+-> migrate to rooling release like in baalue_sdk
+
+## toolchain stuff
+-> build toolchain v2 for armv7hl                                     
+-> build toolchain v2 for x86_64
+
+## target stuff
+-> create void-linux image
+-> add sllin to device
+
+## hw stuff
+-> add support for mcp2025 (LIN)
+
+#
 # -------------- 2015-06-16 --------------------------------------------------------------------
 #
 ## script stuff
@@ -11,6 +31,7 @@
 
 ## sdk stuff
 -> remove kernel/... with make distclean
+
 
 #
 # -------------- 2015-06-14 --------------------------------------------------------------------
@@ -33,7 +54,7 @@
 -> update get_toolchain.sh to also use host_*                              [done -> 2015-06-08]
 
 ## toolchain stuff
--> build toolchain v1 for armv7hl
+-> build toolchain v1 for armv7hl                                       [canceld -> 2015-09-10]
 -> build toolchain v1 for x86_64                                           [done -> 2015-06-14] 
 -> prepare build of toolchain v2 for armv7hl on my cluster via distcc  
 -> check output of uname -m on my slackware armv7hl and adapt

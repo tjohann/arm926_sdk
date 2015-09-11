@@ -1,7 +1,7 @@
 ARM926_SDK
 =========
 
-This is my sdk for usage with slackware hosts on x86_64 or armv7hl for arm926 target devices like arietta (see http://www.acmesystems.it/) or imx233 (https://www.olimex.com/Products/OLinuXino/iMX233/iMX233-OLinuXino-MINI/open-source-hardware). For more info follow me on google+ and see http://arm926sdk.sourceforge.net/ . Also read ./UPGRADE_HINTS and ./docs/howto_arm926_sdk.txt .
+This is my sdk for usage with slackware/void-linux hosts on x86_64 or armv7hl for arm926 target devices like arietta (see http://www.acmesystems.it/) or imx233 (https://www.olimex.com/Products/OLinuXino/iMX233/iMX233-OLinuXino-MINI/open-source-hardware). For more info follow me on google+ and see http://arm926sdk.sourceforge.net/ . Also read ./UPGRADE_HINTS and ./docs/howto_arm926_sdk.txt .
 
 
 For using the content of this repo first source armel_env_v1. I add this to my .bashrc to automate it.
