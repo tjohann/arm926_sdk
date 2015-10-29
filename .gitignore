@@ -1,6 +1,37 @@
-# ignore toolchain and other bin stuff -> distributed over sourceforge
-v[1-9]
-host_v[1-9]
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects 
+*.so
+*.so.*
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+
+# arm926_sdk specifics
+toolchain
+host
 *.tgz
 *.gz
 *.bz2

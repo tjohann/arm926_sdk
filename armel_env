@@ -1,23 +1,26 @@
 # +------------------------- setup the armel dev environment ------------------------+
-# |                                   armel_env_v2                                   |
+# |                                   armel_env                                 |
 # +----------------------------------------------------------------------------------+
 
 # set MY_HOST_ARCH
 export MY_HOST_ARCH=$(uname -m)
 
-# set correct version
-export ARMEL_VER=v2
-
 # set supported kernel version
-export ARMEL_RT_KERNEL_VER=4.2
-export ARMEL_RT_VER=rt5
-export ARMEL_KERNEL_VER=4.1.5
+export ARMEL_KERNEL_VER=4.2.1
+export ARMEL_RT_KERNEL_VER=4.1.7
+export ARMEL_RT_VER=rt8
 
 # set armel home
-export ARMEL_HOME=$HOME/arm926_sdk
+if [ "$(basename $(pwd))" == "arm926_sdk" ] ; then
+    # allow manual set-up
+    export ARMEL_HOME=$(pwd)
+else
+    # presume standard path
+    export ARMEL_HOME=$HOME/arm926_sdk
+fi
 
 # extend PATH for my armel stuff
-export PATH=${ARMEL_HOME}/${ARMEL_VER}/bin:${ARMEL_HOME}/host_${ARMEL_VER}/usr/bin:${ARMEL_HOME}/bin:$PATH
+export PATH=$PATH:${ARMEL_HOME}/toolchain/bin:${ARMEL_HOME}/host/usr/bin
 
 # extend MANPATH for my armel stuff
 export MANPATH=${ARMEL_HOME}/man/:$MANPATH
@@ -35,6 +38,6 @@ export IMX233_MEDIA_KERNEL=/mnt/imx233_kernel
 export IMX233_MEDIA_ROOTFS=/mnt/imx233_rootfs
 export IMX233_MEDIA_HOME=/mnt/imx233_home
 
-echo "Setup env for host \"${MY_HOST_ARCH}\" with root dir \"${ARMEL_HOME}\" and version \"${ARMEL_VER}\""
+echo "Setup env for host \"${MY_HOST_ARCH}\" with root dir \"${ARMEL_HOME}\" "
 
 #EOF
