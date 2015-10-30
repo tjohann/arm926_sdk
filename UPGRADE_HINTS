@@ -3,5 +3,18 @@
 #
 
 
-## 2015-08-15 --> 2015-xx-xx
+## v1 + v2 to rolling release
+Changes:
+- there're a lot of changes and dirs/files are moved around
+- remove of armel_env_vx -> armel_env is the new one 
+- remove makefile tags for docs and man
+- add new makefile tags to download images and toolchain
+- new location for the toolchain
+- mv bin content to scripts
 - ...
+How to update 
+-> make distclean
+-> open new shell
+-> source the new env file (armel_env)
+-> make get_toolchain
+-> make ... 

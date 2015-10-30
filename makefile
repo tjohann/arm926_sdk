@@ -1,20 +1,23 @@
 #
 # my simple makefile as something like a user interface
 #
+ifeq "${ARMEL_HOME}" ""
+    $(error error: please source armel_env first!)
+endif
 
-MODULES = configs etc images pics common schematics 
+MODULES = images pics schematics configs etc
+MODULES += bananapi
 MODULES += include lib lib_target
-MODULES += bin
 MODULES += Documentation man
-MODULES += kernel src tools templates
-MODULES += scripts packages
+MODULES += kernel src templates
+MODULES += scripts
 
 DOCS = Documentation
 
 all:: 
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
-	@echo "|                  Nothing to build :-)                    |"
+	@echo "|                  Nothing to build                        |"
 	@echo "|                                                          |"
 	@echo "+----------------------------------------------------------+"
 	@echo "| Example:                                                 |"
@@ -22,9 +25,8 @@ all::
 	@echo "|                            xenomai or uboot ...          |"
 	@echo "| make get_toolchain      -> install toolchain             |"
 	@echo "| make get_latest_kernel  -> download latest kernel version|"
-	@echo "| make docs               -> create html and/or pdf docs   |"
-	@echo "|                            see docs/html and docs/pdf    |"
-	@echo "| make man                -> install man pages to ./man/...|"
+	@echo "| make get_image_tarballs -> download image tarballs       |"
+	@echo "| make get_all            -> get all of the above          |"
 	@echo "| make clean              -> clean all dir/subdirs         |"
 	@echo "| make distclean          -> complete cleanup              |"
 	@echo "+----------------------------------------------------------+"	
@@ -34,10 +36,20 @@ clean::
 	for dir in $(MODULES); do (cd $$dir && $(MAKE) $@); done
 
 distclean: clean
-	rm -rf v?
-	rm -f v?_*.tgz
-	rm -rf host_v?
-	rm -f host_v?_*.tgz
+	rm -rf toolchain
+	rm -f toolchain_x86_64.tgz
+	rm -rf host
+	rm -f host_x86_64.tgz
+
+#
+# run all get actions in sequence
+#
+get_all:: get_toolchain get_image_tarballs get_external_repos get_latest_kernel 
+	@echo "+----------------------------------------------------------+"
+	@echo "|                                                          |"
+	@echo "|               All 'get' actions complete                 |"
+	@echo "|                                                          |"
+	@echo "+----------------------------------------------------------+"
 
 #
 # clone some useful repos (see ./external/README)
@@ -48,7 +60,8 @@ get_external_repos::
 	@echo "|               Clone useful external repos                |"
 	@echo "|                                                          |"
 	@echo "+----------------------------------------------------------+"
-	($(ARMEL_HOME)/bin/get_external_git_repos.sh -p "git")
+	($(ARMEL_HOME)/scripts/get_external_git_repos.sh -p "git")
+
 
 #
 # download latest supported kernel version as tarball and install it to
@@ -60,7 +73,8 @@ get_latest_kernel::
 	@echo "|        Download latest supported kernel version          |"
 	@echo "|                                                          |"
 	@echo "+----------------------------------------------------------+"
-	($(ARMEL_HOME)/bin/get_latest_linux_kernel.sh)
+	($(ARMEL_HOME)/scripts/get_latest_linux_kernel.sh)
+
 
 #
 # download toolchain version as tarball and install it to $ARMEL_HOME
@@ -71,26 +85,17 @@ get_toolchain: distclean
 	@echo "|        Download latest supported toolchain version       |"
 	@echo "|                                                          |"
 	@echo "+----------------------------------------------------------+"
-	($(ARMEL_HOME)/bin/get_toolchain.sh)
+	($(ARMEL_HOME)/scripts/get_toolchain.sh)
+
 
 #
-# create html and/or pdf docs under $ARMEL_HOME/docs/html and/or $ARMEL_HOME/docs/pdf
+# download image tarballs to $ARMEL_HOME/images
 #
-docs:: 
+get_image_tarballs:  
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
-	@echo "|        Create html and/or pdf docs -> see ./docs/...     |"
+	@echo "|        Download latest supported image tarballs          |"
 	@echo "|                                                          |"
 	@echo "+----------------------------------------------------------+"
-	for dir in $(DOCS); do (cd $$dir && $(MAKE) $@); done
+	($(ARMEL_HOME)/scripts/get_image_tarballs.sh)
 
-#
-# copy man pages from ./Documentation/man to ./man/man[1,3]/
-#
-man::
-	@echo "+----------------------------------------------------------+"
-	@echo "|                                                          |"
-	@echo "|        Install man pages to ./man/man[1,3]/              |"
-	@echo "|                                                          |"
-	@echo "+----------------------------------------------------------+"
-	(cd Documentation && $(MAKE) $@) 

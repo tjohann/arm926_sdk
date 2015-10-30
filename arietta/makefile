@@ -1,13 +1,14 @@
-# only for cleaning 
+# only for cleaning :-)
 
 MODULES = $(shell ls -d */ | cut -f1 -d'/')
 
-all:: 
+.PHONY: all
+all: 
 	@echo Cheers
 
-clean::
+.PHONY: clean
+clean:
 	rm -f *~
 	for dir in $(MODULES); do (cd $$dir && $(MAKE) $@); done
 
 distclean: clean
-
