@@ -6,7 +6,7 @@ ifeq "${ARMEL_HOME}" ""
 endif
 
 MODULES = images pics schematics configs etc
-MODULES += bananapi
+MODULES += arietta imx233
 MODULES += include lib lib_target
 MODULES += Documentation man
 MODULES += kernel src templates
