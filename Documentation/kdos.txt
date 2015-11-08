@@ -40,3 +40,4 @@
 
 # set partion name
 tune2fs -L YOUR_NAME_FOR_THE_PARTITION /dev/your_partition_to_change
+

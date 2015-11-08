@@ -24,11 +24,11 @@
 #
 ################################################################################
 #
-# Date/Beginn :    15.08.2015/15.08.2015
+# Date/Beginn :    08.11.2015/08.11.2015
 #
 # Version     :    V0.01
 #
-# Milestones  :    V0.01 (aug 2015) -> first functional version
+# Milestones  :    V0.01 (nov 2015) -> first functional version
 #
 # Requires    :    ...
 #                 
@@ -37,7 +37,7 @@
 # Description
 #   
 #   A simple tool to get the latest kernel tarball and copy it to
-#   $BAALUE_HOME/kernel ...  
+#   $ARMEL_HOME/kernel ...  
 #
 # Some features
 #   - ... 
@@ -69,8 +69,8 @@ my_usage()
     echo "|        [-h] -> this help                               |"
     echo "|                                                        |"
     echo "| This small tool download based on the values of        |"
-    echo "| BAALUE_KERNEL_VER, BAALUE_RT_KERNEL_VER and            |"
-    echo "| BAALUE_RT_VER the needed source files to build a   |"
+    echo "| ARMEL_KERNEL_VER, ARMEL_RT_KERNEL_VER and              |"
+    echo "| ARMEL_RT_VER the needed source files to build a        |"
     echo "| custom kernel.                                         |"
     echo "+--------------------------------------------------------+"
     echo " "
@@ -124,19 +124,19 @@ done
 # ***             Error handling for missing shell values                    ***
 # ******************************************************************************
 
-if [ "$BAALUE_HOME" = '' ]; then 
+if [ "$ARMEL_HOME" = '' ]; then 
     MISSING_ENV='true'
 fi
 
-if [ "$BAALUE_KERNEL_VER" = '' ]; then 
+if [ "$ARMEL_KERNEL_VER" = '' ]; then 
     MISSING_ENV='true'
 fi
 
-if [ "$BAALUE_RT_KERNEL_VER" = '' ]; then 
+if [ "$ARMEL_RT_KERNEL_VER" = '' ]; then 
     MISSING_ENV='true'
 fi
 
-if [ "$BAALUE_RT_VER" = '' ]; then 
+if [ "$ARMEL_RT_VER" = '' ]; then 
     MISSING_ENV='true'
 fi
 
@@ -197,13 +197,13 @@ get_kernel_source()
 # --- get the rt-preempt patch sources
 get_rt_patch_source()
 {
-    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/projects/rt/4.1/patch-${KERNEL_VER}-${BAALUE_RT_VER}.patch.gz"
+    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/projects/rt/4.1/patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz"
     echo "INFO: set rt-preempt patch download string to $DOWNLOAD_STRING"
 
-    if [ -f patch-${KERNEL_VER}-${BAALUE_RT_VER}.patch.gz ]; then
+    if [ -f patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz ]; then
 	echo " "
 	echo "+--------------------------------------+"
-	echo "|  INFO: patch-${KERNEL_VER}-${BAALUE_RT_VER}.patch.gz   |"
+	echo "|  INFO: patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz   |"
 	echo "|        already exist, wont download  |"
 	echo "|        again                         |"
 	echo "+--------------------------------------+"
@@ -218,7 +218,7 @@ get_rt_patch_source()
 	    echo "+--------------------------------------+"
 	    echo " "
 	    
-	    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/projects/rt/4.1/older/patch-${KERNEL_VER}-${BAALUE_RT_VER}.patch.gz"
+	    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/projects/rt/4.1/older/patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz"
 	    echo "INFO: set rt-preempt patch download string to $DOWNLOAD_STRING"
 
 	    wget $DOWNLOAD_STRING
@@ -226,7 +226,7 @@ get_rt_patch_source()
 	    if [ $? -ne 0 ]; then
 		echo " "
 		echo "+--------------------------------------+"
-		echo "|  ERROR: cant download patch-${KERNEL_VER}-${BAALUE_RT_VER}.patch.gz |"
+		echo "|  ERROR: cant download patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz |"
 		echo "+--------------------------------------+"
 		echo " "
 
@@ -252,18 +252,18 @@ echo "|       get/install kernel source        |"
 echo "+----------------------------------------+"
 echo " "
 
-cd $BAALUE_HOME/kernel
+cd $ARMEL_HOME/kernel
 
 # PREEMPT handling
-KERNEL_VER=$BAALUE_KERNEL_VER
+KERNEL_VER=$ARMEL_KERNEL_VER
 get_kernel_source
 
 # download only one if rt-preempt patch supports same kernel version
-if [ "$BAALUE_KERNEL_VER" = "$BAALUE_RT_KERNEL_VER" ]; then
+if [ "$ARMEL_KERNEL_VER" = "$ARMEL_RT_KERNEL_VER" ]; then
     echo "INFO: set kernel version for PREEMPT and FULL_RT_PREEMPT are identical"
 else
     # FULL_RT_PREEMPT handling
-    KERNEL_VER=$BAALUE_RT_KERNEL_VER
+    KERNEL_VER=$ARMEL_RT_KERNEL_VER
     echo "INFO: set kernel version to linux-$KERNEL_VER and linux-$RT_KERNEL_VER "
     get_kernel_source
 fi

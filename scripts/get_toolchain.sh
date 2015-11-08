@@ -24,11 +24,11 @@
 #
 ################################################################################
 #
-# Date/Beginn :    15.08.2015/15.08.2015
+# Date/Beginn :    08.11.2015/08.11.2015
 #
 # Version     :    V0.01
 #
-# Milestones  :    V0.01 (aug 2015) -> first functional version
+# Milestones  :    V0.01 (nov 2015) -> first functional version
 #
 # Requires    :    
 #                 
@@ -36,7 +36,7 @@
 ################################################################################
 # Description
 #   
-#   A simple tool to get the toolchain and untar it to $BAALUE_HOME  ...  
+#   A simple tool to get the toolchain and untar it to $ARMEL_HOME  ...  
 #
 # Some features
 #   - ... 
@@ -61,8 +61,8 @@ MISSING_ENV='false'
 # -> toolchain_x86_64.tgz
 #
 # DOWNLOAD_STRING:
-# -> http://sourceforge.net/projects/baalue-sdk/files/host_x86_64.tgz
-# -> http://sourceforge.net/projects/baalue-sdk/files/toolchain_x86_64.tgz
+# -> http://sourceforge.net/projects/arm926sdk/files/host_x86_64.tgz
+# -> http://sourceforge.net/projects/arm926sdk/files/toolchain_x86_64.tgz
 #
 TOOLCHAIN_VER='none'
 TOOLCHAIN_HOST_VER='none'
@@ -130,7 +130,7 @@ done
 # ***             Error handling for missing shell values                    ***
 # ******************************************************************************
 
-if [ "$BAALUE_HOME" = '' ]; then 
+if [ "$ARMEL_HOME" = '' ]; then 
     MISSING_ENV='true'
 fi
 
@@ -160,8 +160,8 @@ fi
 # --- create download string 
 create_download_string()
 {
-   TOOLCHAIN_DOWNLOAD_STRING="http://sourceforge.net/projects/baalue-sdk/files/toolchain_x86_64.tgz"
-   TOOLCHAIN_HOST_DOWNLOAD_STRING="http://sourceforge.net/projects/baalue-sdk/files/host_x86_64.tgz"
+   TOOLCHAIN_DOWNLOAD_STRING="http://sourceforge.net/projects/arm926sdk/files/toolchain_x86_64.tgz"
+   TOOLCHAIN_HOST_DOWNLOAD_STRING="http://sourceforge.net/projects/arm926sdk/files/host_x86_64.tgz"
 
    echo "INFO: set toolchain download string to $TOOLCHAIN_DOWNLOAD_STRING and $TOOLCHAIN_HOST_DOWNLOAD_STRING"
 }
@@ -246,7 +246,7 @@ echo "|  get/install latest toolchain tarball  |"
 echo "+----------------------------------------+"
 echo " "
 
-cd $BAALUE_HOME
+cd $ARMEL_HOME
 
 create_download_string
 get_toolchain_tarball

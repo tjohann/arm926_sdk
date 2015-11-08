@@ -24,11 +24,11 @@
 #
 ################################################################################
 #
-# Date/Beginn :    24.08.2015/24.08.2015
+# Date/Beginn :    08.11.2015/08.11.2015
 #
 # Version     :    V0.01
 #
-# Milestones  :    V0.01 (aug 2015) -> first functional version
+# Milestones  :    V0.01 (nov 2015) -> first functional version
 #
 # Requires    :    
 #                 
@@ -57,14 +57,14 @@ MISSING_ENV='false'
 # latest version
 #
 # VER:
-# -> kernel_baalue_bananapi.tgz
-# -> rootfs_baalue_bananapi.tgz
-# -> home_baalue_bananapi.tgz
+# -> kernel_arietta.tgz
+# -> rootfs_arietta.tgz
+# -> home_arietta.tgz
 #
 # DOWNLOAD_STRING:
-# -> http://sourceforge.net/projects/baalue-sdk/files/kernel_baalue_bananapi.tgz
-# -> http://sourceforge.net/projects/baalue-sdk/files/rootfs_baalue_bananapi.tgz
-# -> http://sourceforge.net/projects/baalue-sdk/files/home_baalue_bananapi.tgz
+# -> http://sourceforge.net/projects/arm926sdk/files/kernel_arietta.tgz
+# -> http://sourceforge.net/projects/arm926sdk/files/rootfs_arietta.tgz
+# -> http://sourceforge.net/projects/arm926sdk/files/home_arietta.tgz
 #
 KERNEL_IMAGE='none'
 ROOTFS_IMAGE='none'
@@ -132,7 +132,7 @@ done
 # ***             Error handling for missing shell values                    ***
 # ******************************************************************************
 
-if [ "$BAALUE_HOME" = '' ]; then 
+if [ "$ARMEL_HOME" = '' ]; then 
     MISSING_ENV='true'
 fi
 
@@ -162,9 +162,9 @@ fi
 # --- create download string 
 create_download_string()
 {
-    KERNEL_IMAGE="http://sourceforge.net/projects/baalue-sdk/files/kernel_baalue_bananapi.tgz"
-    ROOTFS_IMAGE="http://sourceforge.net/projects/baalue-sdk/files/rootfs_baalue_bananapi.tgz"
-    HOME_IMAGE="http://sourceforge.net/projects/baalue-sdk/files/home_baalue_bananapi.tgz"
+    KERNEL_IMAGE="http://sourceforge.net/projects/arm926sdk/files/kernel_arietta.tgz"
+    ROOTFS_IMAGE="http://sourceforge.net/projects/arm926sdk/files/rootfs_arietta.tgz"
+    HOME_IMAGE="http://sourceforge.net/projects/arm926sdk/files/home_arietta.tgz"
     
     echo "INFO: set kernel download string to $KERNEL_IMAGE"
     echo "INFO: set rootfs download string to $ROOTFS_IMAGE"
@@ -227,7 +227,7 @@ echo "|  dowload latest image tarballs         |"
 echo "+----------------------------------------+"
 echo " "
 
-cd $BAALUE_HOME/images
+cd $ARMEL_HOME/images
 
 create_download_string
 get_image_tarball
