@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ################################################################################
 #
-# Title       :    get_latest_linux_kernel.sh 
+# Title       :    get_image_tarballs.sh    
 #
 # License:
 #
@@ -16,7 +16,7 @@
 # This program is distributed in the hope that it will be useful,            
 # but WITHOUT ANY WARRANTY; without even the implied warranty of             
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the               
-# GNU General Public License for more details.
+# GNU General Public License for more details.                                
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
@@ -24,20 +24,19 @@
 #
 ################################################################################
 #
-# Date/Beginn :    15.08.2015/15.08.2015
+# Date/Beginn :    24.08.2015/24.08.2015
 #
 # Version     :    V0.01
 #
 # Milestones  :    V0.01 (aug 2015) -> first functional version
 #
-# Requires    :    ...
+# Requires    :    
 #                 
 #
 ################################################################################
 # Description
 #   
-#   A simple tool to get the latest kernel tarball and copy it to
-#   $BAALUE_HOME/kernel ...  
+#   A simple tool to download the image tarballs  
 #
 # Some features
 #   - ... 
@@ -54,24 +53,33 @@ VER='0.01'
 # if env is sourced 
 MISSING_ENV='false'
 
-# latest kernel/rt-preempt version
-KERNEL_VER='none'
-RT_KERNEL_VER='none'
-DOWNLOAD_STRING='none'
+#
+# latest version
+#
+# VER:
+# -> kernel_baalue_bananapi.tgz
+# -> rootfs_baalue_bananapi.tgz
+# -> home_baalue_bananapi.tgz
+#
+# DOWNLOAD_STRING:
+# -> http://sourceforge.net/projects/baalue-sdk/files/kernel_baalue_bananapi.tgz
+# -> http://sourceforge.net/projects/baalue-sdk/files/rootfs_baalue_bananapi.tgz
+# -> http://sourceforge.net/projects/baalue-sdk/files/home_baalue_bananapi.tgz
+#
+KERNEL_IMAGE='none'
+ROOTFS_IMAGE='none'
+HOME_IMAGE='none'
+
 
 # my usage method 
 my_usage() 
 {
     echo " "
     echo "+--------------------------------------------------------+"
-    echo "| Usage: ./get_latest_linux_kernel.sh                    |"
+    echo "| Usage: ./get_image_tarballs.sh                         |"
     echo "|        [-v] -> print version info                      |"
     echo "|        [-h] -> this help                               |"
     echo "|                                                        |"
-    echo "| This small tool download based on the values of        |"
-    echo "| BAALUE_KERNEL_VER, BAALUE_RT_KERNEL_VER and            |"
-    echo "| BAALUE_RT_VER the needed source files to build a   |"
-    echo "| custom kernel.                                         |"
     echo "+--------------------------------------------------------+"
     echo " "
     exit
@@ -79,8 +87,8 @@ my_usage()
 
 # my cleanup 
 cleanup() {
-   rm $_temp 2>/dev/null
-   rm $_log 2>/dev/null
+    rm $_temp 2>/dev/null
+    rm $_log 2>/dev/null
 }
 
 # my exit method 
@@ -105,8 +113,8 @@ print_version()
 }
 
 # ---- Some values for internal use ----
-_temp="/tmp/get_latest_linux_kernel.$$"
-_log="/tmp/get_latest_linux_kernel.log"
+_temp="/tmp/get_image_tarballs.$$"
+_log="/tmp/get_image_tarballs.log"
 
 
 # check the args 
@@ -128,26 +136,18 @@ if [ "$BAALUE_HOME" = '' ]; then
     MISSING_ENV='true'
 fi
 
-if [ "$BAALUE_KERNEL_VER" = '' ]; then 
-    MISSING_ENV='true'
-fi
-
-if [ "$BAALUE_RT_KERNEL_VER" = '' ]; then 
-    MISSING_ENV='true'
-fi
-
-if [ "$BAALUE_RT_VER" = '' ]; then 
-    MISSING_ENV='true'
-fi
-
 # show a usage screen and exit
 if [ "$MISSING_ENV" = 'true' ]; then 
     cleanup
     clear
     echo " "
     echo "+--------------------------------------+"
+    echo "|                                      |"
     echo "|  ERROR: missing env                  |"
     echo "|         have you sourced env-file?   |"
+    echo "|                                      |"
+    echo "|          Cheers $USER               |"
+    echo "|                                      |"
     echo "+--------------------------------------+"
     echo " "
     exit
@@ -158,88 +158,63 @@ fi
 # ***                      The functions for main_menu                       ***
 # ******************************************************************************
 
-# --- get the kernel sources
-get_kernel_source()
+
+# --- create download string 
+create_download_string()
 {
-    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/v4.x/linux-${KERNEL_VER}.tar.xz"
-    echo "INFO: set kernel download string to $DOWNLOAD_STRING"
+    KERNEL_IMAGE="http://sourceforge.net/projects/baalue-sdk/files/kernel_baalue_bananapi.tgz"
+    ROOTFS_IMAGE="http://sourceforge.net/projects/baalue-sdk/files/rootfs_baalue_bananapi.tgz"
+    HOME_IMAGE="http://sourceforge.net/projects/baalue-sdk/files/home_baalue_bananapi.tgz"
     
-    if [ -f linux-${KERNEL_VER}.tar.xz ]; then
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|  INFO: linux-${KERNEL_VER}.tar.xz    |"
-	echo "|        already exist, wont download  |"
-	echo "|        again                         |"
-	echo "+--------------------------------------+"
-	echo " "
-	
-	tar xvf linux-${KERNEL_VER}.tar.xz 
-    else
-	wget $DOWNLOAD_STRING
-	
-	if [ $? -ne 0 ]; then
-	    echo " "
-	    echo "+--------------------------------------+"
-	    echo "|  ERROR: cant download!               |"
-	    echo "+--------------------------------------+"
-	    echo " "
-
-	    cleanup
-	else
-	   tar xvf linux-${KERNEL_VER}.tar.xz  
-	fi
-    fi
-
-    # reset value
-    DOWNLOAD_STRING='none'
+    echo "INFO: set kernel download string to $KERNEL_IMAGE"
+    echo "INFO: set rootfs download string to $ROOTFS_IMAGE"
+    echo "INFO: set home download string to $HOME_IMAGE"
 }
 
-# --- get the rt-preempt patch sources
-get_rt_patch_source()
+
+# --- download image tarball
+get_image_tarball()
 {
-    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/projects/rt/4.1/patch-${KERNEL_VER}-${BAALUE_RT_VER}.patch.gz"
-    echo "INFO: set rt-preempt patch download string to $DOWNLOAD_STRING"
-
-    if [ -f patch-${KERNEL_VER}-${BAALUE_RT_VER}.patch.gz ]; then
+    if [ "$KERNEL_IMAGE" = 'none' ]; then 
 	echo " "
 	echo "+--------------------------------------+"
-	echo "|  INFO: patch-${KERNEL_VER}-${BAALUE_RT_VER}.patch.gz   |"
-	echo "|        already exist, wont download  |"
-	echo "|        again                         |"
+	echo "|                                      |"
+	echo "|  ERROR: KERNEL_IMAGE is  none!       |"
+	echo "|                                      |"
 	echo "+--------------------------------------+"
 	echo " "
-    else	
-	wget $DOWNLOAD_STRING
-	
-	if [ $? -ne 0 ]; then
-	    echo " "
-	    echo "+--------------------------------------+"
-	    echo "|  INFO: cant download using dir older |"
-	    echo "+--------------------------------------+"
-	    echo " "
-	    
-	    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/projects/rt/4.1/older/patch-${KERNEL_VER}-${BAALUE_RT_VER}.patch.gz"
-	    echo "INFO: set rt-preempt patch download string to $DOWNLOAD_STRING"
 
-	    wget $DOWNLOAD_STRING
+	cleanup
+    fi 
 
-	    if [ $? -ne 0 ]; then
-		echo " "
-		echo "+--------------------------------------+"
-		echo "|  ERROR: cant download patch-${KERNEL_VER}-${BAALUE_RT_VER}.patch.gz |"
-		echo "+--------------------------------------+"
-		echo " "
+    if [ "$ROOTFS_IMAGE" = 'none' ]; then 
+	echo " "
+	echo "+--------------------------------------+"
+	echo "|                                      |"
+	echo "|  ERROR: ROOTFS_IMAGE is  none!       |"
+	echo "|                                      |"
+	echo "+--------------------------------------+"
+	echo " "
 
-		cleanup
-	    fi
-	fi    
+	cleanup
     fi
-	
-    # reset value
-    DOWNLOAD_STRING='none'
+
+    if [ "$HOME_IMAGE" = 'none' ]; then 
+	echo " "
+	echo "+--------------------------------------+"
+	echo "|                                      |"
+	echo "|  ERROR: HOME_IMAGE is  none!         |"
+	echo "|                                      |"
+	echo "+--------------------------------------+"
+	echo " "
+
+	cleanup
+    fi 
+
+    wget $KERNEL_IMAGE
+    wget $ROOTFS_IMAGE
+    wget $HOME_IMAGE
 }
-
-
 
 
 # ******************************************************************************
@@ -248,30 +223,14 @@ get_rt_patch_source()
 
 echo " "
 echo "+----------------------------------------+"
-echo "|       get/install kernel source        |"
+echo "|  dowload latest image tarballs         |"
 echo "+----------------------------------------+"
 echo " "
 
-cd $BAALUE_HOME/kernel
+cd $BAALUE_HOME/images
 
-# PREEMPT handling
-KERNEL_VER=$BAALUE_KERNEL_VER
-get_kernel_source
-
-# download only one if rt-preempt patch supports same kernel version
-if [ "$BAALUE_KERNEL_VER" = "$BAALUE_RT_KERNEL_VER" ]; then
-    echo "INFO: set kernel version for PREEMPT and FULL_RT_PREEMPT are identical"
-else
-    # FULL_RT_PREEMPT handling
-    KERNEL_VER=$BAALUE_RT_KERNEL_VER
-    echo "INFO: set kernel version to linux-$KERNEL_VER and linux-$RT_KERNEL_VER "
-    get_kernel_source
-fi
-
-# rt-preempt patch handling
-# note: get_rt_patch_source also use KERNEL_VER 
-get_rt_patch_source
-
+create_download_string
+get_image_tarball
 
 cleanup
 echo " "

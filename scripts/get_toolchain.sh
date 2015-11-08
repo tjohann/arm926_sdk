@@ -24,13 +24,11 @@
 #
 ################################################################################
 #
-# Date/Beginn :    08.06.2015/14.04.2015
+# Date/Beginn :    15.08.2015/15.08.2015
 #
-# Version     :    V0.03
+# Version     :    V0.01
 #
-# Milestones  :    V0.03 (jun 2015) -> add sysroot & host parts
-#                  V0.02 (may 2015) -> add license 
-#                  V0.01 (apr 2015) -> first functional version
+# Milestones  :    V0.01 (aug 2015) -> first functional version
 #
 # Requires    :    
 #                 
@@ -38,7 +36,7 @@
 ################################################################################
 # Description
 #   
-#   A simple tool to get the toolchain and untar it to $ARMEL_HOME  ...  
+#   A simple tool to get the toolchain and untar it to $BAALUE_HOME  ...  
 #
 # Some features
 #   - ... 
@@ -50,7 +48,7 @@
 #
 
 # VERSION-NUMBER
-VER='0.03'
+VER='0.01'
 
 # if env is sourced 
 MISSING_ENV='false'
@@ -59,12 +57,12 @@ MISSING_ENV='false'
 # latest version
 #
 # VER:
-# -> v1_armv7hl.tgz or v1_x86_64.tgz
-# -> host_armv7hl.tgz or host_v1_x86_64.tgz
+# -> host_x86_64.tgz
+# -> toolchain_x86_64.tgz
 #
 # DOWNLOAD_STRING:
-# -> http://sourceforge.net/projects/arm926sdk/files/sdk-${ARMEL_VER}/${TOOLCHAIN_VER}.tgz
-# -> http://sourceforge.net/projects/arm926sdk/files/sdk-${ARMEL_VER}/host_${TOOLCHAIN_VER}.tgz
+# -> http://sourceforge.net/projects/baalue-sdk/files/host_x86_64.tgz
+# -> http://sourceforge.net/projects/baalue-sdk/files/toolchain_x86_64.tgz
 #
 TOOLCHAIN_VER='none'
 TOOLCHAIN_HOST_VER='none'
@@ -132,7 +130,7 @@ done
 # ***             Error handling for missing shell values                    ***
 # ******************************************************************************
 
-if [ "$ARMEL_HOME" = '' ]; then 
+if [ "$BAALUE_HOME" = '' ]; then 
     MISSING_ENV='true'
 fi
 
@@ -158,111 +156,12 @@ fi
 # ***                      The functions for main_menu                       ***
 # ******************************************************************************
 
-# --- set latest toolchain version
-set_toolchain_version()
-{
-    if [ "$ARMEL_VER" = '' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: ARMEL_VER is empty!          |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-    fi
-
-    if [ "$MY_HOST_ARCH" = '' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: MY_HOST_ARCH is empty!          |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-    fi
-
-    #
-    # There's only support armv7hl (cubietruck) and x86_64 (EMT64 ...)
-    #
-    if [ "$MY_HOST_ARCH" = 'x86_64' ]; then
-	TOOLCHAIN_VER=${ARMEL_VER}_${MY_HOST_ARCH}
-	TOOLCHAIN_HOST_VER=host_${TOOLCHAIN_VER}
-    fi
-
-    if [ "$MY_HOST_ARCH" = 'armv7hl' ]; then
-	TOOLCHAIN_VER=${ARMEL_VER}_${MY_HOST_ARCH}
-	TOOLCHAIN_HOST_VER=host_${TOOLCHAIN_VER}
-    fi
-       
-    if [ "$TOOLCHAIN_VER" = 'none' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: TOOLCHAIN_VER==none          |"
-	echo "|                                      |"
-	echo "|  Check values of:                    |"
-	echo "|  -> $MY_HOST_ARCH                     "
-	echo "|  -> $ARMEL_VER                        "
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-    fi
-
-    if [ "$TOOLCHAIN_HOST_VER" = 'none' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: TOOLCHAIN_HOST_VER==none     |"
-	echo "|                                      |"
-	echo "|  Check values of:                    |"
-	echo "|  -> $TOOLCHAIN_VER                   |"
-	echo "|  -> $MY_HOST_ARCH                     "
-	echo "|  -> $ARMEL_VER                        "
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-    fi
-    
-    echo "INFO: set toolchain version to $TOOLCHAIN_VER and $TOOLCHAIN_HOST_VER"
-}
 
 # --- create download string 
 create_download_string()
 {
-   if [ "$TOOLCHAIN_VER" = 'none' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: TOOLCHAIN_VER is none!       |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-   fi
-
-   if [ "$TOOLCHAIN_HOST_VER" = 'none' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: TOOLCHAIN_HOST_VER is none!  |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-   fi
-
-   TOOLCHAIN_DOWNLOAD_STRING="http://sourceforge.net/projects/arm926sdk/files/sdk-${ARMEL_VER}/${TOOLCHAIN_VER}.tgz"
-   TOOLCHAIN_HOST_DOWNLOAD_STRING="http://sourceforge.net/projects/arm926sdk/files/sdk-${ARMEL_VER}/host_${TOOLCHAIN_VER}.tgz"
+   TOOLCHAIN_DOWNLOAD_STRING="http://sourceforge.net/projects/baalue-sdk/files/toolchain_x86_64.tgz"
+   TOOLCHAIN_HOST_DOWNLOAD_STRING="http://sourceforge.net/projects/baalue-sdk/files/host_x86_64.tgz"
 
    echo "INFO: set toolchain download string to $TOOLCHAIN_DOWNLOAD_STRING and $TOOLCHAIN_HOST_DOWNLOAD_STRING"
 }
@@ -305,25 +204,13 @@ get_toolchain_tarball()
 # --- untar toolchain source
 untar_toolchain()
 {
-    if [ "$TOOLCHAIN_VER" = 'none' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: TOOLCHAIN_VER is none!       |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-    fi
-    
-    if [ -f ${TOOLCHAIN_VER}.tgz ]; then
-	tar xzvf ${TOOLCHAIN_VER}.tgz 
+    if [ -f toolchain_x86_64.tgz ]; then
+	tar xzvf toolchain_x86_64.tgz 
     else
 	echo " "
 	echo "+--------------------------------------+"
 	echo "|                                      |"
-	echo "|  ERROR: ${TOOLCHAIN_VER}.tgz does    |"
+	echo "|  ERROR: toolchain_x86_64.tgz does    |"
 	echo "|         not exist!                   |"
 	echo "|                                      |"
 	echo "+--------------------------------------+"
@@ -332,27 +219,14 @@ untar_toolchain()
 	cleanup
     fi
 
-    
-    if [ "$TOOLCHAIN_HOST_VER" = 'none' ]; then 
-	echo " "
-	echo "+--------------------------------------+"
-	echo "|                                      |"
-	echo "|  ERROR: TOOLCHAIN_HOST_VER is none!  |"
-	echo "|                                      |"
-	echo "+--------------------------------------+"
-	echo " "
-
-	cleanup
-    fi
-    
-    if [ -f host_${TOOLCHAIN_VER}.tgz ]; then
-	tar xzvf host_${TOOLCHAIN_VER}.tgz 
+    if [ -f host_x86_64.tgz ]; then
+	tar xzvf host_x86_64.tgz 
     else
 	echo " "
 	echo "+--------------------------------------+"
 	echo "|                                      |"
-	echo "|  ERROR: host_${TOOLCHAIN_VER}.tgz    |"
-	echo "|         does not exist!              |"
+	echo "|  ERROR: host_x86_64.tgz does not     |"
+	echo "|         exist!                       |"
 	echo "|                                      |"
 	echo "+--------------------------------------+"
 	echo " "
@@ -372,9 +246,8 @@ echo "|  get/install latest toolchain tarball  |"
 echo "+----------------------------------------+"
 echo " "
 
-cd $ARMEL_HOME
+cd $BAALUE_HOME
 
-set_toolchain_version
 create_download_string
 get_toolchain_tarball
 untar_toolchain

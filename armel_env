@@ -6,9 +6,9 @@
 export MY_HOST_ARCH=$(uname -m)
 
 # set supported kernel version
-export ARMEL_KERNEL_VER=4.2.1
-export ARMEL_RT_KERNEL_VER=4.1.7
-export ARMEL_RT_VER=rt8
+export ARMEL_KERNEL_VER=4.2.5
+export ARMEL_RT_KERNEL_VER=4.1.12
+export ARMEL_RT_VER=rt13
 
 # set armel home
 if [ "$(basename $(pwd))" == "arm926_sdk" ] ; then
@@ -29,14 +29,14 @@ export MANPATH=${ARMEL_HOME}/man/:$MANPATH
 #export CDPATH=${ARMEL_HOME}/
 
 # set mount points for the sdcard -> arietta
-export ARIETTA_MEDIA_KERNEL=/mnt/arietta_kernel
-export ARIETTA_MEDIA_ROOTFS=/mnt/arietta_rootfs
-export ARIETTA_MEDIA_HOME=/mnt/arietta_home
+export ARIETTA_MEDIA_KERNEL=/mnt/arietta/arietta_kernel
+export ARIETTA_MEDIA_ROOTFS=/mnt/arietta/arietta_rootfs
+export ARIETTA_MEDIA_HOME=/mnt/arietta/arietta_home
 
 # set mount points for the sdcard -> imx233
-export IMX233_MEDIA_KERNEL=/mnt/imx233_kernel
-export IMX233_MEDIA_ROOTFS=/mnt/imx233_rootfs
-export IMX233_MEDIA_HOME=/mnt/imx233_home
+export IMX233_MEDIA_KERNEL=/mnt/imx233/imx233_kernel
+export IMX233_MEDIA_ROOTFS=/mnt/imx233/imx233_rootfs
+export IMX233_MEDIA_HOME=/mnt/imx233/imx233_home
 
 echo "Setup env for host \"${MY_HOST_ARCH}\" with root dir \"${ARMEL_HOME}\" "
 
