@@ -21,7 +21,7 @@
 # - arietta -> http://www.acmesystems.it/arietta
 #
 # KERNEL version
-# - linux-4.2.5
+# - linux-4.2.6
 # - linux-4.1.12-rt13 (latest RT-PREEMPT)
 # - linux-3.14.17 (xenomai)
 #
@@ -89,7 +89,7 @@ KDO:
 # configure kernel 
 #
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
-KDO: git checkout -b stable v4.2.5
+KDO: git checkout -b stable v4.2.6
 KDO: cp $ARMEL_HOME/arietta/configs/kernel_config_4.x_arietta .config
 KDO(rt): cp $ARMEL_HOME/arietta/configs/kernel_config_4.x_rt_arietta .config
 KDO: make ARCH=arm menuconfig
@@ -116,7 +116,7 @@ KDO: make -j4 ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- zImage modules
 # install modules
 #
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
-KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_4.2.5 modules_install
+KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_4.2.6 modules_install
 KDO(rt): make ARCH=arm INSTALL_MOD_PATH=../modules_4.1.12_rt modules_install
 
 # ------------------------------------ BUILD end -----------------------------------
@@ -142,7 +142,7 @@ KDO: cp .config /mnt/arietta_kernel/
 #
 # Note: maybe your need to remove the old one
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
-KDO: sudo rsync -avc ../modules_4.2.5/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
+KDO: sudo rsync -avc ../modules_4.2.6/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
 KDO(rt): sudo rsync -avc ../modules_4.1.12_rt/lib/modules/. /mnt/arietta_rootfs/lib/modules/.
 
 #
@@ -150,7 +150,7 @@ KDO(rt): sudo rsync -avc ../modules_4.1.12_rt/lib/modules/. /mnt/arietta_rootfs/
 #
 # Note: dont forget to make ARCH=arm clean
 DIR: depends ...
-KDO: sudo rsync -av --delete linux-4.2.5 /mnt/arietta_rootfs/usr/src/.
+KDO: sudo rsync -av --delete linux-4.2.6 /mnt/arietta_rootfs/usr/src/.
 KDO(rt): sudo rsync -av --delete linux-4.1.12_rt /mnt/arietta_rootfs/usr/src/.
 
 
@@ -162,24 +162,24 @@ KDO(rt): sudo rsync -av --delete linux-4.1.12_rt /mnt/arietta_rootfs/usr/src/.
 #
 DIR: /usr/src
 KDO: depmod -a
-KDO: ln -s linux-4.2.5 linux
+KDO: ln -s linux-4.2.6 linux
 MAYBE: remove your old kernel tree (also installed modules -> /lib/module/your_old_kernel)
 
 #
 # Prepare linux tree to build your modules against the new kernel (non-rt)
 #
-DIR: /usr/src/linux-4.2.5 
+DIR: /usr/src/linux-4.2.6
 KDO: make clean
 KDO: make scripts
 
 #
 # Prepare modules to link (non-rt)
 #
-DIR: /lib/modules/4.2.5
+DIR: /lib/modules/4.2.6
 KDO: rm build
 KDO: rm source
-KDO: ln -s /usr/src/linux-4.2.5 source
-KDO: ln -s /usr/src/linux-4.2.5 build
+KDO: ln -s /usr/src/linux-4.2.6 source
+KDO: ln -s /usr/src/linux-4.2.6 build
 
 
 
