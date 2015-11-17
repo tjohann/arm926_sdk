@@ -10,6 +10,7 @@ MODULES += arietta imx233
 MODULES += include lib lib_target
 MODULES += Documentation man
 MODULES += kernel src templates
+MODULES += projects
 MODULES += scripts
 
 DOCS = Documentation

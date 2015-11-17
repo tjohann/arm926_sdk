@@ -2,6 +2,25 @@
 # some news ... see also TODO for hints
 #
 
+2015-11-17 -> ## toolchain stuff
+	      add project dir for led dot clock
+
+	      ## coding stuff -> ${ARMEL_HOME}/src
+	      start re-organisation of src dir
+	      -> create a new lib for hardware support -> libarietta
+	      -> move all used content to libarietta
+
+2015-11-12 -> ## target stuff
+	      update kernel to 4.2.6 and 4.1.12-rt13
+
+2015-11-08 -> ## toolchain stuff
+	      update to latest void-linux target image
+
+2015-11-XX -> !!! IMPORTANT !!!
+	      Complete re-organisation of naming sheme for the toolchain!
+	      Move target image from slackware to void-linux
+	      Stop support for other targets than void-linux
+
 2015-09-10 -> ## toolchain stuff
 	      build toolchain v2 for x86_64 (void-linux)
 

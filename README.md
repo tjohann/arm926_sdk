@@ -15,12 +15,19 @@ For using the content of this repo first source armel_env. I add this to my .bas
 Useful make tags
 -------------------
 
-	make get_toolchain -> download (and install) toochain from sourceforce (depending on your arch -> x86_64 or armv7hf) 
-	make get_external_repos -> clone some useful repos (see ./external/README)
-	make get_latest_kernel -> download latest supported kernel version as tarball and install it to ./kernel/linux-$ARMEL_KERNEL_VER
-	make clean -> clean all dirs and subdirs
+    make get_toolchain -> download (and install) toochain from sourceforce (depending on your arch -> x86_64 or armv7hf) 
+    make get_external_repos -> clone some useful repos (see ./external/README)
+    make get_latest_kernel -> download latest supported kernel version as tarball and install it to ./kernel/linux-$ARMEL_KERNEL_VER
+    make clean -> clean all dirs and subdirs
 
 
 Missing (will follow soon)
 -------------
-	make get_images -> download minimal image from sourceforce
+
+    make get_images -> download minimal image from sourceforce
+
+
+Projects
+-------------------
+
+    LED-DOT based clock -> see $ARMEL_HOME/projects/led_dot_clock/[README.md](LED-DOT based clock) 	

@@ -4,20 +4,37 @@
 
 
 #
+# -------------- 2015-11-17 --------------------------------------------------------------------
+
+
+## toolchain stuf
+-> build toolchain for armv7hl (for baalue)  
+-> prepare build of toolchain for armv7hl on my cluster via distcc
+
+## hw stuff
+-> schematics for project led_dot_clock
+-> howto for project led_dot_clock
+
+## coding stuff -> ${ARMEL_HOME}/src
+-> migrate src parts to a new lib: libarietta
+-> add first code for the lcd 
+
+
+#
 # -------------- 2015-09-10 --------------------------------------------------------------------
 #
 
 ## the "rest"
--> migrate favorite host to void-linux
--> migrate target to void-linux
--> migrate to rooling release like in baalue_sdk
+-> migrate favorite host to void-linux                                     [done -> 2015-11-08] 
+-> migrate target to void-linux                                            [done -> 2015-11-08] 
+-> migrate to rooling release like in baalue_sdk                           [done -> 2015-11-08] 
 
 ## toolchain stuff
--> build toolchain v2 for armv7hl                                     
--> build toolchain v2 for x86_64
+-> build toolchain v2 for armv7hl                                       [canceld -> 2015-11-08]                        
+-> build toolchain v2 for x86_64                                        [canceld -> 2015-11-08]
 
 ## target stuff
--> create void-linux image
+-> create void-linux image                                                 [done -> 2015-11-08] 
 -> add sllin to device
 
 ## hw stuff
@@ -56,7 +73,7 @@
 ## toolchain stuff
 -> build toolchain v1 for armv7hl                                       [canceld -> 2015-09-10]
 -> build toolchain v1 for x86_64                                           [done -> 2015-06-14] 
--> prepare build of toolchain v2 for armv7hl on my cluster via distcc  
+-> prepare build of toolchain v2 for armv7hl on my cluster via distcc   [canceld -> 2015-11-08]
 -> check output of uname -m on my slackware armv7hl and adapt
    get_toolchain.sh
 
