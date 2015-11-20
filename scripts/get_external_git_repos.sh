@@ -63,7 +63,7 @@
 #
 
 # VERSION-NUMBER
-VER='0.07'
+VER='0.08'
 
 # if env is sourced 
 MISSING_ENV='false'

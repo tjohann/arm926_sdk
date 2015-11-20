@@ -24,11 +24,12 @@
 #
 ################################################################################
 #
-# Date/Beginn :    08.11.2015/08.11.2015
+# Date/Beginn :    20.11.2015/08.11.2015
 #
-# Version     :    V0.01
+# Version     :    V0.02
 #
-# Milestones  :    V0.01 (nov 2015) -> first functional version
+# Milestones  :    V0.02 (nov 2015) -> some minor changes
+#                  V0.01 (nov 2015) -> first functional version
 #
 # Requires    :    
 #                 
@@ -48,7 +49,7 @@
 #
 
 # VERSION-NUMBER
-VER='0.01'
+VER='0.02'
 
 # if env is sourced 
 MISSING_ENV='false'
