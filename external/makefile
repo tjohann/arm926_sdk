@@ -2,7 +2,12 @@
 # ${ARMEL_HOME}/external/makefile
 #
 
-MODULES = $(shell ls -d */ | cut -f1 -d'/' | grep -v OLINUXINO | grep -v xenomai-3)
+ifeq "${ARMEL_HOME}" ""
+    $(error error: please source armel_env first!)
+endif
+
+
+MODULES = $(shell ls -d */ | cut -f1 -d'/' | grep -v xenomai-3 | grep -v void-packages)
 MODULES_TO_UPDATE = $(shell ls -d */ | cut -f1 -d'/')
 
 .PHONY: all
@@ -42,9 +47,6 @@ get_ipipe::
 get_xenomai::
 	($(ARMEL_HOME)/bin/get_external_git_repos.sh -r "xenomai" -p "http")
 
-get_olimex-docs::
-	($(ARMEL_HOME)/bin/get_external_git_repos.sh -r "olimex-docs" -p "http")
-
 get_uboot::
 	($(ARMEL_HOME)/bin/get_external_git_repos.sh -r "uboot" -p "http")
 
@@ -57,5 +59,11 @@ get_can-utils::
 get_libsocketcan::
 	($(ARMEL_HOME)/bin/get_external_git_repos.sh -r "libsocketcan" -p "git")
 
+get_libbaalue::
+	($(ARMEL_HOME)/scripts/get_external_git_repos.sh -r "libbaalue" -p "https")
+
+get_baalued::
+	($(ARMEL_HOME)/scripts/get_external_git_repos.sh -r "baalued" -p "https")
+
 get_sllin::
-	($(ARMEL_HOME)/bin/get_external_git_repos.sh -r "sllin" -p "git")
+	($(ARMEL_HOME)/bin/get_external_git_repos.sh -r "sllin" -p "https")

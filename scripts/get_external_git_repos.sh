@@ -24,11 +24,13 @@
 #
 ################################################################################
 #
-# Date/Beginn :    07.09.2015/15.08.2015
+# Date/Beginn :    20.11.2015/15.08.2015
 #
-# Version     :    V0.07
+# Version     :    V0.08
 #
-# Milestones  :    V0.07 (sep 2015) -> add linux-lin driver repos
+# Milestones  :    V0.08 (nov 2015) -> rebase for arm926_sdk
+#                                      some cleanups
+#                  V0.07 (sep 2015) -> add linux-lin driver repos
 #                  V0.06 (sep 2015) -> add our baalue repos
 #                  V0.05 (aug 2015) -> add can4linux svn repot
 #                  V0.04 (aug 2015) -> add erika svn repo
@@ -54,7 +56,7 @@
 #
 # Improvement/missing feature
 #   - add a file with all possible repos instead of hardcoded values
-#   - clone repos not only to ${BAALUE_HOME}/external ... clone to the current
+#   - clone repos not only to ${ARMEL_HOME}/external ... clone to the current
 #     working dir
 #
 ################################################################################
@@ -67,21 +69,19 @@ VER='0.07'
 MISSING_ENV='false'
 
 # REPOs
+# at91bootstrap -> git://github.com/tanzilli/at91bootstrap.git
 # linus -> git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 # rt-tests -> http://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git
+# ipipe -> git://git.xenomai.org/ipipe.git/
+# xenomai -> git://git.xenomai.org/xenomai-3.git/
 # uboot -> git://git.denx.de/u-boot.git
 # mydriver -> https://github.com/tjohann/mydriver.git
 # can-utils -> https://github.com/linux-can/can-utils.git
 # libsocketcan -> git://git.pengutronix.de/git/tools/libsocketcan.git
 # void-packages -> https://github.com/voidlinux/void-packages.git
-# jailhouse -> git://github.com/siemens/jailhouse.git
-# allwinner -> http://github.com/allwinner-zh/documents.git
 # libbaalue -> https://github.com/tjohann/libbaalue.git
-# baalue -> https://github.com/tjohann/baalue.git
 # baalued -> https://github.com/tjohann/baalued.git
-# erika -> svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee
-# can4linux -> https://svn.code.sf.net/p/can4linux/code/trunk
-# sllin ->  sllin="://rtime.felk.cvut.cz/linux-lin.git"
+# sllin -> https://github.com/tjohann/sllin.git"
 REPO='none'
 
 # PROTOCOL
@@ -109,29 +109,25 @@ my_usage()
     echo "| get_external_git_repos.sh -r xenomai -p http           |"
     echo "|                                                        |"
     echo "| Valid repo names:                                      |"
-    echo "| REPO: none or empty -> clone all repos below           |"
+    echo "| REPO: at19bootstrap                                    |"
     echo "| REPO: linus -> linus kernel tree                       |"
     echo "| REPO: rt-tests -> rt-test tools                        |"
+    echo "| REPO: xenomai -> xenomai microkernel                   |"
+    echo "| REPO: ipipe -> int pipe                                |"
     echo "| REPO: uboot -> denx u-boot                             |"
     echo "| REPO: mydriver -> my test driver                       |"
     echo "| REPO: can-utils -> common can-utils                    |"
     echo "| REPO: libsocketcan -> pengutronix libsocketcan         |"
     echo "| REPO: void-packages -> void-packages                   |"
-    echo "| REPO: jailhouse -> jailhouse hypervisor                |"
-    echo "| REPO: allwinner -> allwinners docs                     |"
-    echo "| REPO: erika -> Erika svn repo                          |"
-    echo "| REPO: can4linux -> can4linux (A20 CAN support)         |"
     echo "| REPO: libbaalue -> our foundation lib                  |"
-    echo "| REPO: baalue -> our user tool                          |"
     echo "| REPO: baalued -> our baalue daemon                     |"
-    echo "| REPO: sllin -> linux lin driver                        |"
+    echo "| REPO: sllin -> (my version of) linux lin driver        |"
     echo "|                                                        |"
     echo "| Valid network protocols:                               |"
     echo "| PROTOCOL: none or empty -> use the simple git          |"
     echo "| PROTOCOL: git                                          |"
     echo "| PROTOCOL: http                                         |"
     echo "| PROTOCOL: https                                        |"
-    echo "| PROTOCOL: svn                                          |"
     echo "+--------------------------------------------------------+"
     echo " "
     exit
@@ -214,7 +210,7 @@ done
 # ***                 error handling for missing env                         ***
 # ******************************************************************************
 
-if [ "$BAALUE_HOME" = '' ]; then 
+if [ "$ARMEL_HOME" = '' ]; then 
     MISSING_ENV='true'
 fi
 
@@ -231,39 +227,34 @@ fi
 # --- set repo names
 set_repo_names()
 {
+    at91bootstrap="://github.com/tanzilli/at91bootstrap.git"
     linus="://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
     rt_tests="://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git"
+    ipipe="://git.xenomai.org/ipipe.git/"
+    xenomai="://git.xenomai.org/xenomai-3.git/"
     uboot="://git.denx.de/u-boot.git"
     mydriver="://github.com/tjohann/mydriver.git"
     can_utils="://github.com/linux-can/can-utils.git"
     libsocketcan="://git.pengutronix.de/git/tools/libsocketcan.git"
     void_packages="://github.com/voidlinux/void-packages.git"
-    jailhouse="://github.com/siemens/jailhouse.git"
-    allwinner="://github.com/allwinner-zh/documents.git"
-    erika="svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee"
-    can4linux="https://svn.code.sf.net/p/can4linux/code/trunk/"
     libbaalue="://github.com/tjohann/libbaalue.git"
-    baalue="://github.com/tjohann/baalue.git"
     baalued="://github.com/tjohann/baalued.git"
-    sllin="://rtime.felk.cvut.cz/linux-lin.git"
-    
+    sllin="://github.com/tjohann/sllin.git"    
     
     # array with all available repos
-    repo_names_array[0]=${linus}
-    repo_names_array[1]=${rt_tests}
-    repo_names_array[2]=${uboot}
-    repo_names_array[3]=${mydriver}
-    repo_names_array[4]=${can_utils}
-    repo_names_array[5]=${libsocketcan}
-    repo_names_array[6]=${void_packages}
-    repo_names_array[7]=${jailhouse}
-    repo_names_array[8]=${allwinner}
-    repo_names_array[9]=${erika}
-    repo_names_array[10]=${can4linux}
-    repo_names_array[11]=${libbaalue}
-    repo_names_array[12]=${baalue}
-    repo_names_array[13]=${baalued}
-    repo_names_array[14]=${sllin}    
+    repo_names_array[0]=${at91bootstrap}    
+    repo_names_array[1]=${linus}
+    repo_names_array[2]=${rt_tests}
+    repo_names_array[3]=${ipipe}
+    repo_names_array[4]=${xenomai} 
+    repo_names_array[5]=${uboot}
+    repo_names_array[6]=${mydriver}
+    repo_names_array[7]=${can_utils}
+    repo_names_array[8]=${libsocketcan}
+    repo_names_array[9]=${void_packages}
+    repo_names_array[10]=${libbaalue}
+    repo_names_array[11]=${baalued}
+    repo_names_array[12]=${sllin}    
 }
 
 
@@ -271,11 +262,20 @@ set_repo_names()
 get_repo_name()
 {
     case "$REPO" in
+	'at91bootstrap')
+	    REPO_NAME="${PROTOCOL}${at91bootstrap}"
+	    ;;
 	'linus')
 	    REPO_NAME="${PROTOCOL}${linus}"
 	    ;;
 	'rt-tests')
 	    REPO_NAME="${PROTOCOL}${rt_tests}"
+	    ;;
+	'ipipe')
+	    REPO_NAME="${PROTOCOL}${ipipe}"
+	    ;;
+	'xenomai')
+	    REPO_NAME="${PROTOCOL}${xenomai}"
 	    ;;
 	'uboot')
 	    REPO_NAME="${PROTOCOL}${uboot}"
@@ -292,25 +292,8 @@ get_repo_name()
 	'void-packages')
 	    REPO_NAME="${PROTOCOL}${void_packages}"
 	    ;;
-	'jailhouse')
-	    REPO_NAME="${PROTOCOL}${jailhouse}"
-	    ;;
-	'allwinner')
-	    REPO_NAME="${PROTOCOL}${allwinner}"
-	    ;;
-	'erika')
-	    # svn repo
-	    REPO_NAME="${erika}"
-	    ;;
-	'can4linux')
-	    # svn repo
-	    REPO_NAME="${can4linux}"
-	    ;;
 	'libbaalue')
 	    REPO_NAME="${PROTOCOL}${libbaalue}"
-	    ;;
-	'baalue')
-	    REPO_NAME="${PROTOCOL}${baalue}"
 	    ;;
 	'baalued')
 	    REPO_NAME="${PROTOCOL}${baalued}"
@@ -345,11 +328,6 @@ check_protocol()
 	PROTOCOL_VALID='true'
     fi
 
-    if [ $PROTOCOL = 'svn' -o $PROTOCOL = 'SVN' ]; then
-	PROTOCOL='svn'
-	PROTOCOL_VALID='true'
-    fi
-
     if [ $PROTOCOL_VALID = 'false' ]; then
 	echo "ERROR -> ${PROTOCOL} is no valid network protocol ... pls check"
 	my_usage
@@ -357,37 +335,11 @@ check_protocol()
 }
 
 
-# --- checkout erika -> svn repo
-checkout_erika()
-{
-    echo "checkout erika"
-    svn co $REPO_NAME
-}
-
-
-# --- checkout can4linux -> svn repo
-checkout_can4linux()
-{
-    echo "checkout can4linux"
-    svn co $REPO_NAME can4linux-code
-}
-
-
 # --- clone the repo
 clone_repo()
 {
     echo "start to clone repo $REPO_NAME"
-    
-    if [ $PROTOCOL = 'svn' ]; then
-	if [ $REPO = 'can4linux' ]; then
-	    svn co $REPO_NAME can4linux-code
-	else
-	    echo "clone a svn repo"
-	    svn co $REPO_NAME
-	fi
-    else
-	git clone $REPO_NAME
-    fi
+    git clone $REPO_NAME
 }
 
 
@@ -396,18 +348,8 @@ clone_all_repos()
 {
     for item in ${repo_names_array[*]}
     do
-	if [ $item = $erika ]; then
-	    # handle svn repo for erika
-	    REPO_NAME="${item}"
-	    checkout_erika
-	elif [ $item = $can4linux ]; then
-	    # handle svn repo for can4linux
-	    REPO_NAME="${can4linux}"
-	    checkout_can4linux    
-	else
-	    REPO_NAME="${PROTOCOL}${item}"
-	    clone_repo
-	fi
+	REPO_NAME="${PROTOCOL}${item}"
+	clone_repo
     done
 }
 
@@ -424,7 +366,7 @@ echo "|                                                        |"
 echo "+--------------------------------------------------------+"
 echo " "
 
-cd ${BAALUE_HOME}/external
+cd ${ARMEL_HOME}/external
 set_repo_names 
 
 if [ $PROTOCOL = 'none' ]; then

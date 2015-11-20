@@ -8,10 +8,13 @@ Possible content cloned via script get_external_repos.sh:
 # rt-tests -> http://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git
 # ipipe -> git://git.xenomai.org/ipipe.git/
 # xenomai -> git://git.xenomai.org/xenomai-3.git/
-# olimex-docs -> http://github.com/OLIMEX/OLINUXINO.git
 # uboot -> git://git.denx.de/u-boot.git
 # mydriver -> https://github.com/tjohann/mydriver.git
 # can-utils -> https://github.com/linux-can/can-utils.git
 # libsocketcan -> git://git.pengutronix.de/git/tools/libsocketcan.git
+# void-packages -> https://github.com/voidlinux/void-packages.git
+# libbaalue -> https://github.com/tjohann/libbaalue.git
+# baalued -> https://github.com/tjohann/baalued.git
+# sllin -> https://github.com/tjohann/sllin.git"
 
 #EOF
