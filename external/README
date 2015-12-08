@@ -16,5 +16,6 @@ Possible content cloned via script get_external_repos.sh:
 # libbaalue -> https://github.com/tjohann/libbaalue.git
 # baalued -> https://github.com/tjohann/baalued.git
 # sllin -> https://github.com/tjohann/sllin.git"
+# clock -> https://github.com/tjohann/led_dot_matrix_clock
 
 #EOF
