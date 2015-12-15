@@ -64,4 +64,4 @@ Useful make tags
 Projects
 -------------------
 
-    LED-DOT based clock -> see $ARMEL_HOME/projects/led_dot_clock/[README.md](LED-DOT based clock) 	
+    LED-Dot-matrix based clock -> see $ARMEL_HOME/projects/led_dot_clock/[README.md](LED-DOT based clock) 	
