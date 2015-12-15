@@ -24,11 +24,12 @@
 #
 ################################################################################
 #
-# Date/Beginn :    08.12.2015/15.08.2015
+# Date/Beginn :    15.12.2015/15.08.2015
 #
-# Version     :    V0.09
+# Version     :    V0.10
 #
-# Milestones  :    V0.09 (nov 2015) -> add led_dot_matrix_clock (see also
+# Milestones  :    V0.10 (dez 2015) -> remove baalued and libbalue
+#                  V0.09 (nov 2015) -> add led_dot_matrix_clock (see also
 #                                      $ARMEL_HOME/projects/led_dot_clock)
 #                  V0.08 (nov 2015) -> rebase for arm926_sdk
 #                                      some cleanups
@@ -65,7 +66,7 @@
 #
 
 # VERSION-NUMBER
-VER='0.09'
+VER='0.10'
 
 # if env is sourced 
 MISSING_ENV='false'
@@ -81,8 +82,6 @@ MISSING_ENV='false'
 # can-utils -> https://github.com/linux-can/can-utils.git
 # libsocketcan -> git://git.pengutronix.de/git/tools/libsocketcan.git
 # void-packages -> https://github.com/voidlinux/void-packages.git
-# libbaalue -> https://github.com/tjohann/libbaalue.git
-# baalued -> https://github.com/tjohann/baalued.git
 # sllin -> https://github.com/tjohann/sllin.git"
 # clock -> https://github.com/tjohann/led_dot_matrix_clock
 REPO='none'
@@ -122,8 +121,6 @@ my_usage()
     echo "| REPO: can-utils -> common can-utils                    |"
     echo "| REPO: libsocketcan -> pengutronix libsocketcan         |"
     echo "| REPO: void-packages -> void-packages                   |"
-    echo "| REPO: libbaalue -> our foundation lib                  |"
-    echo "| REPO: baalued -> our baalue daemon                     |"
     echo "| REPO: sllin -> (my version of) linux lin driver        |"
     echo "| REPO: clock -> my led-dot-matrix clock project         |"
     echo "|                                                        |"
@@ -241,8 +238,6 @@ set_repo_names()
     can_utils="://github.com/linux-can/can-utils.git"
     libsocketcan="://git.pengutronix.de/git/tools/libsocketcan.git"
     void_packages="://github.com/voidlinux/void-packages.git"
-    libbaalue="://github.com/tjohann/libbaalue.git"
-    baalued="://github.com/tjohann/baalued.git"
     sllin="://github.com/tjohann/sllin.git"
     clock="://github.com/tjohann/led_dot_matrix_clock"
     
@@ -257,10 +252,8 @@ set_repo_names()
     repo_names_array[7]=${can_utils}
     repo_names_array[8]=${libsocketcan}
     repo_names_array[9]=${void_packages}
-    repo_names_array[10]=${libbaalue}
-    repo_names_array[11]=${baalued}
-    repo_names_array[12]=${sllin}
-    repo_names_array[13]=${clock}    
+    repo_names_array[10]=${sllin}
+    repo_names_array[11]=${clock}    
 }
 
 
@@ -297,12 +290,6 @@ get_repo_name()
 	    ;;
 	'void-packages')
 	    REPO_NAME="${PROTOCOL}${void_packages}"
-	    ;;
-	'libbaalue')
-	    REPO_NAME="${PROTOCOL}${libbaalue}"
-	    ;;
-	'baalued')
-	    REPO_NAME="${PROTOCOL}${baalued}"
 	    ;;
 	'sllin')
 	    REPO_NAME="${PROTOCOL}${sllin}"
