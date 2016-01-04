@@ -70,3 +70,7 @@ get_sllin::
 
 get_led-dot-clock::
 	($(ARMEL_HOME)/scripts/get_external_git_repos.sh -r "clock" -p "https")
+
+get_my-sllin::
+	($(ARMEL_HOME)/scripts/get_external_git_repos.sh -r "my_sllin" -p "git")
+

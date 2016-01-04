@@ -24,11 +24,12 @@
 #
 ################################################################################
 #
-# Date/Beginn :    15.12.2015/15.08.2015
+# Date/Beginn :    04.01.2016/15.08.2015
 #
-# Version     :    V0.10
+# Version     :    V0.11
 #
-# Milestones  :    V0.10 (dez 2015) -> remove baalued and libbalue
+# Milestones  :    V0.11 (jan 2016) -> add my sllin driver
+#                  V0.10 (dez 2015) -> remove baalued and libbalue
 #                  V0.09 (nov 2015) -> add led_dot_matrix_clock (see also
 #                                      $ARMEL_HOME/projects/led_dot_clock)
 #                  V0.08 (nov 2015) -> rebase for arm926_sdk
@@ -66,7 +67,7 @@
 #
 
 # VERSION-NUMBER
-VER='0.10'
+VER='0.11'
 
 # if env is sourced 
 MISSING_ENV='false'
@@ -84,6 +85,7 @@ MISSING_ENV='false'
 # void-packages -> https://github.com/voidlinux/void-packages.git
 # sllin -> https://github.com/tjohann/sllin.git"
 # clock -> https://github.com/tjohann/led_dot_matrix_clock
+# my_sllin -> "://github.com/tjohann/sllin.git"
 REPO='none'
 
 # PROTOCOL
@@ -123,6 +125,7 @@ my_usage()
     echo "| REPO: void-packages -> void-packages                   |"
     echo "| REPO: sllin -> (my version of) linux lin driver        |"
     echo "| REPO: clock -> my led-dot-matrix clock project         |"
+    echo "| REPO: my_sllin -> my changed sllin                     |"
     echo "|                                                        |"
     echo "| Valid network protocols:                               |"
     echo "| PROTOCOL: none or empty -> use the simple git          |"
@@ -240,6 +243,7 @@ set_repo_names()
     void_packages="://github.com/voidlinux/void-packages.git"
     sllin="://github.com/tjohann/sllin.git"
     clock="://github.com/tjohann/led_dot_matrix_clock"
+    my_sllin="://github.com/tjohann/sllin.git"
     
     # array with all available repos
     repo_names_array[0]=${at91bootstrap}    
@@ -253,7 +257,8 @@ set_repo_names()
     repo_names_array[8]=${libsocketcan}
     repo_names_array[9]=${void_packages}
     repo_names_array[10]=${sllin}
-    repo_names_array[11]=${clock}    
+    repo_names_array[11]=${clock}
+    repo_names_array[12]=${my_sllin}    
 }
 
 
@@ -296,6 +301,9 @@ get_repo_name()
 	    ;;
 	'clock')
 	    REPO_NAME="${PROTOCOL}${clock}"
+	    ;;
+	'my_sllin')
+	    REPO_NAME="${PROTOCOL}${my_sllin}"
 	    ;;
 	*)
 	    echo "ERROR -> ${REPO} is no valid repo ... pls check"
