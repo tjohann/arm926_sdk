@@ -24,11 +24,12 @@
 #
 ################################################################################
 #
-# Date/Beginn :    04.01.2016/15.08.2015
+# Date/Beginn :    13.01.2016/15.08.2015
 #
-# Version     :    V0.11
+# Version     :    V0.12
 #
-# Milestones  :    V0.11 (jan 2016) -> add my sllin driver
+# Milestones  :    V0.12 (jan 2016) -> typo fixes
+#                  V0.11 (jan 2016) -> add my sllin driver
 #                  V0.10 (dez 2015) -> remove baalued and libbalue
 #                  V0.09 (nov 2015) -> add led_dot_matrix_clock (see also
 #                                      $ARMEL_HOME/projects/led_dot_clock)
@@ -67,7 +68,7 @@
 #
 
 # VERSION-NUMBER
-VER='0.11'
+VER='0.12'
 
 # if env is sourced 
 MISSING_ENV='false'
@@ -85,7 +86,7 @@ MISSING_ENV='false'
 # void-packages -> https://github.com/voidlinux/void-packages.git
 # sllin -> https://github.com/tjohann/sllin.git"
 # clock -> https://github.com/tjohann/led_dot_matrix_clock
-# my_sllin -> "://github.com/tjohann/sllin.git"
+# my_sllin -> "https://github.com/tjohann/sllin.git"
 REPO='none'
 
 # PROTOCOL

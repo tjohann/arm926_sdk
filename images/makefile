@@ -36,4 +36,4 @@ get_image_tarballs:
 	@echo "|        Download latest supported image tarballs          |"
 	@echo "|                                                          |"
 	@echo "+----------------------------------------------------------+"
-	($(ARMEL_HOME)/bin/get_image_tarballs.sh)
+	($(ARMEL_HOME)/scripts/get_image_tarballs.sh)
