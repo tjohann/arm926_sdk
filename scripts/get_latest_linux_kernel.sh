@@ -24,11 +24,12 @@
 #
 ################################################################################
 #
-# Date/Beginn :    08.11.2015/08.11.2015
+# Date/Beginn :    28.02.2016/08.11.2015
 #
-# Version     :    V0.01
+# Version     :    V0.02
 #
-# Milestones  :    V0.01 (nov 2015) -> first functional version
+# Milestones  :    V0.02 (feb 2016) -> update to kernel 4.4
+#                  V0.01 (nov 2015) -> first functional version
 #
 # Requires    :    ...
 #                 
@@ -197,7 +198,7 @@ get_kernel_source()
 # --- get the rt-preempt patch sources
 get_rt_patch_source()
 {
-    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/projects/rt/4.1/patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz"
+    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/projects/rt/4.4/patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz"
     echo "INFO: set rt-preempt patch download string to $DOWNLOAD_STRING"
 
     if [ -f patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz ]; then
@@ -218,7 +219,7 @@ get_rt_patch_source()
 	    echo "+--------------------------------------+"
 	    echo " "
 	    
-	    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/projects/rt/4.1/older/patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz"
+	    DOWNLOAD_STRING="https://www.kernel.org/pub/linux/kernel/projects/rt/4.4/older/patch-${KERNEL_VER}-${ARMEL_RT_VER}.patch.gz"
 	    echo "INFO: set rt-preempt patch download string to $DOWNLOAD_STRING"
 
 	    wget $DOWNLOAD_STRING

@@ -2,6 +2,13 @@
 # some news ... see also TODO for hints
 #
 
+2016-02-28 -> ## target stuff
+	      update kernel to 4.4.3 and 4.4.2-rt7
+
+	      ## toolchain stuff
+	      update to 4.4.x kernel and glibc-2.23
+	      update nearly all needed libs to build toolchain
+
 2016-02-21 -> ## target stuff
 	      update kernel to 4.4.2 and 4.4.1-rt6
 
