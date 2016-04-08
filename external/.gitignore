@@ -37,8 +37,6 @@ rt-tests.git
 void-packages.git
 jailhouse.git
 documents.git
-sllin
-sllin.git
 led_dot_matrix_clock
 led_dot_matrix_clock.git
 *.tgz

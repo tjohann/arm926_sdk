@@ -24,12 +24,13 @@
 #
 ################################################################################
 #
-# Date/Beginn :    13.01.2016/15.08.2015
+# Date/Beginn :    08.04.2016/15.08.2015
 #
-# Version     :    V0.12
+# Version     :    V0.13
 #
-# Milestones  :    V0.12 (jan 2016) -> typo fixes
-#                  V0.11 (jan 2016) -> add my sllin driver
+# Milestones  :    V0.13 (apr 2016) -> some cleanups of unused repos 
+#                  V0.12 (jan 2016) -> typo fixes
+#                  V0.11 (jan 2016) -> cleanups
 #                  V0.10 (dez 2015) -> remove baalued and libbalue
 #                  V0.09 (nov 2015) -> add led_dot_matrix_clock (see also
 #                                      $ARMEL_HOME/projects/led_dot_clock)
@@ -68,25 +69,19 @@
 #
 
 # VERSION-NUMBER
-VER='0.12'
+VER='0.13'
 
 # if env is sourced 
 MISSING_ENV='false'
 
 # REPOs
 # at91bootstrap -> git://github.com/tanzilli/at91bootstrap.git
-# linus -> git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
-# rt-tests -> http://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git
 # ipipe -> git://git.xenomai.org/ipipe.git/
 # xenomai -> git://git.xenomai.org/xenomai-3.git/
-# uboot -> git://git.denx.de/u-boot.git
 # mydriver -> https://github.com/tjohann/mydriver.git
 # can-utils -> https://github.com/linux-can/can-utils.git
-# libsocketcan -> git://git.pengutronix.de/git/tools/libsocketcan.git
 # void-packages -> https://github.com/voidlinux/void-packages.git
-# sllin -> https://github.com/tjohann/sllin.git"
 # clock -> https://github.com/tjohann/led_dot_matrix_clock
-# my_sllin -> "https://github.com/tjohann/sllin.git"
 REPO='none'
 
 # PROTOCOL
@@ -115,18 +110,12 @@ my_usage()
     echo "|                                                        |"
     echo "| Valid repo names:                                      |"
     echo "| REPO: at19bootstrap                                    |"
-    echo "| REPO: linus -> linus kernel tree                       |"
-    echo "| REPO: rt-tests -> rt-test tools                        |"
     echo "| REPO: xenomai -> xenomai microkernel                   |"
     echo "| REPO: ipipe -> int pipe                                |"
-    echo "| REPO: uboot -> denx u-boot                             |"
     echo "| REPO: mydriver -> my test driver                       |"
     echo "| REPO: can-utils -> common can-utils                    |"
-    echo "| REPO: libsocketcan -> pengutronix libsocketcan         |"
     echo "| REPO: void-packages -> void-packages                   |"
-    echo "| REPO: sllin -> (my version of) linux lin driver        |"
     echo "| REPO: clock -> my led-dot-matrix clock project         |"
-    echo "| REPO: my_sllin -> my changed sllin                     |"
     echo "|                                                        |"
     echo "| Valid network protocols:                               |"
     echo "| PROTOCOL: none or empty -> use the simple git          |"
@@ -233,33 +222,22 @@ fi
 set_repo_names()
 {
     at91bootstrap="://github.com/tanzilli/at91bootstrap.git"
-    linus="://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
-    rt_tests="://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git"
     ipipe="://git.xenomai.org/ipipe.git/"
     xenomai="://git.xenomai.org/xenomai-3.git/"
-    uboot="://git.denx.de/u-boot.git"
     mydriver="://github.com/tjohann/mydriver.git"
     can_utils="://github.com/linux-can/can-utils.git"
-    libsocketcan="://git.pengutronix.de/git/tools/libsocketcan.git"
     void_packages="://github.com/voidlinux/void-packages.git"
-    sllin="://github.com/tjohann/sllin.git"
     clock="://github.com/tjohann/led_dot_matrix_clock"
-    my_sllin="://github.com/tjohann/sllin.git"
     
     # array with all available repos
     repo_names_array[0]=${at91bootstrap}    
-    repo_names_array[1]=${linus}
-    repo_names_array[2]=${rt_tests}
-    repo_names_array[3]=${ipipe}
-    repo_names_array[4]=${xenomai} 
-    repo_names_array[5]=${uboot}
-    repo_names_array[6]=${mydriver}
-    repo_names_array[7]=${can_utils}
-    repo_names_array[8]=${libsocketcan}
-    repo_names_array[9]=${void_packages}
-    repo_names_array[10]=${sllin}
-    repo_names_array[11]=${clock}
-    repo_names_array[12]=${my_sllin}    
+    repo_names_array[1]=${ipipe}
+    repo_names_array[2]=${xenomai} 
+    repo_names_array[3]=${uboot}
+    repo_names_array[4]=${mydriver}
+    repo_names_array[5]=${can_utils}
+    repo_names_array[6]=${void_packages}
+    repo_names_array[7]=${clock}
 }
 
 
@@ -269,12 +247,6 @@ get_repo_name()
     case "$REPO" in
 	'at91bootstrap')
 	    REPO_NAME="${PROTOCOL}${at91bootstrap}"
-	    ;;
-	'linus')
-	    REPO_NAME="${PROTOCOL}${linus}"
-	    ;;
-	'rt-tests')
-	    REPO_NAME="${PROTOCOL}${rt_tests}"
 	    ;;
 	'ipipe')
 	    REPO_NAME="${PROTOCOL}${ipipe}"
@@ -294,17 +266,8 @@ get_repo_name()
 	'libsocketcan')
 	    REPO_NAME="${PROTOCOL}${libsocketcan}"
 	    ;;
-	'void-packages')
-	    REPO_NAME="${PROTOCOL}${void_packages}"
-	    ;;
-	'sllin')
-	    REPO_NAME="${PROTOCOL}${sllin}"
-	    ;;
 	'clock')
 	    REPO_NAME="${PROTOCOL}${clock}"
-	    ;;
-	'my_sllin')
-	    REPO_NAME="${PROTOCOL}${my_sllin}"
 	    ;;
 	*)
 	    echo "ERROR -> ${REPO} is no valid repo ... pls check"

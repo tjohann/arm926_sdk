@@ -2,13 +2,19 @@
 # my TODO with date and progress
 #
 
+#
+# -------------- 2016-04-08 --------------------------------------------------------------------
+#
+-> prepare new architecture like a20_sdk.git
+-> create config for sdk_builder.git
+
 
 #
 # -------------- 2015-11-17 --------------------------------------------------------------------
-
+#
 
 ## toolchain stuf
--> build toolchain for armv7hl (for baalue)  
+-> build toolchain for armv7hl (bananapi/baalue-node)  
 -> prepare build of toolchain for armv7hl on my cluster via distcc
 
 ## hw stuff
@@ -35,7 +41,6 @@
 
 ## target stuff
 -> create void-linux image                                                 [done -> 2015-11-08] 
--> add sllin to device
 
 ## hw stuff
 -> add support for mcp2025 (LIN)
