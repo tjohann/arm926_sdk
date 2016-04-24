@@ -2,6 +2,9 @@
 # some news ... see also TODO for hints
 #
 
+2016-04-08 -> ## sdk stuff
+	      start with migration to my new sdk structure (like a20_sdk)
+
 2016-04-08 -> ## toolchain stuff
 	      start preparation for new architecture like a20_sdk.git
 
