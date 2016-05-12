@@ -1,0 +1,6 @@
+#
+# some useful links about iMx233
+#
+
+https://olimex.wordpress.com/2012/09/07/imx233-olinuxino-working-with-gpios/
+https://olimex.wordpress.com/2012/09/11/imx233-olinuxino-gpios-faster-and-faster/
