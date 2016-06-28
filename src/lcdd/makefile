@@ -1,6 +1,6 @@
 # for lib*
 
-all:: 
+all::
 	@echo Cheers
 
 clean::

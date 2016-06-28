@@ -1,8 +1,8 @@
-# only for cleaning 
+# only for cleaning
 
 MODULES = $(shell ls -d */ | cut -f1 -d'/')
 
-all:: 
+all::
 	@echo Cheers
 
 clean::

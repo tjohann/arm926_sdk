@@ -2,7 +2,7 @@
 # 00-INDEX
 #
 
-This is a brief list of all the files in ./arm926_sdk/man ... 
+This is a brief list of all the files in ./arm926_sdk/man ...
 
 
 00-INDEX
@@ -12,9 +12,9 @@ makefile
 	- for cleanup
 
 man1/
-	- man pages 
-	
+	- man pages
+
 man3/
-	- man pages 
+	- man pages
 
 

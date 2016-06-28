@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 ################################################################################
 #
-# Title       :    get_image_tarballs.sh    
+# Title       :    get_image_tarballs.sh
 #
 # License:
 #
-# GPL                                                                        
-# (c) 2015, thorsten.johannvorderbrueggen@t-online.de                        
-#                                                                            
-# This program is free software; you can redistribute it and/or modify       
-# it under the terms of the GNU General Public License as published by       
-# the Free Software Foundation; either version 2 of the License, or          
-# (at your option) any later version.                                        
-#                                                                            
-# This program is distributed in the hope that it will be useful,            
-# but WITHOUT ANY WARRANTY; without even the implied warranty of             
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the               
-# GNU General Public License for more details.                                
+# GPL
+# (c) 2015, thorsten.johannvorderbrueggen@t-online.de
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
@@ -31,16 +31,16 @@
 # Milestones  :    V0.02 (nov 2015) -> some minor changes
 #                  V0.01 (nov 2015) -> first functional version
 #
-# Requires    :    
-#                 
+# Requires    :
+#
 #
 ################################################################################
 # Description
-#   
-#   A simple tool to download the image tarballs  
+#
+#   A simple tool to download the image tarballs
 #
 # Some features
-#   - ... 
+#   - ...
 #
 # Notes
 #   - ...
@@ -51,7 +51,7 @@
 # VERSION-NUMBER
 VER='0.02'
 
-# if env is sourced 
+# if env is sourced
 MISSING_ENV='false'
 
 #
@@ -72,8 +72,8 @@ ROOTFS_IMAGE='none'
 HOME_IMAGE='none'
 
 
-# my usage method 
-my_usage() 
+# my usage method
+my_usage()
 {
     echo " "
     echo "+--------------------------------------------------------+"
@@ -86,14 +86,14 @@ my_usage()
     exit
 }
 
-# my cleanup 
+# my cleanup
 cleanup() {
     rm $_temp 2>/dev/null
     rm $_log 2>/dev/null
 }
 
-# my exit method 
-my_exit() 
+# my exit method
+my_exit()
 {
     clear
     echo "+-----------------------------------+"
@@ -104,7 +104,7 @@ my_exit()
 }
 
 # print version info
-print_version() 
+print_version()
 {
     echo "+-----------------------------------+"
     echo "| You are using version: ${VER}       |"
@@ -118,7 +118,7 @@ _temp="/tmp/get_image_tarballs.$$"
 _log="/tmp/get_image_tarballs.log"
 
 
-# check the args 
+# check the args
 while getopts 'hv' opts 2>$_log
 do
     case $opts in
@@ -133,12 +133,12 @@ done
 # ***             Error handling for missing shell values                    ***
 # ******************************************************************************
 
-if [ "$ARMEL_HOME" = '' ]; then 
+if [ "$ARMEL_HOME" = '' ]; then
     MISSING_ENV='true'
 fi
 
 # show a usage screen and exit
-if [ "$MISSING_ENV" = 'true' ]; then 
+if [ "$MISSING_ENV" = 'true' ]; then
     cleanup
     clear
     echo " "
@@ -160,13 +160,13 @@ fi
 # ******************************************************************************
 
 
-# --- create download string 
+# --- create download string
 create_download_string()
 {
     KERNEL_IMAGE="http://sourceforge.net/projects/arm926sdk/files/kernel_arietta.tgz"
     ROOTFS_IMAGE="http://sourceforge.net/projects/arm926sdk/files/rootfs_arietta.tgz"
     HOME_IMAGE="http://sourceforge.net/projects/arm926sdk/files/home_arietta.tgz"
-    
+
     echo "INFO: set kernel download string to $KERNEL_IMAGE"
     echo "INFO: set rootfs download string to $ROOTFS_IMAGE"
     echo "INFO: set home download string to $HOME_IMAGE"
@@ -176,7 +176,7 @@ create_download_string()
 # --- download image tarball
 get_image_tarball()
 {
-    if [ "$KERNEL_IMAGE" = 'none' ]; then 
+    if [ "$KERNEL_IMAGE" = 'none' ]; then
 	echo " "
 	echo "+--------------------------------------+"
 	echo "|                                      |"
@@ -186,9 +186,9 @@ get_image_tarball()
 	echo " "
 
 	cleanup
-    fi 
+    fi
 
-    if [ "$ROOTFS_IMAGE" = 'none' ]; then 
+    if [ "$ROOTFS_IMAGE" = 'none' ]; then
 	echo " "
 	echo "+--------------------------------------+"
 	echo "|                                      |"
@@ -200,7 +200,7 @@ get_image_tarball()
 	cleanup
     fi
 
-    if [ "$HOME_IMAGE" = 'none' ]; then 
+    if [ "$HOME_IMAGE" = 'none' ]; then
 	echo " "
 	echo "+--------------------------------------+"
 	echo "|                                      |"
@@ -210,7 +210,7 @@ get_image_tarball()
 	echo " "
 
 	cleanup
-    fi 
+    fi
 
     wget $KERNEL_IMAGE
     wget $ROOTFS_IMAGE
@@ -220,7 +220,7 @@ get_image_tarball()
 
 # ******************************************************************************
 # ***                         Main Loop                                      ***
-# ****************************************************************************** 
+# ******************************************************************************
 
 echo " "
 echo "+----------------------------------------+"

@@ -17,15 +17,15 @@ After cloning, "source" the env file to set the necessary environment variables.
 
         # setup the arm926 environment
         if [ -f ~/arm926_sdk/armel_env ]; then
-            . ~/arm926_sdk/armel_env 
+            . ~/arm926_sdk/armel_env
         fi
 
 
-.. or do it manually everytime you want to work with the sdk. 
+.. or do it manually everytime you want to work with the sdk.
 
         . ./armel_env
 
-Note: the env file also extends the PATH so it may cause errors when building other projects/repositories	
+Note: the env file also extends the PATH so it may cause errors when building other projects/repositories
 
 
 Download and installation of the toolchain, kernel and image are done via small scripts in $ARMEL_HOME/bin.
@@ -56,12 +56,12 @@ Useful make tags
 	make get_toolchain -> download (and install) toochain from sourceforce
 	make get_external_repos -> clone additional repos (see ./external/README)
 	make get_latest_kernel -> download latest supported kernel version as tarball and install it to ./kernel/linux-$ARMEL_KERNEL_VER
-	                          download latest of RT-PREEMPT supported kernel and latest supported RT-PREEMPT-Patch 
-	make get_image_tarballs -> download minimal image from sourceforce to ./images/				  
+	                          download latest of RT-PREEMPT supported kernel and latest supported RT-PREEMPT-Patch
+	make get_image_tarballs -> download minimal image from sourceforce to ./images/
 	make clean -> clean all dirs and subdirs
 
 
 Projects
 -------------------
 
-    LED-Dot-matrix based clock -> see $ARMEL_HOME/projects/led_dot_clock/[README.md](LED-DOT based clock) 	
+    LED-Dot-matrix based clock -> see $ARMEL_HOME/projects/led_dot_clock/[README.md](LED-DOT based clock)

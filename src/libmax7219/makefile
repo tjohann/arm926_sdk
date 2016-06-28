@@ -2,18 +2,18 @@
 #
 # License:
 #
-# GPL                                                                        
-# (c) 2015, thorsten.johannvorderbrueggen@t-online.de                        
-#                                                                            
-# This program is free software; you can redistribute it and/or modify       
-# it under the terms of the GNU General Public License as published by       
-# the Free Software Foundation; either version 2 of the License, or          
-# (at your option) any later version.                                        
-#                                                                            
-# This program is distributed in the hope that it will be useful,            
-# but WITHOUT ANY WARRANTY; without even the implied warranty of             
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the               
-# GNU General Public License for more details.                                
+# GPL
+# (c) 2015, thorsten.johannvorderbrueggen@t-online.de
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
@@ -38,21 +38,21 @@ OBJ = $(LIBNAME).o
 HDR = $(LIBNAME).h
 
 CFLAGS += -O2 -fPIC
-CFLAGS += -DVERSION=\"$(VERSION)\" 
+CFLAGS += -DVERSION=\"$(VERSION)\"
 LDLIBS = -lpthread -shared -Wl,-soname,$(LIBNAME).so.$(VER_MAYOR) -lc
 
 CFLAGS_TARGET += -O2 -fPIC
-CFLAGS_TARGET += -DVERSION=\"$(VERSION)\" 
+CFLAGS_TARGET += -DVERSION=\"$(VERSION)\"
 LDLIBS_TARGET = -lpthread -shared -Wl,-soname,$(LIBNAME).so.$(VER_MAYOR) -lc
 
 
 all: $(LIBNAME).host $(LIBNAME).target
 
-host: $(LIBNAME).host 
+host: $(LIBNAME).host
 
-target:	$(LIBNAME).target 
+target:	$(LIBNAME).target
 
-# 
+#
 # build on host (x86_64 or armv7hl)
 #
 %.host: $(SRC) $(HEADER)
@@ -61,13 +61,13 @@ target:	$(LIBNAME).target
 	@echo "| building ${LIBNAME} on host ${MY_HOST_ARCH} "
 	@echo "|                                                     |"
 	@echo "+-----------------------------------------------------+"
-	${CC} $(CFLAGS) -c $(SRC) 
+	${CC} $(CFLAGS) -c $(SRC)
 	${CC} $(CFLAGS) -o $(LIBNAME).so.$(VERSION) $(OBJ) $(LDLIBS)
 	${AR} rcs $(LIBNAME).a $(OBJ)
 	mv ${LIBNAME}.a _lib
 	mv ${LIBNAME}.so.$(VERSION) _lib
 
-# 
+#
 # crossbuild for target (arm926)
 #
 %.target: $(SRC) $(HEADER)
@@ -78,19 +78,19 @@ target:	$(LIBNAME).target
 	@echo "+-----------------------------------------------------+"
 	${CC_TARGET} $(CFLAGS_TARGET) -c $(SRC)
 	${CC_TARGET} $(CFLAGS_TARGET) -o ${LIBNAME}.so.$(VERSION) ${OBJ} $(LDLIBS_TARGET)
-	${AR_TARGET} rcs $(LIBNAME).a $(OBJ)	
+	${AR_TARGET} rcs $(LIBNAME).a $(OBJ)
 	mv ${LIBNAME}.a _lib_target
 	mv ${LIBNAME}.so.$(VERSION) _lib_target
 
-depend:: 
+depend::
 	gcc -E -MM  $(SRC) > $(DEPENDFILE)
 
 
-clean::		
+clean::
 	rm -f *~ .*~ *.o *.i *.s *.so *.so.* *.a
 	rm -f _lib/${LIBNAME}.*
 	rm -f _lib_target/${LIBNAME}.*
-	rm -f man/*~ 
+	rm -f man/*~
 
 
 deploy_man_page::

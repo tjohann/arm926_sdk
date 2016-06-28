@@ -5,17 +5,17 @@
 #
 # License:
 #
-# GPL                                                                        
-# (c) 2015, thorsten.johannvorderbrueggen@t-online.de                        
-#                                                                            
-# This program is free software; you can redistribute it and/or modify       
-# it under the terms of the GNU General Public License as published by       
-# the Free Software Foundation; either version 2 of the License, or          
-# (at your option) any later version.                                        
-#                                                                            
-# This program is distributed in the hope that it will be useful,            
-# but WITHOUT ANY WARRANTY; without even the implied warranty of             
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the               
+# GPL
+# (c) 2015, thorsten.johannvorderbrueggen@t-online.de
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
@@ -28,7 +28,7 @@
 #
 # Version     :    V0.13
 #
-# Milestones  :    V0.13 (apr 2016) -> some cleanups of unused repos 
+# Milestones  :    V0.13 (apr 2016) -> some cleanups of unused repos
 #                  V0.12 (jan 2016) -> typo fixes
 #                  V0.11 (jan 2016) -> cleanups
 #                  V0.10 (dez 2015) -> remove baalued and libbalue
@@ -46,16 +46,16 @@
 #                  V0.01 (aug 2015) -> first functional version
 #
 # Requires    :    ...
-#                 
+#
 #
 ################################################################################
 # Description
-#   
-#   A simple tool to get externel git repos like linux kernel, erika ...  
+#
+#   A simple tool to get externel git repos like linux kernel, erika ...
 #
 # Some features
 #   - clone repo with all 3 possible network protocols
-#   - checkout svn repo 
+#   - checkout svn repo
 #
 # Notes
 #   - ...
@@ -71,7 +71,7 @@
 # VERSION-NUMBER
 VER='0.13'
 
-# if env is sourced 
+# if env is sourced
 MISSING_ENV='false'
 
 # REPOs
@@ -94,8 +94,8 @@ PROTOCOL='none'
 # {$PROTOCOL$get_repo_name()}
 REPO_NAME='none'
 
-# my usage method 
-my_usage() 
+# my usage method
+my_usage()
 {
     echo " "
     echo "+--------------------------------------------------------+"
@@ -127,7 +127,7 @@ my_usage()
     exit
 }
 
-# my cleanup 
+# my cleanup
 cleanup() {
    rm $_temp 2>/dev/null
    rm $_log 2>/dev/null
@@ -161,8 +161,8 @@ cheers_missing_env()
     exit
 }
 
-# my exit method 
-my_exit() 
+# my exit method
+my_exit()
 {
     clear
     cheers_user
@@ -171,7 +171,7 @@ my_exit()
 }
 
 # print version info
-print_version() 
+print_version()
 {
     echo "+--------------------------------------------------------+"
     echo "|                                                        |"
@@ -187,7 +187,7 @@ _temp="/tmp/get_external_git_repos.$$"
 _log="/tmp/get_external_git_repos.log"
 
 
-# check the args 
+# check the args
 while getopts 'hvr:p:' opts 2>$_log
 do
     case $opts in
@@ -204,12 +204,12 @@ done
 # ***                 error handling for missing env                         ***
 # ******************************************************************************
 
-if [ "$ARMEL_HOME" = '' ]; then 
+if [ "$ARMEL_HOME" = '' ]; then
     MISSING_ENV='true'
 fi
 
 # check and maybe exit
-if [ "$MISSING_ENV" = 'true' ]; then 
+if [ "$MISSING_ENV" = 'true' ]; then
     cheers_missing_env
 fi
 
@@ -228,11 +228,11 @@ set_repo_names()
     can_utils="://github.com/linux-can/can-utils.git"
     void_packages="://github.com/voidlinux/void-packages.git"
     clock="://github.com/tjohann/led_dot_matrix_clock"
-    
+
     # array with all available repos
-    repo_names_array[0]=${at91bootstrap}    
+    repo_names_array[0]=${at91bootstrap}
     repo_names_array[1]=${ipipe}
-    repo_names_array[2]=${xenomai} 
+    repo_names_array[2]=${xenomai}
     repo_names_array[3]=${uboot}
     repo_names_array[4]=${mydriver}
     repo_names_array[5]=${can_utils}
@@ -280,7 +280,7 @@ get_repo_name()
 check_protocol()
 {
     PROTOCOL_VALID='false'
-    
+
     if [ $PROTOCOL = 'git' -o $PROTOCOL = 'GIT' ]; then
 	PROTOCOL='git'
 	PROTOCOL_VALID='true'
@@ -324,7 +324,7 @@ clone_all_repos()
 
 # ******************************************************************************
 # ***                         Main Loop                                      ***
-# ****************************************************************************** 
+# ******************************************************************************
 
 echo " "
 echo "+--------------------------------------------------------+"
@@ -335,13 +335,13 @@ echo "+--------------------------------------------------------+"
 echo " "
 
 cd ${ARMEL_HOME}/external
-set_repo_names 
+set_repo_names
 
 if [ $PROTOCOL = 'none' ]; then
     echo "PROTOCOL == none -> using git"
     PROTOCOL='git'
 else
-    check_protocol 
+    check_protocol
 fi
 
 if [ $REPO = 'none' ]; then
@@ -350,8 +350,8 @@ if [ $REPO = 'none' ]; then
     clone_all_repos
 else
     echo "will clone ${REPO}"
-    get_repo_name 
-    clone_repo 
+    get_repo_name
+    clone_repo
 fi
 
 cleanup

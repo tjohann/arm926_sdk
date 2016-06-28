@@ -2,7 +2,7 @@
  * acme-arietta.dts - Device Tree file for Arietta G25
  * Copyright (C) 2014 Sergio Tanzilli <sergio@tanzilli.com>
  *
- * Licensed under GPLv2 or later. 
+ * Licensed under GPLv2 or later.
  */
 /dts-v1/;
 #include "at91sam9g25.dtsi"
@@ -36,9 +36,9 @@
 			clock-frequency = <12000000>;
 		};
 
-		main_xtal { 
-			clock-frequency = <12000000>; 
-		}; 
+		main_xtal {
+			clock-frequency = <12000000>;
+		};
 	};
 
 	ahb {

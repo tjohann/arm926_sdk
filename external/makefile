@@ -11,7 +11,7 @@ MODULES = $(shell ls -d */ | cut -f1 -d'/' | grep -v xenomai-3 | grep -v void-pa
 MODULES_TO_UPDATE = $(shell ls -d */ | cut -f1 -d'/')
 
 .PHONY: all
-all: 
+all:
 	@echo Cheers
 
 .PHONY: clean

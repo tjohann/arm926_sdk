@@ -2,7 +2,7 @@
 # 00-INDEX
 #
 
-This is a brief list of all the files in ./arm926_sdk/schematics ... 
+This is a brief list of all the files in ./arm926_sdk/schematics ...
 
 
 00-INDEX
@@ -10,7 +10,7 @@ This is a brief list of all the files in ./arm926_sdk/schematics ...
 
 main_board/
 	- schematic of the main board
-	
+
 makefile
 	- for cleanup
 

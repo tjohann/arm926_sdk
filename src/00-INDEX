@@ -2,7 +2,7 @@
 # 00-INDEX
 #
 
-This is a brief list of all the files in ./arm926_sdk/src ... 
+This is a brief list of all the files in ./arm926_sdk/src ...
 
 
 00-INDEX
@@ -10,7 +10,7 @@ This is a brief list of all the files in ./arm926_sdk/src ...
 
 lcdd/
 	- daemon to access a lcd1602 display
-	
+
 lib25lc256/
 	- some functions to access a EEPROM
 
@@ -21,14 +21,14 @@ libcan/
 	- simple lib for easy access of can
 
 libdcf77/
-	- simple lib to access dcf77 time 
+	- simple lib to access dcf77 time
 
 libi2c/
 	- some useful i2c functions
 
 libirc/
 	- some functions to handle remote control units
-	
+
 libkeys/
 	- simpe lib for easy access of an adc based keyboard
 
@@ -44,9 +44,9 @@ libmax7219/
 
 libnetwork/
 	- simple network abstraction layer
-	
+
 libnfc/
-	- simple lib to handle nfc 
+	- simple lib to handle nfc
 
 libpcf8574/
 	- some functions to access ports via PCF8574
@@ -55,7 +55,7 @@ libpwm/
 	- some useful functions to handle pwm parts
 
 libservice/
-	- some useful helper functions 
+	- some useful helper functions
 
 libspi/
 	- some useful spi functions

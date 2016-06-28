@@ -3,7 +3,7 @@
 #
 
 .PHONY: all
-all: 
+all:
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
 	@echo "|                  Nothing to build                        |"
@@ -11,7 +11,7 @@ all:
 	@echo "+----------------------------------------------------------+"
 	@echo "| make get_latest_kernel  -> download latest kernel version|"
 	@echo "| make clean              -> clean all dir/subdirs         |"
-	@echo "+----------------------------------------------------------+"	
+	@echo "+----------------------------------------------------------+"
 
 .PHONY: clean
 clean:
@@ -23,7 +23,7 @@ distclean: clean
 # download latest supported kernel version as tarball and install it to
 # ./kernel/linux-$ARMEL_KERNEL_VER
 #
-get_latest_kernel:: 
+get_latest_kernel::
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
 	@echo "|        Download latest supported kernel version          |"

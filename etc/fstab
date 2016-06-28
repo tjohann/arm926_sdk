@@ -1,8 +1,8 @@
 #
-# Sample /etc/fstab 
-# 
+# Sample /etc/fstab
+#
 # This must be modified prior to use.
-# 
+#
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
 proc            /proc           proc    defaults        0       0
 tmpfs           /dev/shm        tmpfs   defaults        0       0

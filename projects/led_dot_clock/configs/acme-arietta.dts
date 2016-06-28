@@ -19,7 +19,7 @@
 		bootargs = "console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait loglevel=7";
 	};
 	memory {
-		// 256MB 
+		// 256MB
 		reg = <0x20000000 0x10000000>;
 	};
 	clocks {
@@ -35,8 +35,8 @@
 			clock-frequency = <32768>;
 		};
 
-		main_xtal { 
-			clock-frequency = <12000000>; 
+		main_xtal {
+			clock-frequency = <12000000>;
 		};
 
 		mcp251x_clock: oscillator {
@@ -44,7 +44,7 @@
 		 	#clock-cells = <0>;
         	 	clock-frequency = <16000000>;
 		 	clock-output-names = "mcp_clk";
-        	}; 
+        	};
 	};
 
 	ahb {
@@ -89,8 +89,8 @@
 				cs-gpios = <&pioA 8 0>, <&pioA 0 0>, <&pioA 31 0>, <&pioA 30 0>;
 				ethernet@0 {
 					compatible = "microchip,enc28j60";
-					reg = <0>;	
-					spi-max-frequency = <1000000>;	
+					reg = <0>;
+					spi-max-frequency = <1000000>;
 					interrupt-parent = <&pioA>;
 					interrupts = <25 0x02>;
 				};
@@ -116,7 +116,7 @@
 					};
 				};
 			};
-			
+
 			adc0: adc@f804c000 {
 				status = "okay";
 				pinctrl-names = "default";
@@ -141,15 +141,15 @@
 			ssc0: ssc@f0010000 {
 				status = "okay";
 			};
-			
-			usb2: gadget@f803c000 { 
+
+			usb2: gadget@f803c000 {
 				status = "okay";
 			};
-			
+
 			dbgu: serial@fffff200 {
 				status = "okay";
 			};
-			
+
 			pinctrl@fffff400 {
 				w1_0 {
 					pinctrl_w1_0: w1_0-0 {
@@ -159,17 +159,17 @@
 				};
 
 			};
-			
+
 			rtc@fffffeb0 {
 				status = "okay";
 			};
 		};
-		
+
 		usb0: ohci@00600000 {
 			status = "okay";
 			num-ports = <3>;
 		};
-		
+
 		usb1: ehci@00700000 {
 			status = "okay";
 		};

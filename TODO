@@ -14,7 +14,7 @@
 #
 
 ## toolchain stuf
--> build toolchain for armv7hl (bananapi/baalue-node)  
+-> build toolchain for armv7hl (bananapi/baalue-node)
 -> prepare build of toolchain for armv7hl on my cluster via distcc
 
 ## hw stuff
@@ -23,7 +23,7 @@
 
 ## coding stuff -> ${ARMEL_HOME}/src
 -> migrate src parts to a new lib: libarietta
--> add first code for the lcd 
+-> add first code for the lcd
 
 
 #
@@ -31,16 +31,16 @@
 #
 
 ## the "rest"
--> migrate favorite host to void-linux                                     [done -> 2015-11-08] 
--> migrate target to void-linux                                            [done -> 2015-11-08] 
--> migrate to rooling release like in baalue_sdk                           [done -> 2015-11-08] 
+-> migrate favorite host to void-linux                                     [done -> 2015-11-08]
+-> migrate target to void-linux                                            [done -> 2015-11-08]
+-> migrate to rooling release like in baalue_sdk                           [done -> 2015-11-08]
 
 ## toolchain stuff
--> build toolchain v2 for armv7hl                                       [canceld -> 2015-11-08]                        
+-> build toolchain v2 for armv7hl                                       [canceld -> 2015-11-08]
 -> build toolchain v2 for x86_64                                        [canceld -> 2015-11-08]
 
 ## target stuff
--> create void-linux image                                                 [done -> 2015-11-08] 
+-> create void-linux image                                                 [done -> 2015-11-08]
 
 ## hw stuff
 -> add support for mcp2025 (LIN)
@@ -60,10 +60,10 @@
 #
 
 ## target stuff
--> update kernel to 4.0.5 (PREEMPT and FULL_RT_PREEMPT)                    [done -> 2015-06-14] 
+-> update kernel to 4.0.5 (PREEMPT and FULL_RT_PREEMPT)                    [done -> 2015-06-14]
 
 ## script stuff
--> rework get_latest_linux_kernel.sh ... it's so ugly                      [done -> 2015-06-14] 
+-> rework get_latest_linux_kernel.sh ... it's so ugly                      [done -> 2015-06-14]
 
 
 #
@@ -77,7 +77,7 @@
 
 ## toolchain stuff
 -> build toolchain v1 for armv7hl                                       [canceld -> 2015-09-10]
--> build toolchain v1 for x86_64                                           [done -> 2015-06-14] 
+-> build toolchain v1 for x86_64                                           [done -> 2015-06-14]
 -> prepare build of toolchain v2 for armv7hl on my cluster via distcc   [canceld -> 2015-11-08]
 -> check output of uname -m on my slackware armv7hl and adapt
    get_toolchain.sh
@@ -94,7 +94,7 @@
 # -------------- 2015-05-24 --------------------------------------------------------------------
 #
 
-## sdk stuff 
+## sdk stuff
 -> add license info to all file                                            [done -> 2015-05-24]
 -> add 00-INDEX as an info to all dir (where it makes sense)               [done -> 2015-05-24]
 -> add include dir with a common makefile include which defines            [done -> 2015-05-24]
@@ -109,14 +109,14 @@
 
 ## coding stuff -> ${ARMEL_HOME}/template
 -> add a small template dir with a tool which "uses" some parts of the libs
-   below ${ARMEL_HOME}/src 
+   below ${ARMEL_HOME}/src
 -> add a small lib template                                                [done -> 2015-05-24]
 
 #
 # -------------- 2015-05-23 --------------------------------------------------------------------
 #
 
-## toolchain stuff 
+## toolchain stuff
 -> add sysroot deps lib libconfuse/libconfig                               [done -> 2015-05-23]
 -> build toolchain v3 for armv7l                                           [removed due re-org]
 -> build toolchain v3 for x86_64                                           [done -> 2015-05-23]
@@ -143,7 +143,7 @@
    max7219 "display"
 
 ## docu stuff
--> add "make docs" skeleton                                                [done -> 2015-05-25]        
+-> add "make docs" skeleton                                                [done -> 2015-05-25]
 -> add docu about usage of the sdk and its tools
 -> add small howto_build_toolchain
 
@@ -166,7 +166,7 @@
 -> create minimal slackware image with slackpkg support
 -> check problem with bat + power
 -> check if button on the arietta works
--> add script to halt after button is pressed 
+-> add script to halt after button is pressed
 
 ## hw stuff
 -> build i2c gpio expander for my pollin display
@@ -180,7 +180,7 @@
 -> add max7219 "display"
 -> add output state to control brightness of max7219 "display"
 
-## the "rest" 
+## the "rest"
 -> add support for imx233
    (https://www.olimex.com/Products/OLinuXino/iMX233/iMX233-OLinuXino-MINI/open-source-hardware)
 

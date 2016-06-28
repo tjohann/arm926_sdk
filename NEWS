@@ -46,7 +46,7 @@
 2015-09-10 -> ## toolchain stuff
 	      build toolchain v2 for x86_64 (void-linux)
 
-	      ## target stuff	    
+	      ## target stuff
 	      update kernel to 4.2.0 (PREEMPT)
 	      update kernel to 4.1.5-rt5 (FULL_RT-PREEMPT)
 
@@ -57,13 +57,13 @@
 	      update kernel to 4.0.5 (PREEMPT and FULL_RT-PREEMPT)
 
 	      ## script stuff
-	      get_latest_linux_kernel.sh ... download also latest rt-patch 
+	      get_latest_linux_kernel.sh ... download also latest rt-patch
 
 2015-06-08 -> !!! IMPORTANT !!!
 	      Complete re-organisation of naming sheme for the toolchain!
 	      The version numbers start again with version 1 but also with support for
-	      armv7hl and host parts 
- 
+	      armv7hl and host parts
+
 2015-06-08 -> ## sdk stuff
 	      add can-utils and libsocketcan to external
 	      add support for host_* parts of the toolchain
@@ -71,13 +71,13 @@
 2015-05-25 -> ## docu stuff
 	      add "make docs" skeleton
 	      add "make man" skeleton
-	      
+
 2015-05-24 -> ## sdk stuff
 	      add 00-INDEX as an info to all dir (where it makes sense)
 	      add license info to all file
-	      add include dir with a common makefile include which defines 
+	      add include dir with a common makefile include which defines
    	      stuff like cross compiler ...
-   
+
 	      ## coding stuff -> ${ARMEL_HOME}/src
 	      add ${ARMEL_HOME}/src/libnfc skeleton to handle nfc stuff ...
    	      needed for my clock
@@ -89,12 +89,12 @@
 	      add ${ARMEL_HOME}/src/libadc skeleton as input for small keyboard
 	      add ${ARMEL_HOME}/src/libpwm skeleton to control the brightness of the max7219 "display"
 	      add ${ARMEL_HOME}/src/libkeys skeleton for a simple adc based keyboard
-	      add c & h skeletons to all dirs below src 
+	      add c & h skeletons to all dirs below src
 
 	      ## coding stuff -> ${ARMEL_HOME}/template
 	      add a small lib template
 
-2015-05-23 -> ## toolchain stuff 
+2015-05-23 -> ## toolchain stuff
 	      update toolchain to v3 (for x86_64)
 	      add buildroot config to use sysroot
 	      add some default addtions to sysroot like libconfuse ...
@@ -105,7 +105,7 @@
 	      ## target stuff
 	      add kernel config for 4.0.4 with rt1
 
-	      ## sdk stuff 
+	      ## sdk stuff
 	      remove aria and rpusbdispl parts -> i have no more access to those
 	      devices
 	      rework ${ARMEL_HOME}/external/makefile to make individual clones

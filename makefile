@@ -15,7 +15,7 @@ MODULES += scripts
 
 DOCS = Documentation
 
-all:: 
+all::
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
 	@echo "|                  Nothing to build                        |"
@@ -30,7 +30,7 @@ all::
 	@echo "| make get_all            -> get all of the above          |"
 	@echo "| make clean              -> clean all dir/subdirs         |"
 	@echo "| make distclean          -> complete cleanup              |"
-	@echo "+----------------------------------------------------------+"	
+	@echo "+----------------------------------------------------------+"
 
 clean::
 	rm -f *~ .*~
@@ -45,7 +45,7 @@ distclean: clean
 #
 # run all get actions in sequence
 #
-get_all:: get_toolchain get_image_tarballs get_external_repos get_latest_kernel 
+get_all:: get_toolchain get_image_tarballs get_external_repos get_latest_kernel
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
 	@echo "|               All 'get' actions complete                 |"
@@ -55,7 +55,7 @@ get_all:: get_toolchain get_image_tarballs get_external_repos get_latest_kernel
 #
 # clone some useful repos (see ./external/README)
 #
-get_external_repos:: 
+get_external_repos::
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
 	@echo "|               Clone useful external repos                |"
@@ -68,7 +68,7 @@ get_external_repos::
 # download latest supported kernel version as tarball and install it to
 # ./kernel/linux-$ARMEL_KERNEL_VER
 #
-get_latest_kernel:: 
+get_latest_kernel::
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
 	@echo "|        Download latest supported kernel version          |"
@@ -80,7 +80,7 @@ get_latest_kernel::
 #
 # download toolchain version as tarball and install it to $ARMEL_HOME
 #
-get_toolchain: distclean 
+get_toolchain: distclean
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
 	@echo "|        Download latest supported toolchain version       |"
@@ -92,7 +92,7 @@ get_toolchain: distclean
 #
 # download image tarballs to $ARMEL_HOME/images
 #
-get_image_tarballs:  
+get_image_tarballs:
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
 	@echo "|        Download latest supported image tarballs          |"

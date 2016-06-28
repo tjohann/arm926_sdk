@@ -1,5 +1,5 @@
 #
-# makefile 
+# makefile
 #
 
 #MODULES = $(shell ls -d */ | cut -f1 -d'/')
@@ -10,7 +10,7 @@ endif
 
 
 .PHONY: all
-all: 
+all:
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
 	@echo "|                  Nothing to build                        |"
@@ -18,7 +18,7 @@ all:
 	@echo "+----------------------------------------------------------+"
 	@echo "| make get_image_tarballs -> download image tarballs       |"
 	@echo "| make clean              -> clean all dir/subdirs         |"
-	@echo "+----------------------------------------------------------+"	
+	@echo "+----------------------------------------------------------+"
 
 .PHONY: clean
 clean:
@@ -30,7 +30,7 @@ distclean: clean
 #
 # download image tarballs to $ARMEL_HOME/images
 #
-get_image_tarballs:  
+get_image_tarballs:
 	@echo "+----------------------------------------------------------+"
 	@echo "|                                                          |"
 	@echo "|        Download latest supported image tarballs          |"
