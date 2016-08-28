@@ -1,6 +1,8 @@
 ARM926_SDK
 =========
 
+NOTE: This repo is deprecated, i wont do any updates. Because both devices are so different (at least for my usecases) that i split it to two different repositorys (https://github.com/tjohann/arietta_sdk and https://github.com/tjohann/imx233_sdk).
+
 This is my arm926te sdk for usage with x86_64 or armv7hf host to develop for devices like [arietta](http://www.acmesystems.it/) or [imx233](https://www.olimex.com/Products/OLinuXino/iMX233/iMX233-OLinuXino-MINI/open-source-hardware). For more info follow me on google+ and see [sourceforge](http://arm926sdk.sourceforge.net/) . Also read ./UPGRADE_HINTS and ./docs/info_arm926_sdk.txt .
 
 
