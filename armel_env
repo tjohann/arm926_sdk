@@ -1,14 +1,14 @@
-# +------------------------- setup the armel dev environment ------------------------+
-# |                                   armel_env                                 |
-# +----------------------------------------------------------------------------------+
+# +--------------------- setup the armel dev environment ----------------------+
+# |                               armel_env                                    |
+# +----------------------------------------------------------------------------+
 
 # set MY_HOST_ARCH
 export MY_HOST_ARCH=$(uname -m)
 
 # set supported kernel version
-export ARMEL_KERNEL_VER=4.4.6
-export ARMEL_RT_KERNEL_VER=4.4.6
-export ARMEL_RT_VER=rt14
+export ARMEL_KERNEL_VER=4.4.17
+export ARMEL_RT_KERNEL_VER=4.4.17
+export ARMEL_RT_VER=rt25
 
 # set armel home
 if [ "$(basename $(pwd))" == "arm926_sdk" ] ; then

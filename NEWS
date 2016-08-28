@@ -2,6 +2,9 @@
 # some news ... see also TODO for hints
 #
 
+2016-04-28 -> ## target stuff
+	      update kernel to 4.4.17 and 4.4.17-rt25
+
 2016-04-08 -> ## sdk stuff
 	      start with migration to my new sdk structure (like a20_sdk)
 
