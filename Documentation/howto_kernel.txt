@@ -1,4 +1,4 @@
-# ----------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # Title      : simple howto for building a custom kernel
 #
@@ -13,16 +13,16 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 #
-# ----------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #
 # DEVICES
 # - arietta -> http://www.acmesystems.it/arietta
 #
 # KERNEL version
-# - linux-4.4.3
-# - linux-4.4.2-rt7 (latest RT-PREEMPT)
+# - linux-4.4.23
+# - linux-4.4.21-rt30 (latest RT-PREEMPT)
 # - linux-3.14.17 (xenomai)
 #
 # DOWNLOADS (use make get_latest_kernel)
@@ -63,8 +63,8 @@ KDO: git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable
 # patch kernel for rt-preempt
 #
 DIR: $ARMEL_HOME/kernel/linux-stable
-KDO: git checkout -b stable v4.4.2
-KDO: zcat ../patch-4.4.2-rt7.patch.gz | patch -p1
+KDO: git checkout -b stable v4.4.21
+KDO: zcat ../patch-4.4.21-rt30.patch.gz | patch -p1
 
 # ---
 
@@ -89,7 +89,7 @@ KDO:
 # configure kernel
 #
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
-KDO: git checkout -b stable v4.4.3
+KDO: git checkout -b stable v4.4.30
 KDO: cp $ARMEL_HOME/arietta/configs/kernel_config_4.x_arietta .config
 KDO(rt): cp $ARMEL_HOME/arietta/configs/kernel_config_4.x_rt_arietta .config
 KDO: make ARCH=arm menuconfig
@@ -116,8 +116,8 @@ KDO: make -j10 ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- zImage modules
 # install modules
 #
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
-KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_4.4.3 modules_install
-KDO(rt): make ARCH=arm INSTALL_MOD_PATH=../modules_4.4.2_rt modules_install
+KDO: make ARCH=arm INSTALL_MOD_PATH=../modules_4.4.23 modules_install
+KDO(rt): make ARCH=arm INSTALL_MOD_PATH=../modules_4.4.21_rt modules_install
 
 # ------------------------------------ BUILD end -----------------------------------
 
@@ -142,16 +142,16 @@ KDO: cp .config /mnt/arietta/arietta_kernel/
 #
 # Note: maybe your need to remove the old one
 DIR: $ARMEL_HOME/external/linux (or download to kernel/linux-...)
-KDO: sudo rsync -avc ../modules_4.4.3/lib/modules/. /mnt/arietta/arietta_rootfs/lib/modules/.
-KDO(rt): sudo rsync -avc ../modules_4.4.2_rt/lib/modules/. /mnt/arietta/arietta_rootfs/lib/modules/.
+KDO: sudo rsync -avc ../modules_4.4.23/lib/modules/. /mnt/arietta/arietta_rootfs/lib/modules/.
+KDO(rt): sudo rsync -avc ../modules_4.4.21_rt/lib/modules/. /mnt/arietta/arietta_rootfs/lib/modules/.
 
 #
 # copy cleaned source to sd card
 #
 # Note: dont forget to make ARCH=arm clean
 DIR: depends ...
-KDO: sudo rsync -av --delete linux-4.4.3 /mnt/arietta/arietta_rootfs/usr/src/.
-KDO(rt): sudo rsync -av --delete linux-4.4.2_rt /mnt/arietta/arietta_rootfs/usr/src/.
+KDO: sudo rsync -av --delete linux-4.4.23 /mnt/arietta/arietta_rootfs/usr/src/.
+KDO(rt): sudo rsync -av --delete linux-4.4.21_rt /mnt/arietta/arietta_rootfs/usr/src/.
 
 
 # ------------------------------------ COPY to SD end ------------------------------
@@ -162,24 +162,24 @@ KDO(rt): sudo rsync -av --delete linux-4.4.2_rt /mnt/arietta/arietta_rootfs/usr/
 #
 DIR: /usr/src
 KDO: depmod -a
-KDO: ln -s linux-4.4.3 linux
+KDO: ln -s linux-4.4.23 linux
 MAYBE: remove your old kernel tree (also installed modules -> /lib/module/your_old_kernel)
 
 #
 # Prepare linux tree to build your modules against the new kernel (non-rt)
 #
-DIR: /usr/src/linux-4.4.3
+DIR: /usr/src/linux-4.4.23
 KDO: make clean
 KDO: make scripts
 
 #
 # Prepare modules to link (non-rt)
 #
-DIR: /lib/modules/4.4.3
+DIR: /lib/modules/4.4.23
 KDO: rm build
 KDO: rm source
-KDO: ln -s /usr/src/linux-4.4.3 source
-KDO: ln -s /usr/src/linux-4.4.3 build
+KDO: ln -s /usr/src/linux-4.4.23 source
+KDO: ln -s /usr/src/linux-4.4.23 build
 
 
 

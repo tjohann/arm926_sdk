@@ -6,9 +6,9 @@
 export MY_HOST_ARCH=$(uname -m)
 
 # set supported kernel version
-export ARMEL_KERNEL_VER=4.4.17
-export ARMEL_RT_KERNEL_VER=4.4.17
-export ARMEL_RT_VER=rt25
+export ARMEL_KERNEL_VER=4.4.23
+export ARMEL_RT_KERNEL_VER=4.4.21
+export ARMEL_RT_VER=rt30
 
 # set armel home
 if [ "$(basename $(pwd))" == "arm926_sdk" ] ; then
